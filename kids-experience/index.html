@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoFroggy - Kids Interface</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <title>Australia for Kids - GeoFroggy</title>
     <style>
+        /* Exact colors from the image */
+        :root {
+            --green: #6aa84f;
+            --blue: #4a86e8;
+            --orange: #e69138;
+            --light-gray: #f3f3f3;
+            --dark-gray: #666666;
+            --yellow: #fff2cc;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Marker Felt', cursive, sans-serif;
         }
         
         body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            width: 100%;
+            background: white;
+            width: 100vw;
+            min-height: 100vh;
             overflow-x: hidden;
+    margin: 0;
+    padding: 0;
         }
         
+
+        .body-bg {
+    background: #0F1A66; /* blue */
+    padding: 80px;       /* 20px gap from all sides */
+    padding-left: 100px;
+    min-height: 100vh;
+}
+
+/* Inner WHITE BOX */
+.white-box {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
         .container {
             width: 100%;
             max-width: 1200px;
@@ -27,119 +56,209 @@
             padding: 0;
         }
         
-        /* Header Section - Exact match */
-        .header {
+        /* Header - Top section */
+        .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 25px;
-            background-color: #ffffff;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            padding: 0;
+            margin-bottom: 15px;
+           
         }
         
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: #4a86e8;
-        }
-        
-        .geo-text {
-            color: #4a86e8;
-        }
-        
-        .froggy-text {
-            color: #6aa84f;
-        }
-        
-        .header-right {
-            font-size: 20px;
-            font-weight: bold;
-            color: #6aa84f;
-        }
-        
-        /* Navigation Bar */
-        .nav-bar {
-            display: flex;
-            background-color: #6aa84f;
-            padding: 0 25px;
-            height: 50px;
+            height: 40px;
+            margin-top: -50px;
+            margin-left: 35%;
             align-items: center;
-            gap: 30px;
+           
+        }
+        
+       
+        
+        .sgpup {
+            font-size: 20px;
+            color: #000;
+            font-weight: bold;
+        }
+        
+        /* Navigation bar - EXACT like image */
+        .nav-bar {
+            background: #0F1A66;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 20px;
+            width: 100%;
         }
         
         .nav-item {
             color: white;
             font-size: 18px;
             font-weight: bold;
-            position: relative;
-            padding: 5px 0;
+            padding: 20px 15px;
+           
+            
         }
         
         .nav-item.home {
-            background-color: #ff9900;
-            padding: 5px 15px;
+            background: greenyellow;
+            color: #000;
             border-radius: 20px;
+            margin-right: 10px;
         }
         
         .nav-separator {
             color: white;
             font-size: 20px;
+            margin: 0 5px;
         }
         
-        /* Main Title Section */
-        .main-title-section {
-            padding: 20px 25px 10px;
-        }
-        
-        .page-title {
-            font-size: 28px;
+        .start-adventure {
+            margin-left: auto;
+            background: greenyellow;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
             font-weight: bold;
-            color: #4a86e8;
+            font-size: 16px;
+        }
+        
+        /* Page title */
+        .page-title {
+            color: var(--blue);
+            font-size: 32px;
+            font-weight: bold;
             margin-bottom: 5px;
         }
         
         .page-subtitle {
+            color: black;
             font-size: 20px;
-            color: #000000;
-            font-weight: normal;
+            margin-bottom: 25px;
         }
         
-        /* Content Grid */
+        /* Main content grid */
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 25px;
-            padding: 0 25px 20px;
         }
         
-        /* Left Column */
+        /* Left column */
         .left-column {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
         }
         
-        /* Facts Box */
-        .facts-box {
-            background-color: #f3f3f3;
-            border-radius: 10px;
+        /* Right column */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        /* Common card style */
+        .card {
+            background: var(--light-gray);
+            border-radius: 15px;
             padding: 20px;
-            border-left: 5px solid #6aa84f;
         }
         
-        .facts-title {
+        .card-title {
+            color: var(--green);
             font-size: 22px;
             font-weight: bold;
-            color: #6aa84f;
             margin-bottom: 15px;
         }
         
+        /* Map section */
+  .map-section {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+
+    display: flex;       /* map & info side by side */
+    gap: 20px;           /* space between map & info */
+    align-items: flex-start; /* align map & info top */
+    flex-wrap: wrap;     /* responsive wrap on small screens */
+}
+
+
+        
+      .map-container {
+    flex: 1 1 300px;       /* map takes some space */
+    min-width: 200px;       /* responsive min width */
+}
+
+.info-boxes {
+    flex: 1 1 60px;        /* info boxes take remaining space */
+    display: flex;
+    flex-direction: column; /* vertically stack inside info-boxes */
+    gap: 15px;
+}
+
+        .australia-map {
+    width: 100%;          /* container ke width ke hisaab se */
+    height: 100%;         /* container ke height ke hisaab se */
+    object-fit: cover;    /* image properly fit ho jaye */
+    border-radius: 15px;  /* corners round karne ke liye */
+}
+
+        
+        .map-icon {
+            position: absolute;
+            font-size: 30px;
+        }
+        
+        .kangaroo {
+            top: 40%;
+            left: 35%;
+            transform: rotate(-15deg);
+            color: #8B4513;
+        }
+        
+        .city-icon {
+            top: 30%;
+            left: 60%;
+            color: #FF5722;
+        }
+        
+        .city-icon2 {
+            top: 60%;
+            left: 70%;
+            color: #FF5722;
+        }
+        
+        /* Info Boxes */
+        
+        
+        .info-box {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 30px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            border: 2px solid var(--orange);
+        }
+        
+        .info-box i {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--orange);
+        }
+        
+        .info-box p {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        /* Facts card */
         .fact-item {
             font-size: 18px;
             margin-bottom: 10px;
@@ -147,76 +266,60 @@
         }
         
         .fact-number {
+            color: var(--blue);
             font-weight: bold;
-            color: #4a86e8;
         }
         
-        /* Map Section */
-        .map-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .map-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
-        }
-        
-        .map-container {
+        /* Map card */
+        .map-info-container {
             display: flex;
-            align-items: center;
             gap: 20px;
+            align-items: center;
         }
         
-        .australia-map {
-            width: 200px;
-            height: 180px;
-            background-color: #a4c2f4;
+        .map {
+            width: 180px;
+            height: 160px;
+            background: #a4c2f4;
             border-radius: 10px;
             position: relative;
             flex-shrink: 0;
         }
         
-        .map-labels {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+        .map-label {
+            position: absolute;
+            color: #cc0000;
+            font-weight: bold;
+            font-size: 18px;
         }
         
-        .map-label {
+        .north { top: 15px; left: 50%; transform: translateX(-50%); }
+        .middle { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .south { bottom: 15px; left: 50%; transform: translateX(-50%); }
+        
+        .map-info {
+            flex: 1;
+        }
+        
+        .location-item {
+            color: var(--blue);
             font-size: 18px;
             font-weight: bold;
-            color: #4a86e8;
+            margin-bottom: 8px;
         }
         
-        .map-divider {
+        .divider {
             height: 2px;
-            background-color: #cccccc;
-            width: 100%;
+            background: #cccccc;
             margin: 10px 0;
+            width: 100%;
         }
         
-        /* Weather Section */
-        .weather-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .weather-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
-        }
-        
+        /* Weather card */
         .weather-tabs {
             display: flex;
-            background-color: #d9ead3;
-            border-radius: 5px;
+            background: #d9ead3;
+            border-radius: 8px;
             overflow: hidden;
             margin-bottom: 15px;
         }
@@ -231,350 +334,262 @@
         }
         
         .weather-tab.active {
-            background-color: #6aa84f;
+            background: var(--green);
             color: white;
         }
         
         .weather-content {
             font-size: 18px;
-            line-height: 1.4;
         }
         
-        /* Right Column */
-        .right-column {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
+        .weather-line {
+            margin-bottom: 5px;
         }
         
-        /* Animals Section */
-        .animals-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .animals-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
-        }
-        
+        /* Animals card */
         .animals-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
         
         .animal-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background-color: white;
+            gap: 12px;
+            background: white;
             padding: 10px;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         
         .animal-icon {
             width: 50px;
             height: 50px;
-            background-color: #a4c2f4;
+            background: #a4c2f4;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: #4a86e8;
+            color: var(--blue);
             font-weight: bold;
         }
         
         .animal-name {
+            color: var(--blue);
             font-size: 18px;
             font-weight: bold;
-            color: #4a86e8;
         }
         
-        /* People & Places Section */
-        .places-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .places-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
-        }
-        
-        .places-content {
-            font-size: 18px;
-            line-height: 1.4;
-        }
-        
+        /* People & Places card */
         .city-name {
-            font-weight: bold;
-            color: #4a86e8;
-        }
-        
-        /* Languages Section */
-        .languages-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .languages-title {
-            font-size: 22px;
-            font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
-        }
-        
-        .languages-content {
+            color: var(--blue);
             font-size: 18px;
-            line-height: 1.4;
-        }
-        
-        /* Scavenger Hunt Section */
-        .hunt-section {
-            background-color: #f3f3f3;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 10px;
-        }
-        
-        .hunt-title {
-            font-size: 22px;
             font-weight: bold;
-            color: #6aa84f;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         
-        .hunt-content {
+        .people-fact {
             font-size: 18px;
-            line-height: 1.4;
-            background-color: #fff2cc;
+            font-weight: bold;
+        }
+        
+        /* Languages card */
+        .language-title {
+            color: var(--blue);
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .language-text {
+            font-size: 18px;
+        }
+        
+        /* Scavenger Hunt card */
+        .hunt-box {
+            background: var(--yellow);
             padding: 15px;
-            border-radius: 8px;
-            border-left: 5px solid #ff9900;
+            border-radius: 10px;
+            border-left: 5px solid var(--orange);
+            font-size: 18px;
+            font-weight: bold;
         }
         
         /* Footer */
         .footer {
-            background-color: #4a86e8;
-            padding: 15px 25px;
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background: var(--blue);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 25px;
+            text-align: center;
         }
         
         .footer-text {
-            font-size: 20px;
-            font-weight: bold;
             color: white;
-        }
-        
-        /* Exact text styles from image */
-        .bold-text {
+            font-size: 22px;
             font-weight: bold;
-        }
-        
-        .blue-text {
-            color: #4a86e8;
-        }
-        
-        .green-text {
-            color: #6aa84f;
-        }
-        
-        /* Hemisphere List */
-        .hemisphere-list {
-            margin-top: 10px;
-            padding-left: 20px;
-        }
-        
-        .hemisphere-item {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        /* Additional spacing elements */
-        .spacer {
-            height: 10px;
-        }
-        
-        /* Map internal elements */
-        .map-region {
-            position: absolute;
-            font-weight: bold;
-            color: #cc0000;
-        }
-        
-        .north-region {
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .middle-region {
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .south-region {
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="body-bg">
+
+    <div class="white-box">
+        <div class="container">
+
         <!-- Header -->
-        <div class="header">
-            <div class="logo-section">
-                <div class="logo">
-                    <span class="geo-text">Geo</span><span class="froggy-text">Froggy</span>
-                </div>
-                <div class="header-right">SgpUp</div>
-            </div>
+        <div class="header-top">
+           <!-- Logo -->
+        <div class="logo">
+            <a href="index.html">
+    <img src="../assets/images/logo-1.png" alt="Logo">
+</a>
+
+        </div>
+            <div class="sgpup">Sign Up</div>
         </div>
         
-        <!-- Navigation -->
+        <!-- Navigation Bar -->
         <div class="nav-bar">
             <div class="nav-item home">Home</div>
-            <div class="nav-separator">~</div>
-            <div class="nav-item">Coarther</div>
-            <div class="nav-separator">~</div>
+            <div class="nav-item">Home</div>
+            <div class="nav-item">Countries</div>
             <div class="nav-item">Games</div>
-            <div class="nav-separator">~</div>
-            <div class="nav-item">Tokura</div>
-            <div style="flex-grow: 1;"></div>
-            <div class="nav-item" style="color: #ff9900; background-color: white; padding: 5px 15px; border-radius: 20px;">
-                Start a Coarty Adventure
-            </div>
+            <div class="nav-item">Tokens</div>
+            <div class="start-adventure">Start a Country Adventure</div>
         </div>
         
-        <!-- Main Title -->
-        <div class="main-title-section">
+        <!-- Page Title -->
+        
+        
+        <!-- Map Section -->
+        <div class="map-section">
+            <div class="map-container">
+    <img src="../assets/images/aus.jpg" alt="Australia Map" class="australia-map">
+   
+    
+</div>
+
+            
+            <div class="info-boxes">
+                <div>
             <div class="page-title">Australia for Kids</div>
             <div class="page-subtitle">Discover the land Down Under!</div>
         </div>
+                <div class="info-box">
+                    <i class="fas fa-ruler-horizontal"></i>
+                    <p>6th biggest country</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-users"></i>
+                    <p>About 26 million people</p>
+                </div>
+                
+                <div class="info-box">
+                    <i class="fas fa-building"></i>
+                    <p>Most people live in cities</p>
+                </div>
+            </div>
+        </div>
         
-        <!-- Main Content Grid -->
+        <!-- Main Content -->
         <div class="content-grid">
             <!-- Left Column -->
             <div class="left-column">
-                <!-- Facts Box -->
-                <div class="facts-box">
-                    <div class="facts-title">Quick Facts</div>
-                    <div class="fact-item"><span class="fact-number">4th biggest</span> country</div>
-                    <div class="fact-item"><span class="fact-number">About 26 million</span> people</div>
-                    <div class="fact-item"><span class="bold-text">Most people live in cities</span></div>
-                </div>
-                
-                <!-- Map Section -->
-                <div class="map-section">
-                    <div class="map-title">Where in the world?</div>
-                    <div class="map-container">
-                        <div class="australia-map">
-                            <div class="map-region north-region">North</div>
-                            <div class="map-region middle-region">Middle</div>
-                            <div class="map-region south-region">South</div>
+                <!-- Map Card -->
+                <div class="card">
+                    <div class="card-title">Where in the world?</div>
+                    <div class="map-info-container">
+                        <div class="map">
+                            <div class="map-label north">North</div>
+                            <div class="map-label middle">Middle</div>
+                            <div class="map-label south">South</div>
                         </div>
-                        <div class="map-labels">
-                            <div class="map-label">1 In the Southern Hemisphere</div>
-                            <div class="map-label">2 Surrounded by ocean</div>
-                            <div class="map-divider"></div>
-                            <div class="map-label">1 In the Southern Hemisphere</div>
-                            <div class="map-label">2 Surrounded by oceans</div>
+                        <div class="map-info">
+                            <div class="location-item">1 In the Southern Hemisphere</div>
+                            <div class="location-item">2 Surrounded by ocean</div>
+                            <div class="location-item">3 Beneath Asia</div>
+                            <div class="divider"></div>
+                            <div class="location-item">1 In the Southern Hemisphere</div>
+                            <div class="location-item">2 Surrounded by oceans</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Weather Section -->
-                <div class="weather-section">
-                    <div class="weather-title">What's the weather like?</div>
+                <!-- Weather Card -->
+                <div class="card">
+                    <div class="card-title">What's the weather like?</div>
                     <div class="weather-tabs">
                         <div class="weather-tab active">Then</div>
                         <div class="weather-tab">Now</div>
                         <div class="weather-tab">Future</div>
                     </div>
                     <div class="weather-content">
-                        <div class="bold-text">Rather in the north</div>
-                        <div>Nearly sunny and dry</div>
-                        <div>Sometimes droughts and fires</div>
+                        <div class="weather-line" style="font-weight: bold;">Rainier in the north</div>
+                        <div class="weather-line">Nearly sunny and dry</div>
+                        <div class="weather-line">Sometimes droughts and fires</div>
                     </div>
                 </div>
             </div>
             
             <!-- Right Column -->
             <div class="right-column">
-                <!-- Animals Section -->
-                <div class="animals-section">
-                    <div class="animals-title">Animals to meet</div>
+                <!-- Animals Card -->
+                <div class="card">
+                    <div class="card-title">Animals to meet</div>
                     <div class="animals-grid">
                         <div class="animal-item">
                             <div class="animal-icon">K</div>
-                            <div class="animal-name">Kangarouo</div>
+                            <div class="animal-name">Kangaroo</div>
                         </div>
                         <div class="animal-item">
                             <div class="animal-icon">K</div>
-                            <div class="animal-name">Koper</div>
+                            <div class="animal-name">Koala</div>
                         </div>
                         <div class="animal-item">
                             <div class="animal-icon">P</div>
-                            <div class="animal-name">Plateckus</div>
+                            <div class="animal-name">Platypus</div>
                         </div>
                         <div class="animal-item">
                             <div class="animal-icon">K</div>
-                            <div class="animal-name">Keakkarre</div>
+                            <div class="animal-name">Kookaburra</div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- People & Places -->
-                <div class="places-section">
-                    <div class="places-title">People and places</div>
-                    <div class="places-content">
-                        <div class="city-name">Sigham Melbourne</div>
-                        <div class="spacer"></div>
-                        <div class="bold-text">Most people live in cities near the coast</div>
-                    </div>
+                <!-- People & Places Card -->
+                <div class="card">
+                    <div class="card-title">People and places</div>
+                    <div class="city-name">Sydney Melbourne</div>
+                    <div class="people-fact" style="margin-top: 10px;">Most people live in cities near the coast</div>
                 </div>
                 
-                <!-- Languages -->
-                <div class="languages-section">
-                    <div class="languages-title">Languages & culture</div>
-                    <div class="languages-content">
-                        <div class="bold-text blue-text">English</div>
-                        <div>Most people speak English, and many other languages at home</div>
-                    </div>
+                <!-- Languages Card -->
+                <div class="card">
+                    <div class="card-title">Languages & culture</div>
+                    <div class="language-title">English</div>
+                    <div class="language-text">Most people speak English, and many other languages at home</div>
                 </div>
                 
-                <!-- Scavenger Hunt -->
-                <div class="hunt-section">
-                    <div class="hunt-title">Scavenger Hunt</div>
-                    <div class="hunt-content">
-                        Find key stand for the sunny, dry place
-                    </div>
+                <!-- Scavenger Hunt Card -->
+                <div class="card">
+                    <div class="card-title">Scavenger Hunt</div>
+                    <div class="hunt-box">Find key stand for the sunny, dry place</div>
                 </div>
             </div>
         </div>
         
         <!-- Footer -->
         <div class="footer">
-            <div class="footer-text">GEOFE MEDIA</div>
+            <div class="footer-text">GEOFROGGY MEDIA</div>
         </div>
+    </div>
+    </div>
     </div>
 
     <script>
-        // Simple interactive elements
+        // Simple interactivity
         document.querySelectorAll('.weather-tab').forEach(tab => {
             tab.addEventListener('click', function() {
                 document.querySelectorAll('.weather-tab').forEach(t => {
@@ -584,20 +599,16 @@
             });
         });
         
+        document.querySelector('.start-adventure').addEventListener('click', function() {
+            alert('Starting a Country Adventure!');
+        });
+        
         document.querySelectorAll('.nav-item').forEach(item => {
             item.addEventListener('click', function() {
                 if(!this.classList.contains('home')) {
-                    alert(`Navigating to ${this.textContent} section`);
+                    alert(`Going to ${this.textContent} section`);
                 }
             });
-        });
-        
-        document.querySelector('.nav-item.home').addEventListener('click', function() {
-            alert('Going to Home!');
-        });
-        
-        document.querySelector('.nav-item[style*="background-color: white"]').addEventListener('click', function() {
-            alert('Starting a Coarty Adventure!');
         });
     </script>
 </body>
