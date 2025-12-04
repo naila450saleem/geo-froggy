@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoFroggy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        body {
+            background: #ffffff;
+            color: #333333;
+        }
+
+        /* Header container */
+.main-header {
+    width: 100%;
+    background-color: #f0f4f8; /* dark blue to match hero */
+    padding: 15px 30px;
+    padding-right:80px;
+    padding-left: 60px;
+    box-sizing: border-box;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.logo img {
+    height: 50px; /* adjust as needed */
+}
+
+/* Navigation links */
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #21c17a; /* green highlight on hover */
+}
+
+/* Sign Up button in nav */
+.signup-btn {
+    background-color: greenyellow;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.signup-btn:hover {
+    background-color: greenyellow;
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Hamburger menu - mobile */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    display: block;
+    border-radius: 2px;
+}
+
+/* Responsive Header */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* hide nav links */
+        position: absolute;
+        top: 65px;
+        right: 30px;
+        background-color: #0F1A66;
+        flex-direction: column;
+        width: 200px;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+}
+
+
+        .full-section-wrapper {
+    background-color: #f0f4f8; /* light blue/gray background */
+    padding: 0;                /* optional, wrapper padding */
+}
+
+.full-section-wrapper .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0 0 0;
+}
+
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 0 0 0;
+        }
+        
+        /* EXACT Header like image */
+        .hero-section {
+  padding: 50px 20px;
+  background-color: #0F1A66; /* optional background */
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-bottom: 50px;
+
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap; /* responsive */
+}
+
+.hero-text {
+  flex: 1 1 500px;
+  padding-right: 20px;
+  padding-left: 40px;
+}
+
+.hero-text .main-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.hero-text .subtitle {
+  font-size: 20px;
+  color: #fff;
+}
+
+.hero-image {
+  flex: 1 1 350px;
+  text-align: right;
+  overflow: visible;
+}
+
+.hero-image img {
+    max-width: 80%;       /* image width */
+    height: auto;
+    border-radius: 20px;  /* all 4 corners */
+    display: block;       /* inline spacing remove */
+    margin-left: 30px;    /* right align image */
+    margin-right: 0;      /* ensure right side is at container edge */
+
+   /* --- Subtle Glow --- */
+    box-shadow: 
+        0 4px 15px rgba(0, 200, 255, 0.2),   /* lighter cyan glow */
+        0 0 10px rgba(0, 200, 255, 0.1);      /* soft halo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Optional hover for subtle increase */
+.hero-image img:hover {
+    transform: scale(1.01);
+    box-shadow: 
+        0 6px 18px rgba(0, 200, 255, 0.25),
+        0 0 12px rgba(0, 200, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .hero-image {
+    text-align: center;
+    margin-top: 30px;
+  }
+  .hero-text {
+    padding-right: 0;
+    text-align: center;
+  }
+}
+/* image */
+.path-box img.path-img {
+    width: 75%;
+    height: auto;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-top: -25px;
+    margin-bottom: 25px;
+    border-radius: 10px; /* optional */
+}
+
+.image-row {
+    display: flex;
+    justify-content: space-between; /* space between images */
+    align-items: center; /* vertically center */
+    gap: 5px; /* optional spacing */
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+
+.map-icon-img {
+    width: 35%; /* 3 images in a row */
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    padding-left: 20px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 70px;
+    
+}
+
+.image-row img.map-icon-img:nth-child(3) {
+    margin-left: -15px; /* adjust value as needed */
+}
+
+
+
+        
+        /* EXACT Grid layout like image */
+        .paths-container {
+              display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 60px;
+    flex-wrap: wrap; /* responsive */
+        }
+        
+        .path-box {
+          width: 320px;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 0; /* remove padding to align home-label at top */
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow: hidden;
+        }
+        
+        /* EXACT "Home" text like image */
+        .home-label {
+              display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: greenyellow;
+    color: #000;
+    border: none;
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 40px; /* only top corners rounded */
+    margin-bottom: 20px; /* space between label and age */
+        }
+        
+        /* EXACT Age ranges like image */
+        .age-range {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 16px;
+        }
+
+        .age-range .greater {
+  color: lightgreen;
+}
+        
+        /* EXACT Descriptions like image */
+        .description {
+            font-size: 16px;
+            color: #6B7280;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            min-height: 48px;
+        }
+        
+        /* EXACT Button style like image */
+        /* Bottom button */
+.start-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: greenyellow;
+    color: #000;
+    border: none;
+    padding: 14px 32px;      /* left-right spacing inside button */
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    width: calc(100% - 40px); /* respect card padding / left-right spacing */
+    margin: 0 auto 20px auto; /* center button, bottom spacing */
+}
+
+.start-btn:hover {
+    background: #c7ff4d;
+    transform: translateY(-2px);
+}
+
+        
+        .arrow {
+            margin-left: 8px;
+            font-size: 18px;
+        }
+
+        .see-inside-btn {
+  display: inline-flex;          /* arrow aligns nicely with text */
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;                /* main text color */
+  text-decoration: none;          /* remove underline */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding-top: 0;
+  margin-bottom: 20px;
+}
+
+.see-inside-btn .arrow {
+  margin-left: 8px;              /* space between text and arrow */
+  transition: transform 0.3s ease;
+}
+
+/* Hover effects */
+.see-inside-btn:hover {
+  color: #00c800;                /* brighter green on hover */
+}
+
+.see-inside-btn:hover .arrow {
+  transform: translateX(5px);    /* arrow moves slightly right */
+}
+
+.info-footer {
+    display: flex;
+    justify-content: space-between; /* left text, right link */
+    align-items: center; /* vertical align center for text+icon group */
+    padding: 0 100px;
+    background-color: transparent;
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: -40px;
+    padding-bottom: 80px;
+    
+}
+
+.footer-text {
+    display: flex;           /* icon + text in a row */
+    align-items: center;     /* vertical center of icon with multi-line text */
+    color: #000;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.4;        /* adjust spacing between lines */  
+}
+
+.footer-icon {
+    width: 40px;             /* icon size */
+    height: auto;
+    margin-right: 10px;      /* space between icon and text */
+    flex-shrink: 0;          /* keep icon size fixed */
+}
+
+.footer-link {
+    color: #000; 
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #1aa267; 
+    text-decoration: underline;
+}
+
+
+
+
+    /* Footer */
+        .custom-footer {
+    display: flex;
+    justify-content: space-between; /* left text, right button */
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #0F1A66; /* light footer background */
+    border-top: 1px solid #e0e0e0; /* optional top border */
+    font-family: 'Roboto', sans-serif;
+       margin-left: -8px;   /* container horizontal padding ke opposite */
+    margin-right: -8px;
+}
+
+.custom-footer-text {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+}
+
+.footer-btn {
+    padding: 10px 20px;
+    background-color: #c7ff4d; /* green button */
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+
+    /* Lighting / glow effect */
+    box-shadow: 0 4px 15px rgba(33, 193, 122, 0.4);
+}
+
+.footer-btn:hover {
+    background-color: #1aa267; /* darker green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- Tablet: 768px and below --- */
+@media (max-width: 768px) {
+
+    .hero-section {
+        margin-left: 3%;
+        margin-right: 3%;
+        padding: 40px 15px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-text {
+        flex: 1 1 100%;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .hero-text .main-title {
+        font-size: 36px;
+    }
+
+    .hero-text .subtitle {
+        font-size: 18px;
+    }
+
+    .hero-image {
+        flex: 1 1 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .hero-image img {
+        max-width: 90%;
+        padding-right: 0;
+        border-radius: 15px;
+    }
+
+    .paths-container {
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .path-box {
+        width: 90%; /* cards take most of screen width */
+        margin-bottom: 30px;
+    }
+
+    .path-box img.path-img {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -15px;
+        margin-bottom: 20px;
+    }
+
+    .image-row {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .map-icon-img {
+        width: 30%; /* adjust 3 images in row */
+        padding: 10px 0 30px 0;
+    }
+
+    .image-row img.map-icon-img:nth-child(3) {
+        margin-left: 0; /* remove negative margin */
+    }
+
+    .start-btn, .see-inside-btn {
+        width: 90%;
+        margin: 10px auto;
+        font-size: 14px;
+        padding: 12px 0;
+    }
+
+    /* Footer responsive */
+    .info-footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+        margin-top: 20px;
+        padding-bottom: 40px;
+        gap: 10px;
+    }
+
+    .footer-text {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-link {
+        margin-top: 10px;
+    }
+
+    .custom-footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .footer-btn {
+        width: 80%;
+        padding: 12px 0;
+    }
+}
+
+/* --- Mobile: 480px and below --- */
+@media (max-width: 480px) {
+
+    .hero-text .main-title {
+        font-size: 28px;
+    }
+
+    .hero-text .subtitle {
+        font-size: 16px;
+    }
+
+    .path-box {
+        width: 95%;
+    }
+
+    .map-icon-img {
+        width: 45%; /* 2 images per row */
+    }
+
+    .image-row {
+        justify-content: center;
+    }
+
+    .start-btn, .see-inside-btn {
+        width: 95%;
+        font-size: 13px;
+    }
+
+    .footer-btn {
+        width: 90%;
+    }
+
+    .footer-text {
+        font-size: 12px;
+    }
+
+    .footer-link {
+        font-size: 13px;
+    }
+}
+
+/* Tablet: 768px and below */
+@media (max-width: 768px) {
+    .see-inside-btn {
+        display: block;       /* full width block */
+        text-align: center;   /* center the text & arrow */
+        margin: 10px auto;    /* top/bottom spacing + auto left/right */
+    }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+    .see-inside-btn {
+        display: block;
+        text-align: center;
+        margin: 8px auto;
+        font-size: 14px;      /* slightly smaller on mobile */
+    }
+}
+
+
+        
+    
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="header-container">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="index.html">
+    <img src="assets/images/logo-1.png" alt="Logo">
+</a>
+
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#paths">Paths</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
+            </ul>
+        </nav>
+
+        <!-- Hamburger for mobile -->
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</header>
+
+
+
+<section class="full-section-wrapper">
+  <div class="main-container">
+      
+      <section class="hero-section">
+        <div class="container">
+          <!-- Left side: Text -->
+          <div class="hero-text">
+            <h1 class="main-title">How Do You Explore the World?</h1>
+            <p class="subtitle">Choose your GeoFroggy path to match how you think and learn.</p>
+          </div>
+
+          <!-- Right side: Map image -->
+          <div class="hero-image">
+            <img src="assets/images/world.jpg" alt="World Map" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Paths Container -->
+      <div class="paths-container">
+          <!-- Kids Box -->
+          <div class="path-box">
+              <div class="home-label">Home</div>
+              <div class="age-range">Kids <span class="greater">&gt;</span> 8-12</div>
+              <p class="description">Games, maps, and story quests.</p>
+              <div class="image-row">
+                  <img src="assets/images/web.png" alt="Image 1" class="map-icon-img">
+                  <img src="assets/images/star.png" alt="Image 2" class="map-icon-img">
+                  <img src="assets/images/letter-x.png" alt="Image 3" class="map-icon-img">
+              </div>
+              <a href="kids-experience/index.html" class="start-btn">Start Kids Experience</a>
+              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
+          </div>
+          
+          <!-- Teens Box -->
+          <div class="path-box">
+              <div class="home-label">Home</div>
+              <div class="age-range">Teens <span class="greater">&gt;</span> 13-17</div>
+              <p class="description">Compare countries, trends, and challenges.</p>
+              <img src="assets/images/dashboard1.jpg" alt="Teen Image" class="path-img">
+              <a href="teens-experience/index.html" class="start-btn">Start Teen Experience</a>
+              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
+          </div>
+          
+          <!-- Adults Box -->
+          <div class="path-box">
+              <div class="home-label">Home</div>
+              <div class="age-range">Adults <span class="greater">&gt;</span> 18+</div>
+              <p class="description">Insightful stories, context, and dashboards.</p>
+              <img src="assets/images/dashboard2.jpg" alt="Adults Image" class="path-img">
+              <a href="adults-experience/index.html" class="start-btn">Start Adult Experience</a>
+              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
+          </div>
+      </div>
+
+      <!-- Info Footer -->
+      <section class="info-footer">
+        <p class="footer-text">
+            <img src="assets/images/web.png" alt="Icon" class="footer-icon">
+            All paths use real-world data from <br> countries around the world
+        </p>
+        <a href="why-choose-age.html" class="footer-link">Why choose by Age? &gt;</a>
+      </section>
+
+      <!-- Main Footer -->
+      <footer class="custom-footer">
+        <p class="custom-footer-text">All paths use real-world data from <br>countries around the world</p>
+        <a href="signup.html" class="footer-btn">Sign Up Free</a>
+      </footer>
+
+  </div>
+</section>
+
+
+        
+       
+
+    <script>
+        // Simple interactivity
+        document.querySelector('.signup-btn').addEventListener('click', function() {
+            alert('Sign up form will be implemented here!');
+        });
+    </script>
+</body>
+</html>

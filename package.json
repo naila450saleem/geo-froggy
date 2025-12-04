@@ -1,0 +1,28 @@
+{
+  "name": "geo-froggy-website",
+  "version": "1.0.0",
+  "description": "Interactive cultural data platform with age-appropriate interfaces",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server",
+    "dev": "live-server --port=3000 --open=/index.html",
+    "test": "echo \"No tests specified\" && exit 0"
+  },
+  "keywords": [
+    "geography",
+    "data-visualization",
+    "education",
+    "interactive-learning",
+    "cultural-data"
+  ],
+  "author": "GeoFroggy Team",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "apexcharts": "^3.41.0",
+    "chart.js": "^4.4.0",
+    "d3": "^7.8.5"
+  }
+}

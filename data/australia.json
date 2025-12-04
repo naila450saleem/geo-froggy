@@ -1,0 +1,29 @@
+{
+  "country": "Australia",
+  "population": "26,461,166",
+  "area": "7,741,220 sq km",
+  "capital": "Canberra",
+  "location": "Oceania, between Indian and South Pacific Oceans",
+  "interesting_facts": [
+    "World's smallest continent but 6th largest country",
+    "Largest country entirely in Southern Hemisphere",
+    "Has over 25,760 km of coastline",
+    "Home to unique animals like kangaroos and koalas"
+  ],
+  "land_use": {
+    "agricultural": "46.65%",
+    "forest": "17.42%",
+    "other": "33.42%"
+  },
+  "languages": [
+    {"name": "English", "percentage": "72%"},
+    {"name": "Mandarin", "percentage": "2.7%"},
+    {"name": "Arabic", "percentage": "1.4%"}
+  ],
+  "weather": {
+    "north": "Tropical",
+    "south": "Temperate",
+    "central": "Arid desert"
+  },
+  "animals": ["Kangaroo", "Koala", "Platypus", "Kookaburra", "Emu"]
+}

@@ -1,0 +1,89 @@
+<!-- D:\geo-froggy-website\landing-page\index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoFroggy - How Do You Explore the World?</title>
+    <style>
+        /* PDF-inspired design */
+        .hero {
+            background: linear-gradient(135deg, #4A6FA5, #166088);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .path-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px auto;
+            max-width: 1200px;
+            flex-wrap: wrap;
+        }
+        .path-card {
+            background: white;
+            border-radius: 12px;
+            width: 320px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .kids-card { border-top: 6px solid #FF9800; }
+        .teens-card { border-top: 6px solid #2196F3; }
+        .adults-card { border-top: 6px solid #9C27B0; }
+        .cta-button {
+            background: #FF5722;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>How Do You Explore the World?</h1>
+        <p>Choose your GeoFroggy path to match how you think and learn.</p>
+    </div>
+    
+    <div class="path-cards">
+        <!-- Kids Card -->
+        <div class="path-card kids-card">
+            <h2>Kids > 8-12</h2>
+            <p>Games, maps, and story quests.</p>
+            <a href="../kids-experience/index.html" class="cta-button">
+                Start Kids Experience →
+            </a>
+        </div>
+        
+        <!-- Teens Card -->
+        <div class="path-card teens-card">
+            <h2>Teens > 13-17</h2>
+            <p>Compare countries, trends, and challenges.</p>
+            <a href="../teens-experience/index.html" class="cta-button">
+                Start Teen Experience →
+            </a>
+        </div>
+        
+        <!-- Adults Card -->
+        <div class="path-card adults-card">
+            <h2>Adults > 18+</h2>
+            <p>Insightful stories, context, and dashboards.</p>
+            <a href="../adults-experience/index.html" class="cta-button">
+                Start Adult Experience →
+            </a>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin: 40px auto; max-width: 800px;">
+        <p><strong>All paths use real-world data from countries around the world.</strong></p>
+        <button style="background: #4CAF50; color: white; padding: 15px 40px; border: none; border-radius: 25px; font-size: 16px;">
+            Sign Up Free
+        </button>
+        <p><a href="#" style="color: #666; margin-top: 20px; display: inline-block;">Why choose by age? ></a></p>
+    </div>
+</body>
+</html>

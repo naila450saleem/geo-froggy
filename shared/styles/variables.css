@@ -1,0 +1,35 @@
+:root {
+  /* Colors */
+  --primary-blue: #2196F3;
+  --primary-green: #4CAF50;
+  --primary-orange: #FF9800;
+  --primary-purple: #9C27B0;
+  --primary-red: #F44336;
+  
+  /* Kids theme */
+  --kids-bg: linear-gradient(135deg, #FFD700, #4CAF50);
+  --kids-primary: #FF5722;
+  --kids-secondary: #2196F3;
+  
+  /* Teens theme */
+  --teens-bg: linear-gradient(135deg, #667eea, #764ba2);
+  --teens-primary: #2196F3;
+  --teens-secondary: #9C27B0;
+  
+  /* Adults theme */
+  --adults-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --adults-primary: #2C3E50;
+  --adults-secondary: #34495E;
+  
+  /* Fonts */
+  --font-kids: 'Comic Sans MS', cursive, sans-serif;
+  --font-teens: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-adults: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  
+  /* Spacing */
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+}

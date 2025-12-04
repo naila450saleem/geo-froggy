@@ -1,0 +1,143 @@
+<!-- D:\geo-froggy-website\teens-experience\pages\compare.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Countries - GeoFroggy Teens</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .compare-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        .country-card {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .metric-item {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .year-slider {
+            width: 100%;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Explore, Compare, Think.</h1>
+    <p>See how countries change over time.</p>
+    
+    <!-- Trend Explorer -->
+    <div style="background: #f0f7ff; padding: 20px; border-radius: 15px; margin: 20px 0;">
+        <h3>Trend Explorer</h3>
+        <input type="range" min="2000" max="2023" value="2023" class="year-slider" id="yearSlider">
+        <div style="display: flex; justify-content: space-between;">
+            <span>2000</span>
+            <span id="selectedYear">2023</span>
+            <span>2023</span>
+        </div>
+        <canvas id="trendChart" height="150"></canvas>
+    </div>
+    
+    <!-- Country Comparison -->
+    <div class="compare-container">
+        <!-- Country A -->
+        <div class="country-card">
+            <h3>Country A</h3>
+            <select style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option>Australia</option>
+                <option>United States</option>
+                <option>China</option>
+                <option>India</option>
+            </select>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <strong>Temperature</strong>
+                    <div>24°C</div>
+                </div>
+                <div class="metric-item">
+                    <strong>CO2 per capita</strong>
+                    <div>16.4 t</div>
+                </div>
+                <div class="metric-item">
+                    <strong>GDP per capita</strong>
+                    <div>$55,000</div>
+                </div>
+                <div class="metric-item">
+                    <strong>Urbanization</strong>
+                    <div>86%</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Country B -->
+        <div class="country-card">
+            <h3>Country B</h3>
+            <select style="width: 100%; padding: 10px; margin: 10px 0;">
+                <option>France</option>
+                <option>Germany</option>
+                <option>Japan</option>
+                <option>Brazil</option>
+            </select>
+            <div class="metrics-grid">
+                <div class="metric-item">
+                    <strong>Temperature</strong>
+                    <div>12°C</div>
+                </div>
+                <div class="metric-item">
+                    <strong>CO2 per capita</strong>
+                    <div>4.6 t</div>
+                </div>
+                <div class="metric-item">
+                    <strong>GDP per capita</strong>
+                    <div>$42,000</div>
+                </div>
+                <div class="metric-item">
+                    <strong>Urbanization</strong>
+                    <div>81%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Store Comparison Button -->
+    <div style="text-align: center; margin: 30px 0;">
+        <button style="background: #4CAF50; color: white; padding: 15px 40px; border: none; border-radius: 25px; font-size: 16px;">
+            Store this comparison
+        </button>
+    </div>
+    
+    <script>
+        // Year slider
+        document.getElementById('yearSlider').addEventListener('input', function(e) {
+            document.getElementById('selectedYear').textContent = e.target.value;
+        });
+        
+        // Chart
+        const ctx = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['2000', '2005', '2010', '2015', '2020', '2023'],
+                datasets: [{
+                    label: 'Temperature',
+                    data: [22, 22.5, 23, 23.5, 24, 24],
+                    borderColor: '#FF5722'
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

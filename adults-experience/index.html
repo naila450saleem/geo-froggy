@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoFroggy - Insight, Context, Understanding</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f8f9fa;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: #666;
+            letter-spacing: 1px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-top: 4px solid #9C27B0;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .context-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .context-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #1a237e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #9C27B0;
+        }
+        
+        .search-context ul {
+            list-style: none;
+        }
+        
+        .search-context li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #666;
+        }
+        
+        .search-context li:first-child {
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .expert-card {
+            background: #f0f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .expert-title {
+            font-weight: bold;
+            color: #1a237e;
+            margin-bottom: 10px;
+        }
+        
+        .hero-bands {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .hero-text {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .analytic-modules {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .module-list ul {
+            list-style: none;
+        }
+        
+        .module-list li {
+            padding: 12px 0;
+            color: #666;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .module-list li strong {
+            color: #1a237e;
+        }
+        
+        .context-bar {
+            background: #f0f7ff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .expert-tiles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .expert-tile {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .interconnectedness {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-top: 40px;
+        }
+        
+        .question-mark {
+            font-size: 48px;
+            color: #9C27B0;
+            margin-bottom: 10px;
+        }
+        
+        .get-started-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 15px 50px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #1a237e;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">GeoFroggy</div>
+            <div class="tagline">Insight, Context, Understanding</div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">1.6B+</div>
+                <div class="stat-label">GeoEntities</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1.3B+</div>
+                <div class="stat-label">Data Records</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1.1B+</div>
+                <div class="stat-label">Data Sources</div>
+            </div>
+        </div>
+        
+        <!-- Context Section -->
+        <div class="context-section">
+            <div class="context-card">
+                <h2 class="section-title">Context</h2>
+                <div class="search-context">
+                    <ul>
+                        <li>Search Context</li>
+                        <li>Location</li>
+                        <li>All</li>
+                        <li>North America</li>
+                        <li>Europe</li>
+                        <li>Asia</li>
+                        <li>Africa</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="context-card">
+                <div class="expert-card">
+                    <div class="expert-title">Expert 2</div>
+                    <p class="hero-text">Dat recoree account of thwart allhunted and sagittral motives.</p>
+                </div>
+                
+                <div class="expert-card">
+                    <div class="expert-title">Expert 3</div>
+                    <p class="hero-text">Pow as farre deoplanning the drug saw reliability times announcements.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Hero Bands -->
+        <div class="hero-bands">
+            <h2 class="section-title">Hero Bands</h2>
+            <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        
+        <!-- Analytic Modules -->
+        <div class="analytic-modules">
+            <div class="context-card">
+                <h2 class="section-title">Analytic Modules</h2>
+                <div class="module-list">
+                    <ul>
+                        <li><strong>Peper Dex</strong></li>
+                        <li>Acyle Uss</li>
+                        <li>Acyle Uss</li>
+                        <li>Acyle Uss</li>
+                        <li>Acyle Uss</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="context-card">
+                <h2 class="section-title">Context Bar</h2>
+                <div class="context-bar">
+                    <strong>Context</strong>
+                </div>
+                <h3 style="color: #1a237e; margin: 20px 0 15px 0;">Expert Tiles</h3>
+                <div class="expert-tiles">
+                    <div class="expert-tile">
+                        <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                    <div class="expert-tile">
+                        <p class="hero-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interconnectedness -->
+        <div class="interconnectedness">
+            <div class="question-mark">?</div>
+            <h2 class="section-title">Interconnectedness</h2>
+            <p class="hero-text" style="text-align: center;">Question</p>
+        </div>
+        
+        <!-- Get Started Button -->
+        <button class="get-started-btn">Get Started</button>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>GEOFEMEDIA</p>
+            <a href="../index.html" class="back-link">← Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        // Get Started button interaction
+        document.querySelector('.get-started-btn').addEventListener('click', function() {
+            alert('Getting started with GeoFroggy Adults experience!');
+        });
+    </script>
+</body>
+</html>
