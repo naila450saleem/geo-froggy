@@ -575,12 +575,15 @@ body {
     padding-top: 10%;
 }
 
+.footer-left p:first-of-type {
+    margin-top: 70px;
+}
+
 .footer-left p {
     font-size:14px;
     opacity:0.85;
     line-height:1.6;
-    margin-bottom: 15px; 
-    margin-top: 70px;
+    margin-bottom: 15px;
 }
 
 .social-icons {
@@ -739,7 +742,8 @@ body {
     }
 
     .newsletter-box input {
-        width: 200px;
+        width: 300px;
+        margin-top: 5px;
     }
 
     .links-row {
@@ -1025,6 +1029,7 @@ body {
     
     .footer-left p {
         font-size: 13px !important;
+        padding-top: 70px;
     }
     
     .newsletter h4 {
