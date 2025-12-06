@@ -582,8 +582,21 @@ body {
     font-size: 14px;
     opacity: 0.85;
     line-height: 1.6;
-    margin-bottom: 15px;
+    margin: 0; /* default margin remove */
 }
+
+/* صرف پہلے paragraph پر top space دیں */
+.footer-left p:first-of-type {
+    margin-top: 100px; /* jitna top space chahiye */
+    margin-bottom: 15px; /* optional agar neeche bhi space chahiye */
+}
+
+/* دوسرا paragraph نیچے کی spacing صرف margin-bottom کے ذریعے */
+.footer-left p:nth-of-type(2) {
+    margin-top: 10px; /* optional agar chahiye */
+    margin-bottom: 0; /* neeche space na ho */
+}
+
 
 .social-icons {
     margin-top: 20px;
@@ -609,6 +622,7 @@ body {
 .newsletter h4 {
     margin-bottom: 10px;
     font-size: 15px;
+    padding-left: 60%;
 }
 
 .newsletter-box {
@@ -621,6 +635,7 @@ body {
     width: 300px;
     border-radius: 6px;
     border: none;
+    margin-left: 60%;
 }
 
 .newsletter-box button {
