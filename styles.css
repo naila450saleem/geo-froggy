@@ -622,7 +622,7 @@ body {
 .newsletter h4 {
     margin-bottom: 10px;
     font-size: 15px;
-    padding-left: 60%;
+    padding-left: 40%;
 }
 
 .newsletter-box {
@@ -635,7 +635,7 @@ body {
     width: 300px;
     border-radius: 6px;
     border: none;
-    margin-left: 60%;
+    margin-left: 40%;
 }
 
 .newsletter-box button {
@@ -755,9 +755,10 @@ body {
 
     .newsletter h4,
     .newsletter-box {
-        margin-left: 0;
+        margin-left: -100%;
         text-align: center;
         justify-content: center;
+
     }
 
     .newsletter-box input {
