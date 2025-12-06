@@ -32,7 +32,7 @@ body {
 /* Logo image */
 .logo-img {
     display: block;         /* remove inline image spacing */
-    width: 18s0px;
+    width: 180px;
     height: auto;
     margin: 0;              /* remove extra margin */
     padding: 0;             /* remove extra padding */
@@ -900,5 +900,722 @@ body {
     .footer-bottom-bar {
         font-size: 12px;
     }
+}
+
+/* ============================================
+   iPad Mini (768px - 834px) & iPad (834px - 1024px)
+   ============================================ */
+
+/* iPad Mini & Small Tablets (768px - 834px) */
+/* ============================================
+   iPad Mini SPECIFIC FIXES (768px x 1024px)
+   ============================================ */
+
+/* iPad Mini Portrait (768px width) */
+@media (min-width: 768px) and (max-width: 769px) and (min-height: 1023px) {
+    /* FIX 1: Hero Section */
+    .hero-section {
+        margin-top: -30px !important;
+        margin-left: 0 !important;
+        margin-bottom: 30px !important;
+    }
+    
+    .hero-section .full-image {
+        width: 100% !important;
+        height: 300px !important;
+        max-width: 768px !important;
+        object-fit: cover !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* FIX 2: Path Cards Layout - 2 columns with proper spacing */
+    .paths-container {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+        justify-content: center !important;
+        padding: 0 15px !important;
+        margin-bottom: 40px !important;
+    }
+    
+    .path-box {
+        width: 100% !important;
+        min-width: unset !important;
+        max-width: 360px !important;
+        margin: 0 auto 25px auto !important;
+    }
+    
+    /* FIX 3: Card Content */
+    .path-box img.path-img {
+        width: 85% !important;
+        margin: -20px auto 15px auto !important;
+        display: block !important;
+    }
+    
+    .home-label {
+        padding: 8px 20px !important;
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .age-range {
+        font-size: 21px !important;
+        margin-bottom: 12px !important;
+        padding: 0 10px !important;
+    }
+    
+    .description {
+        font-size: 14px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 20px !important;
+        padding: 0 15px !important;
+        min-height: 60px !important;
+    }
+    
+    .start-btn {
+        padding: 10px 25px !important;
+        font-size: 14px !important;
+        width: 80% !important;
+        margin-bottom: 15px !important;
+    }
+    
+    .see-inside-btn {
+        font-size: 14px !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* FIX 4: Navigation */
+    .bottom-header-container {
+        padding: 0 10px !important;
+    }
+    
+    .nav-links ul {
+        gap: 8px !important;
+    }
+    
+    .nav-links li a {
+        padding: 18px 8px !important;
+        font-size: 13px !important;
+        margin-left: 0 !important;
+    }
+    
+    .signup-btn {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+    }
+    
+    /* FIX 5: Footer */
+    .footer {
+        padding: 30px 25px 20px !important;
+        margin-top: 0 !important;
+    }
+    
+    .footer-container {
+        flex-direction: column !important;
+        gap: 25px !important;
+    }
+    
+    .footer-left {
+        max-width: 100% !important;
+        padding-top: 0 !important;
+        text-align: center !important;
+    }
+    
+    .footer-left p {
+        font-size: 13px !important;
+    }
+    
+    .newsletter h4 {
+        margin-left: 0 !important;
+        text-align: center !important;
+        font-size: 14px !important;
+    }
+    
+    .newsletter-box {
+        margin-left: 0 !important;
+        justify-content: center !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+    
+    .newsletter-box input {
+        width: 250px !important;
+        max-width: 100% !important;
+    }
+    
+    .newsletter-box button {
+        width: 250px !important;
+        max-width: 100% !important;
+    }
+    
+    .links-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 25px !important;
+        margin-top: 25px !important;
+    }
+    
+    .footer-col {
+        margin-left: 0 !important;
+        text-align: center !important;
+    }
+    
+    .footer-col h4 {
+        font-size: 14px !important;
+    }
+    
+    .footer-col ul li a {
+        font-size: 13px !important;
+    }
+    
+    .footer-bottom-bar {
+        flex-direction: column !important;
+        gap: 8px !important;
+        padding: 12px 15px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+    }
+}
+
+/* iPad Mini Landscape (1024px x 768px) */
+@media (min-width: 1023px) and (max-width: 1025px) and (max-height: 769px) {
+    /* FIX: 3 columns in landscape */
+    .paths-container {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 25px !important;
+        padding: 0 20px !important;
+    }
+    
+    .path-box {
+        max-width: 320px !important;
+    }
+    
+    .hero-section .full-image {
+        height: 350px !important;
+    }
+}
+
+/* ============================================
+   MORE SPECIFIC FIXES FOR 45% VIEW
+   ============================================ */
+
+/* When viewport is exactly 768px wide (iPad Mini width) */
+@media (width: 768px) {
+    body {
+        overflow-x: hidden !important;
+    }
+    
+    .main-container {
+        max-width: 768px !important;
+        padding: 0 !important;
+    }
+    
+    /* Center everything */
+    .paths-container,
+    .footer-container,
+    .newsletter-box,
+    .links-row {
+        max-width: 768px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* Fix horizontal scroll */
+    .hero-section,
+    .path-box,
+    .footer {
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+}
+
+/* For 45% zoom or smaller viewport */
+@media (max-width: 768px) and (max-height: 1024px) {
+    /* Adjust spacing for compact view */
+    .full-section-wrapper .main-container {
+        padding: 40px 0 0 0 !important;
+    }
+    
+    .paths-container {
+        margin-bottom: 30px !important;
+    }
+    
+    .path-box {
+        margin-bottom: 20px !important;
+    }
+    
+    .footer {
+        padding: 25px 20px 15px !important;
+    }
+    
+    /* Smaller text for compact view */
+    .home-label {
+        font-size: 13px !important;
+        padding: 6px 15px !important;
+    }
+    
+    .age-range {
+        font-size: 20px !important;
+    }
+    
+    .description {
+        font-size: 13px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 15px !important;
+    }
+}
+
+
+
+
+
+/* Regular iPad & Large Tablets (835px - 1024px) */
+@media (min-width: 835px) and (max-width: 1024px) {
+    /* Top Header */
+    .top-header-container {
+        padding: 0 20px;
+    }
+    
+    .logo-img {
+        width: 170px;
+    }
+    
+    /* Navigation */
+    .bottom-header-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    
+    .nav-links ul {
+        gap: 15px;
+    }
+    
+    .nav-links li a {
+        padding: 20px 10px;
+        font-size: 14px;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        margin-top: -50px;
+        margin-left: -8px;
+    }
+    
+    .hero-section .full-image {
+        height: 400px;
+    }
+    
+    /* Paths Section */
+    .paths-container {
+        gap: 30px;
+        margin-bottom: 55px;
+    }
+    
+    .path-box {
+        width: 300px;
+    }
+    
+    .path-box img.path-img {
+        width: 80%;
+        margin: -20px auto 20px auto;
+    }
+    
+    .home-label {
+        padding: 9px 24px;
+        font-size: 15px;
+    }
+    
+    .age-range {
+        font-size: 23px;
+    }
+    
+    .description {
+        font-size: 15px;
+        padding: 0 20px;
+    }
+    
+    .start-btn {
+        padding: 13px 28px;
+        width: calc(100% - 35px);
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 40px 50px 30px;
+    }
+    
+    .footer-left {
+        max-width: 300px;
+    }
+    
+    .newsletter h4 {
+        margin-left: 45%;
+    }
+    
+    .newsletter-box {
+        margin-left: 45%;
+    }
+    
+    .newsletter-box input {
+        width: 250px;
+    }
+    
+    .links-row {
+        gap: 40px;
+    }
+    
+    .footer-col {
+        margin-left: 18px;
+    }
+    
+    /* Fix for 2-column layout on iPad */
+    @media (min-width: 835px) and (max-width: 1024px) {
+        .paths-container {
+            justify-content: center;
+        }
+        
+        .path-box {
+            width: calc(50% - 20px);
+            max-width: 320px;
+        }
+    }
+}
+
+/* iPad Pro & Landscape Mode (1024px - 1194px) */
+@media (min-width: 1024px) and (max-width: 1194px) {
+    /* Navigation */
+    .bottom-header-container {
+        max-width: 1100px;
+    }
+    
+    /* Hero Section */
+    .hero-section .full-image {
+        width: 100%;
+        max-width: 1100px;
+        height: 450px;
+    }
+    
+    /* Paths Section */
+    .paths-container {
+        max-width: 1100px;
+        margin: 0 auto 60px;
+    }
+    
+    .path-box {
+        width: 340px;
+    }
+    
+    /* Footer */
+    .footer {
+        padding: 40px 50px 30px;
+    }
+    
+    .newsletter h4 {
+        margin-left: 40%;
+    }
+    
+    .newsletter-box {
+        margin-left: 40%;
+    }
+}
+
+/* ============================================
+   SPECIFIC FIXES FOR IPAD DEVICES
+   ============================================ */
+
+/* Fix for iPad Mini in landscape (834px width) */
+@media (width: 834px) and (height: 1194px) {
+    /* Portrait mode */
+    .paths-container {
+        justify-content: center;
+    }
+    
+    .path-box {
+        width: 320px;
+    }
+}
+
+@media (width: 1194px) and (height: 834px) {
+    /* Landscape mode */
+    .paths-container {
+        justify-content: space-around;
+    }
+    
+    .path-box {
+        width: 350px;
+    }
+}
+
+/* Fix for 10.2" iPad (810px width) */
+@media (width: 810px) and (height: 1080px) {
+    .path-box {
+        width: 380px;
+    }
+    
+    .paths-container {
+        gap: 20px;
+    }
+}
+
+/* Fix for 9.7" iPad (768px width) */
+@media (width: 768px) and (height: 1024px) {
+    .hero-section .full-image {
+        height: 320px;
+    }
+    
+    .path-box {
+        width: 340px;
+    }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+@media (hover: none) and (pointer: coarse) {
+    /* Better touch targets for iPad */
+    .nav-links li a {
+        padding: 20px 15px;
+    }
+    
+    .signup-btn {
+        padding: 14px 20px;
+        min-height: 44px;
+    }
+    
+    .start-btn {
+        padding: 16px 32px;
+        min-height: 50px;
+    }
+    
+    .see-inside-btn {
+        padding: 12px 0;
+    }
+    
+    /* Remove hover effects for touch devices */
+    .nav-links li a:hover {
+        background-color: transparent;
+    }
+    
+    .start-btn:hover {
+        transform: none;
+    }
+    
+    .see-inside-btn:hover .arrow {
+        transform: none;
+    }
+}
+
+/* ============================================
+   IPAD SPECIFIC OVERRIDES
+   ============================================ */
+
+/* Hide mobile menu toggle on iPad */
+@media (min-width: 768px) {
+    .mobile-menu-toggle {
+        display: none !important;
+    }
+    
+    .mobile-nav-links {
+        display: none !important;
+    }
+    
+    .bottom-header {
+        display: block !important;
+    }
+}
+
+/* Ensure dropdowns work on iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .dropdown-content {
+        min-width: 160px;
+    }
+    
+    .dropdown-content a {
+        padding: 10px 15px !important;
+    }
+}
+
+/* Fix footer layout on iPad */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .footer-container {
+        flex-wrap: wrap;
+    }
+    
+    .footer-left {
+        flex: 0 0 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .footer-right {
+        flex: 0 0 100%;
+    }
+    
+    .newsletter h4,
+    .newsletter-box {
+        margin-left: 0;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .links-row {
+        justify-content: space-around;
+    }
+    
+    .footer-col {
+        flex: 0 0 calc(25% - 20px);
+        margin-left: 0;
+        text-align: center;
+    }
+}
+
+/* ==============================
+   iPad / Tablet 768x1024 FIX
+   ============================== */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* TOP HEADER */
+    .top-header-container {
+        justify-content: center !important; /* logo centered */
+        padding: 0 15px !important;
+        flex-wrap: nowrap;
+    }
+
+    /* BOTTOM HEADER NAVIGATION */
+    .bottom-header-container {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        flex-wrap: nowrap !important; /* force one line */
+        gap: 10px !important;
+        padding: 0 15px !important;
+    }
+
+    .nav-links ul {
+        display: flex !important;
+        flex-direction: row !important; /* one line links */
+        flex-wrap: nowrap !important;   /* no wrapping */
+        justify-content: center !important;
+        gap: 12px !important;
+    }
+
+    .nav-links li a {
+        padding: 18px 12px !important;
+        font-size: 14px !important;
+        white-space: nowrap; /* prevent wrapping text */
+    }
+
+    .signup-btn {
+        display: none;
+    }
+
+    /* HERO IMAGE */
+    .hero-section {
+        justify-content: center !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-section .full-image {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .paths-container {
+        display: flex;
+        justify-content: space-between; /* ya center */
+        flex-wrap: nowrap;              /* wrap ko remove kar do */
+        gap: 15px;                      /* gap adjust karo */
+        padding: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .path-box {
+        flex: 0 0 calc((100% - 30px) / 3); /* 3 cards + gap ke liye adjust */
+        max-width: calc((100% - 30px) / 3);
+        margin: 0;
+    }
+
+    .path-box img.path-img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+
+
+    /* FOOTER */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Footer main container */
+    .footer-container {
+        display: flex !important;
+        flex-wrap: nowrap !important; /* left & right side by side */
+        justify-content: space-between !important;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* Left & Right Sections */
+    .footer-left, .footer-right {
+        flex: 0 0 48% !important;   /* 2 columns side by side */
+        max-width: 48% !important;
+        text-align: left !important;
+    }
+
+    /* Newsletter in footer-right */
+    .newsletter {
+        margin-bottom: 20px !important;
+    }
+
+    .newsletter h4, .newsletter-box {
+        text-align: left !important;
+        margin: 0;
+    }
+
+    /* Footer links row */
+    .links-row {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+    }
+
+    /* Each footer column */
+    .footer-col {
+        flex: 0 0 calc(50% - 10px) !important; /* 2 columns per row */
+        max-width: calc(50% - 10px) !important;
+        margin-bottom: 15px !important;
+        text-align: left !important;
+    }
+
+    /* Footer bottom bar */
+    .footer-bottom-bar {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 10px 20px !important;
+        text-align: left !important;
+        gap: 10px;
+    }
+
+    .footer-bottom-bar span {
+        flex: 1 1 auto;
+        text-align: left;
+    }
+
+    /* Social icons in footer-left */
+    .social-icons {
+        display: flex !important;
+        gap: 10px;
+        margin-top: 10px;
+    }
+}
+
 }
 
