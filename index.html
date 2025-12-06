@@ -1,202 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>GeoFroggy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
 
     <!-- Top Navbar -->
+<!-- Top Navbar -->
 <header class="top-header">
     <div class="top-header-container">
         <div class="logo">
             <a href="index.html">
-                <img src="assets/images/logo-1.png" alt="Logo">
+                <img src="assets/images/logo-1.png" alt="Logo" class="logo-img">
             </a>
         </div>
+
+        <!-- Hamburger -->
+        <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
     </div>
+
+    <!-- Mobile nav -->
+    <nav class="mobile-nav-links">
+        <ul>
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#news">News</a></li>
+                <li class="dropdown">
+                    <a href="#explore">Explore</a>
+                </li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#get-involved">Get involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+    </nav>
 </header>
 
-<!-- Bottom Navbar -->
+
+
+
 <header class="bottom-header">
     <div class="bottom-header-container">
-        <!-- Navigation links left -->
         <nav class="nav-links">
-             <ul>
-                    <li class="active"><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#news">News</a></li>
-                    <li class="dropdown">
-                        <a href="#explore">Explore <span class="dropdown-arrow">▼</span></a>
-                        <div class="dropdown-content">
-                            <a href="#">Option 1</a>
-                            <a href="#">Option 2</a>
-                            <a href="#">Option 3</a>
-                        </div>
-                    </li>
-                    <li><a href="#media">Media</a></li>
-                    <li><a href="#donate">Donate</a></li>
-                    <li><a href="#get-involved">Get involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <ul>
+                <li class="active"><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#news">News</a></li>
+                <li class="dropdown">
+                    <a href="#explore">Explore <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="#">Option 1</a>
+                        <a href="#">Option 2</a>
+                        <a href="#">Option 3</a>
+                    </div>
+                </li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="#get-involved">Get involved</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
-
-        <!-- Sign Up button right -->
         <a href="signup.html" class="signup-btn">Sign Up</a>
     </div>
 </header>
 
 
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <img src="assets/images/main.jpg" alt="World Map" class="full-image">
+    </section>
 
-
-<section class="full-section-wrapper">
-  <div class="main-container">
-      
-     <section class="hero-section">
-    <img src="assets/images/main.jpg" alt="World Map" class="full-image">
-</section>
-
-
-      <!-- Paths Container -->
-      <div class="paths-container">
-          <!-- Kids Box -->
-          <div class="path-box">
-              <div class="home-label">Home</div>
-              <div class="age-range">Kids <span class="greater">&gt;</span> 8-12</div>
-              <p class="description">Games, maps, and story quests.</p>
-              <img src="assets/images/kids.jpg" alt="Adults Image" class="path-img">
-              <a href="kids-experience/index.html" class="start-btn">Start Kids Experience</a>
-              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
-          </div>
-          
-          <!-- Teens Box -->
-          <div class="path-box">
-              <div class="home-label">Home</div>
-              <div class="age-range">Teens <span class="greater">&gt;</span> 13-17</div>
-              <p class="description">Compare countries, trends, <br>and challenges.</p>
-              <img src="assets/images/teen.jpg" alt="Teen Image" class="path-img">
-              <a href="teens-experience/index.html" class="start-btn">Start Teen Experience</a>
-              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
-          </div>
-          
-          <!-- Adults Box -->
-          <div class="path-box">
-              <div class="home-label">Home</div>
-              <div class="age-range">Adults <span class="greater">&gt;</span> 18+</div>
-              <p class="description">Insightful stories, context, <br>and dashboards.</p>
-              <img src="assets/images/adu.png" alt="Adults Image" class="path-img">
-              <a href="adults-experience/index.html" class="start-btn">Start Adult Experience</a>
-              <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
-          </div>
-      </div>
-  </div>
-</section>
-
-   <!-- Info Footer -->
-<footer class="footer">
-    <div class="footer-container">
-
-        <!-- LEFT SECTION -->
-        <div class="footer-left">
-            <p>
-                Explore global stories, join meaningful conversations, and be part of a worldwide 
-                community where every place has a voice.
-            </p>
-            <p>
-                Let geography become your guide to understanding people, traditions, and perspectives.
-            </p>
-
-            <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-    </div>
+    <!-- Paths Container -->
+    <section class="paths-container">
+        <!-- Kids -->
+        <div class="path-box">
+            <div class="home-label">Home</div>
+            <div class="age-range">Kids <span class="greater">&gt;</span> 8-12</div>
+            <p class="description">Games, maps, and story quests.</p>
+            <img src="assets/images/kids.jpg" class="path-img">
+            <a href="kids-experience/index.html" class="start-btn">Start Kids Experience</a>
+            <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
         </div>
 
-        <!-- RIGHT SECTION (Newsletter on top) -->
-        <div class="footer-right">
+        <!-- Teens -->
+        <div class="path-box">
+            <div class="home-label">Home</div>
+            <div class="age-range">Teens <span class="greater">&gt;</span> 13-17</div>
+            <p class="description">Compare countries, trends, <br>and challenges.</p>
+            <img src="assets/images/teen.jpg" class="path-img">
+            <a href="teens-experience/index.html" class="start-btn">Start Teen Experience</a>
+            <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
+        </div>
 
-            <!-- NEWSLETTER TOP -->
-            <div class="newsletter">
-                <h4>Email Address</h4>
+        <!-- Adults -->
+        <div class="path-box">
+            <div class="home-label">Home</div>
+            <div class="age-range">Adults <span class="greater">&gt;</span> 18+</div>
+            <p class="description">Insightful stories, context, <br>and dashboards.</p>
+            <img src="assets/images/adu.png" class="path-img">
+            <a href="adults-experience/index.html" class="start-btn">Start Adult Experience</a>
+            <a href="adults-experience/index.html" class="see-inside-btn">See what's inside <span class="arrow">→</span></a>
+        </div>
+    </section>
 
-                <div class="newsletter-box">
-                    <input type="email" placeholder="Enter Email Here">
-                    <button>Notify</button>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>Explore global stories, join meaningful conversations, and be part of a worldwide community where every place has a voice.</p>
+                <p>Let geography become your guide to understanding people, traditions, and perspectives.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
-            <!-- 4 COLUMNS IN ONE LINE -->
-            <div class="links-row">
-
-                <div class="footer-col">
-                    <h4>Explore Geofroggy</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Explore</a></li>
-                        <li><a href="#">Copedia</a></li>
-                    </ul>
+            <div class="footer-right">
+                <div class="newsletter">
+                    <h4>Email Address</h4>
+                    <div class="newsletter-box">
+                        <input type="email" placeholder="Enter Email Here">
+                        <button>Notify</button>
+                    </div>
                 </div>
 
-                <div class="footer-col">
-                    <h4>Community & <br>Support</h4>
-                    <ul>
-                        <li><a href="#">Submit a Story</a></li>
-                        <li><a href="#">Ambassador</a></li>
-                        <li><a href="#">Get Involved</a></li>
-                        <li><a href="#">Donate</a></li>
-                    </ul>
+                <div class="links-row">
+                    <div class="footer-col">
+                        <h4>Explore Geofroggy</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Explore</a></li>
+                            <li><a href="#">Copedia</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Community & Support</h4>
+                        <ul>
+                            <li><a href="#">Submit a Story</a></li>
+                            <li><a href="#">Ambassador</a></li>
+                            <li><a href="#">Get Involved</a></li>
+                            <li><a href="#">Donate</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Collaborate</h4>
+                        <ul>
+                            <li><a href="#">Advertise</a></li>
+                            <li><a href="#">Partner</a></li>
+                            <li><a href="#">Media Hub</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Guidelines</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Privacy</a></li>
+                        </ul>
+                    </div>
                 </div>
-
-                <div class="footer-col">
-                    <h4>Collaborate</h4>
-                    <ul>
-                        <li><a href="#">Advertise</a></li>
-                        <li><a href="#">Partner</a></li>
-                        <li><a href="#">Media Hub</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Guidelines</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy</a></li>
-                    </ul>
-                </div>
-
             </div>
-
         </div>
+    </footer>
 
+    <div class="footer-bottom-bar">
+        <span class="left-text">© 2025 Geofroggy</span>
+        <span class="center-text">community where every place has a voice.</span>
+        <span class="right-text">All Rights Reserved</span>
     </div>
-</footer>
-
-<!-- Footer Bottom Bar (Separate) -->
-<div class="footer-bottom-bar">
-    <span class="left-text">© 2025 Geofroggy</span>
-    <span class="center-text">community where every place has a voice.</span>
-    <span class="right-text">All Rights Reserved</span>
-</div>
 
 
-        
-       
+    <!-- JS: Hamburger toggle -->
+<script>
+const toggle = document.querySelector('.mobile-menu-toggle');
+const nav = document.querySelector('.mobile-nav-links');
 
-    <script>
-        // Simple interactivity
-        document.querySelector('.signup-btn').addEventListener('click', function() {
-            alert('Sign up form will be implemented here!');
-        });
-    </script>
+toggle.addEventListener('click', () => {
+    nav.classList.toggle('mobile-active');
+});
+</script>
+
+
 </body>
 </html>

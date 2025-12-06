@@ -19,9 +19,49 @@ body {
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        .top-header-container {
-            text-align: center;
-        }
+       /* Desktop / Laptop - center logo */
+/* Top header container */
+.top-header-container {
+    display: flex;
+    justify-content: center; /* center logo on desktop */
+    align-items: center;
+    padding: 0 20px;        /* remove top/bottom padding */
+    height: 60px;           /* control header height */
+}
+
+/* Logo image */
+.logo-img {
+    display: block;         /* remove inline image spacing */
+    width: 18s0px;
+    height: auto;
+    margin: 0;              /* remove extra margin */
+    padding: 0;             /* remove extra padding */
+}
+
+
+/* Hamburger hidden on desktop */
+.mobile-menu-toggle {
+    display: none;
+}
+
+
+
+/* --- Mobile (<768px) --- */
+@media (max-width: 768px) {
+    .top-header-container {
+        justify-content: space-between; /* logo left, hamburger right */
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .logo-img {
+        width: 150px; /* smaller logo on mobile */
+        height: auto;
+    }
+}
+
 
         /* Replaced the <img> with text and icon to match the screenshot */
         .logo a {
@@ -139,59 +179,187 @@ body {
         }
 
         /* --- Mobile Responsiveness --- */
-        .mobile-menu-toggle {
-            display: none; /* Hidden on desktop */
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
+     /* Hamburger button */
+/* Hamburger button visible only on mobile */
+.mobile-menu-toggle {
+    display: none; /* desktop hide */
+    color: #000;
+    font-size: 28px;
+    cursor: pointer;
+}
 
-        @media (max-width: 768px) {
-            .bottom-header-container {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0;
-            }
-
-            .nav-links ul {
-                flex-direction: column;
-                width: 100%;
-                display: none; /* Hidden by default */
-            }
-
-            .nav-links ul.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                width: 100%;
-            }
-
-            .nav-links li a {
-                padding: 15px 20px;
-            }
-
-            .dropdown-content {
-                position: static;
-                box-shadow: none;
-                width: 100%;
-            }
-            
-            .mobile-menu-toggle {
-                display: block; /* Shown on mobile */
-                align-self: flex-end;
-                padding: 15px 20px;
-            }
-
-            .signup-btn {
-                width: calc(100% - 40px);
-                margin: 15px 20px;
-                text-align: center;
-            }
-        }
+/* Mobile (<768px) */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block; /* show hamburger */
+    }
+}
 
 
+/* Mobile Menu Hidden by default */
+.nav-links {
+    transition: max-height 0.3s ease;
+}
 
+.nav-links ul {
+    flex-direction: row; /* default desktop layout */
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .top-header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .bottom-header {
+        display: none; /* hide original nav initially */
+    }
+
+.nav-links.mobile-active {
+    display: block;
+    position: absolute;
+    top: 60px; /* header height */
+    left: 0;
+    width: 100%;
+    background-color: #175883;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+
+    .nav-links.mobile-active ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-links.mobile-active ul li a {
+        padding: 12px 0;
+        margin: 0;
+        display: block;
+    }
+
+    .nav-links.mobile-active .dropdown-content {
+        position: static;
+        box-shadow: none;
+        background: none;
+    }
+
+    .nav-links.mobile-active .dropdown:hover .dropdown-content {
+        display: block; /* allow expand on mobile if needed */
+    }
+
+    .signup-btn {
+        margin-top: 10px;
+        width: 90%;
+        text-align: center;
+    }
+}
+
+/* Hide nav on mobile by default */
+.mobile-nav-links {
+    display: none;
+}
+
+/* Show when active */
+.mobile-nav-links.mobile-active {
+    display: block;
+    position: absolute;
+    top: 60px; /* header height */
+    left: 0;
+    width: 100%;
+    background-color: #175883;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+/* Mobile menu items vertical */
+.mobile-nav-links.mobile-active ul {
+    flex-direction: column;
+    gap: 0;
+}
+
+.mobile-nav-links.mobile-active ul li a {
+    padding: 12px 0;
+    margin: 0;
+    display: block;
+}
+
+/* --- Mobile Nav Hidden by default --- */
+.mobile-nav-links {
+    display: none; /* hidden initially */
+    position: absolute;
+    top: 60px; /* below header */
+    left: 0;
+    width: 100%;
+    background-color: #175883;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+/* Mobile nav list */
+.mobile-nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mobile nav items */
+.mobile-nav-links ul li {
+    width: 100%;
+}
+
+/* Mobile nav links */
+.mobile-nav-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 0;
+    display: block;
+    font-weight: 600;
+}
+
+/* Dropdown menu in mobile nav */
+.mobile-nav-links ul li .dropdown-content {
+    display: none;
+    position: static;
+    background-color: #0d3b66;
+}
+
+/* Show dropdown when parent li is hovered */
+.mobile-nav-links ul li.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Sign Up button inside mobile nav */
+.mobile-nav-links ul li .signup-btn {
+    display: block;
+    margin: 10px auto 0 auto;
+    width: 90%;
+    text-align: center;
+    background: linear-gradient(to bottom, #81B735, #49770A);
+    color: #fff;
+    padding: 12px 0;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+/* Show mobile nav when active */
+.mobile-nav-links.active {
+    display: block;
+}
+
+/* home section */
         .full-section-wrapper {
     background-color: #f0f4f8; /* light blue/gray background */
     padding: 0;                /* optional, wrapper padding */
@@ -211,35 +379,56 @@ body {
         }
         
         /* EXACT Header like image */
-    .hero-section {
-    width: 100%;
-    height: auto; /* ya fixed height agar chaho */
-    margin-top: -60px;
-     margin-left: -10px;
-   
+/* HERO SECTION FIXED - NO HORIZONTAL SCROLL */
+.hero-section {
+    width: 100%;               /* full width of parent, avoids vw overflow */
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end; /* push image to right */
+    align-items: center;
+    overflow: hidden;          /* hide any overflow */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    margin-bottom: 50px;
 }
 
+/* Hero image */
 .hero-section .full-image {
-    width: 1218px;
-    height: 500px;
+    width: auto;
+    max-width: 100%;           /* scales down if too large */
+    height: 400px;
     display: block;
-   margin-bottom: 50px;
 }
 
+/* Tablet */
+@media (max-width: 1024px) {
+    .hero-section {
+        justify-content: center; /* center image on tablets */
+    }
 
+    .hero-section .full-image {
+        max-width: 90%;
+    }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  .hero-image {
-    text-align: center;
-    margin-top: 30px;
-  }
-  .hero-text {
-    padding-right: 0;
-    text-align: center;
-  }
+    .hero-section {
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    .hero-section .full-image {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
 }
+
+
+
+
 /* image */
 .path-box img.path-img {
     width: 75%;
@@ -499,62 +688,32 @@ body {
     text-align: center;
 }
 
-@media (max-width: 768px) {
-    .footer-bottom-bar {
-        flex-direction: column;
-        gap: 5px;
-        text-align: center;
-    }
-    .footer-bottom-bar .center-text {
-        order: 2; /* optional if you want center text in middle */
-    }
+.hero-section .full-image,
+.path-box img.path-img {
+    max-width: 100%;
+    height: auto;
 }
 
 
+/* --- Mobile First (Default already suitable) --- */
 
-
-
-
-
-/* --- Tablet: 768px and below --- */
-@media (max-width: 768px) {
-
-    .hero-section {
-        margin-left: 3%;
-        margin-right: 3%;
-        padding: 40px 15px;
-    }
-
-    .container {
+/* --- Tablets (768px and up) --- */
+@media (max-width: 1024px) {
+    .bottom-header-container {
         flex-direction: column;
-        align-items: center;
+        gap: 10px;
+        padding: 0 15px;
     }
 
-    .hero-text {
-        flex: 1 1 100%;
-        padding-left: 0;
-        padding-right: 0;
-        text-align: center;
+    .nav-links ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
     }
 
-    .hero-text .main-title {
-        font-size: 36px;
-    }
-
-    .hero-text .subtitle {
-        font-size: 18px;
-    }
-
-    .hero-image {
-        flex: 1 1 100%;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .hero-image img {
-        max-width: 90%;
-        padding-right: 0;
-        border-radius: 15px;
+    .hero-section .full-image {
+        width: 100%;
+        height: auto;
     }
 
     .paths-container {
@@ -563,133 +722,183 @@ body {
     }
 
     .path-box {
-        width: 90%; /* cards take most of screen width */
-        margin-bottom: 30px;
+        width: 45%;
     }
 
     .path-box img.path-img {
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: -15px;
-        margin-bottom: 20px;
-    }
-
-    .image-row {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 0;
-        margin-bottom: 10px;
-    }
-
-    .map-icon-img {
-        width: 30%; /* adjust 3 images in row */
-        padding: 10px 0 30px 0;
-    }
-
-    .image-row img.map-icon-img:nth-child(3) {
-        margin-left: 0; /* remove negative margin */
-    }
-
-    .start-btn, .see-inside-btn {
         width: 90%;
-        margin: 10px auto;
-        font-size: 14px;
-        padding: 12px 0;
+        margin: 0 auto;
     }
 
-    /* Footer responsive */
-    .info-footer {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px 15px;
-        margin-top: 20px;
-        padding-bottom: 40px;
-        gap: 10px;
-    }
-
-    .footer-text {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .footer-link {
-        margin-top: 10px;
-    }
-
-    .custom-footer {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px 15px;
-        gap: 10px;
+    .newsletter h4,
+    .newsletter-box {
         margin-left: 0;
-        margin-right: 0;
+        text-align: center;
+        justify-content: center;
     }
 
-    .footer-btn {
-        width: 80%;
-        padding: 12px 0;
+    .newsletter-box input {
+        width: 200px;
+    }
+
+    .links-row {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .footer-left {
+        max-width: 100%;
+        padding-top: 5%;
+    }
+
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
     }
 }
 
-/* --- Mobile: 480px and below --- */
-@media (max-width: 480px) {
-
-    .hero-text .main-title {
-        font-size: 28px;
+/* --- Mobile Devices (480px and below) --- */
+@media (max-width: 768px) {
+    .bottom-header-container {
+        padding: 0 10px;
     }
 
-    .hero-text .subtitle {
-        font-size: 16px;
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .nav-links li a {
+        padding: 12px 8px;
+        margin-left: 0;
+        font-size: 14px;
+    }
+
+    .hero-section {
+        margin-left: 0;
+        margin-top: 0;
+    }
+
+    .paths-container {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+        margin-right: 20px;
     }
 
     .path-box {
-        width: 95%;
-    }
-
-    .map-icon-img {
-        width: 45%; /* 2 images per row */
-    }
-
-    .image-row {
-        justify-content: center;
-    }
-
-    .start-btn, .see-inside-btn {
-        width: 95%;
-        font-size: 13px;
-    }
-
-    .footer-btn {
         width: 90%;
     }
 
-    .footer-text {
+    .path-box img.path-img {
+        width: 100%;
+        margin: 0 auto 20px auto;
+    }
+
+    .home-label {
+        font-size: 14px;
+        padding: 12px 20px;
+    }
+
+    .age-range {
+        font-size: 20px;
+    }
+
+    .description {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .start-btn {
+        width: 70%;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .see-inside-btn {
+        font-size: 14px;
+    }
+
+    .newsletter-box input {
+        width: 150px;
+    }
+
+   @media (max-width: 768px) {
+    .footer-container {
+        display: flex;
+        flex-wrap: wrap;       /* allow wrapping */
+        gap: 20px;             /* gap between columns */
+        justify-content: space-between;
+    }
+
+    .footer-col {
+        width: calc(50% - 10px);  /* 2 columns per row with gap */
+        margin-left: 0;
+        margin-bottom: 20px;      /* spacing below for next row */
+    }
+
+    .links-row {
+        flex-direction: row;    /* row layout for links */
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+}
+
+}
+
+/* --- Extra small devices (phones in portrait) --- */
+@media (max-width: 480px) {
+    .logo a {
+        font-size: 24px;
+    }
+
+    .logo-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+
+    .nav-links li a {
+        padding: 10px 6px;
+        font-size: 13px;
+    }
+
+    .signup-btn {
+        padding: 10px 14px;
         font-size: 12px;
     }
 
-    .footer-link {
+    .path-box {
+        width: 100%;
+        margin-left: 10px;
+    }
+
+    .home-label {
+        font-size: 13px;
+        padding: 12px 12px;
+    }
+
+    .age-range {
+        font-size: 18px;
+    }
+
+    .description {
         font-size: 13px;
     }
-}
 
-/* Tablet: 768px and below */
-@media (max-width: 768px) {
-    .see-inside-btn {
-        display: block;       /* full width block */
-        text-align: center;   /* center the text & arrow */
-        margin: 10px auto;    /* top/bottom spacing + auto left/right */
+    .start-btn {
+        font-size: 14px;
+        padding: 10px 18px;
     }
-}
 
-/* Mobile: 480px and below */
-@media (max-width: 480px) {
     .see-inside-btn {
-        display: block;
-        text-align: center;
-        margin: 8px auto;
-        font-size: 14px;      /* slightly smaller on mobile */
+        font-size: 14px;
+    }
+
+    .footer-bottom-bar {
+        font-size: 12px;
     }
 }
 
