@@ -580,6 +580,7 @@ body {
     opacity:0.85;
     line-height:1.6;
     margin-bottom: 15px; 
+    margin-top: 70px;
 }
 
 .social-icons {
@@ -1314,6 +1315,7 @@ body {
     
     .newsletter h4 {
         margin-left: 40%;
+        
     }
     
     .newsletter-box {
@@ -1385,8 +1387,10 @@ body {
     }
     
     .start-btn {
-        padding: 16px 32px;
+        padding: 14px 18px;
         min-height: 50px;
+        margin-top: 12px;
+        margin-bottom: -2px;
     }
     
     .see-inside-btn {
@@ -1528,10 +1532,12 @@ body {
         display: flex;
         justify-content: space-between; /* ya center */
         flex-wrap: nowrap;              /* wrap ko remove kar do */
-        gap: 15px;                      /* gap adjust karo */
+        gap: 10px;                      /* gap adjust karo */
         padding: 0;
         width: 100%;
         box-sizing: border-box;
+        margin-left: 10px;
+        padding-right: 20px;
     }
 
     .path-box {
@@ -1546,6 +1552,8 @@ body {
         display: block;
         margin: 0 auto;
     }
+
+    
 }
 
 
