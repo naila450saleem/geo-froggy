@@ -1265,7 +1265,7 @@ body {
     }
     
     .newsletter-box input {
-        width: 250px;
+        width: 330px;
     }
     
     .links-row {
@@ -1549,7 +1549,7 @@ body {
         flex: 0 0 calc((100% - 30px) / 3); /* 3 cards + gap ke liye adjust */
         max-width: calc((100% - 30px) / 3);
         margin: 0;
-        margin-bottom: 30px;
+        margin-bottom: 60px;
     }
 
     .path-box img.path-img {
