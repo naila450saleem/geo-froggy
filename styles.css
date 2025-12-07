@@ -853,9 +853,7 @@ body {
     }
 
    @media (max-width: 768px) {
-      .footer {
-        margin-top: -180px;   
-    }
+   
 
     .footer-container {
         display: flex;
@@ -1164,7 +1162,7 @@ body {
     
     .paths-container {
         margin-bottom: 30px !important;
-        margin-left: 80px;
+
     }
     
     .path-box {
