@@ -32,7 +32,7 @@ body {
 /* Logo image */
 .logo-img {
     display: block;         /* remove inline image spacing */
-    width: 180px;
+    width: 280px;
     height: auto;
     margin: 0;              /* remove extra margin */
     padding: 0;             /* remove extra padding */
