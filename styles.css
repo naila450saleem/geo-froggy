@@ -748,7 +748,6 @@ body {
 
     .path-box {
         width: 45%;
-        transform: translateY(-40%);
     }
 
     .path-box img.path-img {
