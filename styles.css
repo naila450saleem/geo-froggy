@@ -744,10 +744,12 @@ body {
     .paths-container {
         gap: 20px;
         justify-content: center;
+        margin-right: 20px;
     }
 
     .path-box {
         width: 45%;
+           transform: translateY(-40%);
     }
 
     .path-box img.path-img {
@@ -853,7 +855,9 @@ body {
     }
 
    @media (max-width: 768px) {
-   
+   .footer {
+    margin-top: -160px;
+}
 
     .footer-container {
         display: flex;
