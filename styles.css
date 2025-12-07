@@ -601,21 +601,51 @@ body {
 
 .social-icons {
     margin-top: 20px;
-      text-align: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
+    gap: 20px; /* This replaces margin-right */
 }
 
 .social-icons a {
-    display: inline-block;
-    margin-right: 18px;
-    font-size: 22px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #8DC63F;
+    font-size: 20px;
     color: #fff;
-    transition: color 0.3s;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
-    color: #00ff00;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Instagram specific hover effect */
+.social-icons a .fa-instagram:hover {
+    color: #E1306C;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+/* Facebook specific hover effect */
+.social-icons a .fa-facebook-f:hover {
+    color: #1877F2;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+
+.social-icons a .fa-linkedin-in:hover {
+    color: #0077B5;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+
 
 /* Right section (newsletter) */
 .footer-right {
@@ -1673,7 +1703,7 @@ body {
     /* Social icons in footer-left */
     .social-icons {
         display: flex !important;
-        gap: 10px;
+        gap: 20px;
         margin-top: 10px;
         text-align: center;
         align-items: center;
