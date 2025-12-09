@@ -3,305 +3,1310 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore, Compare, Think - GeoFroggy Teens</title>
+    <title>GeoFroggy Teens - Data Detective Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --teens-blue: #2C3E50;
+            --teens-green: #27AE60;
+            --teens-purple: #8E44AD;
+            --teens-orange: #E67E22;
+            --teens-red: #E74C3C;
+            --teens-gray: #7F8C8D;
+            --teens-light: #ECF0F1;
+            --teens-dark: #1A252F;
+            --white: #FFFFFF;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --radius: 20px;
+            --radius-small: 12px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
-        
+
         body {
-            background: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            min-height: 100vh;
         }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-        
-        .hero {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .hero h1 {
-            font-size: 36px;
-            color: #1a237e;
-            margin-bottom: 10px;
-        }
-        
-        .hero p {
-            font-size: 18px;
-            color: #666;
-        }
-        
-        .trend-explorer {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .trend-title {
-            font-size: 20px;
-            color: #1a237e;
-            margin-bottom: 15px;
-        }
-        
-        .year-slider {
-            width: 100%;
-            margin: 20px 0;
-        }
-        
-        .year-labels {
+
+        /* Teens Header */
+        .teens-header {
+            background-color: var(--teens-dark);
+            color: white;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
-            color: #666;
-            font-size: 14px;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .teens-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .teens-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--teens-blue), var(--teens-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .teens-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .teens-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .teens-nav-item {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .teens-nav-item:hover, .teens-nav-item.active {
+            color: white;
+        }
+
+        .teens-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--teens-green);
+            border-radius: 3px;
+        }
+
+        .teens-user {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .student-mode {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .student-mode:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .student-mode.active {
+            background-color: var(--teens-green);
+        }
+
+        .mode-label {
+            font-weight: 600;
+        }
+
+        .teens-profile {
+            width: 45px;
+            height: 45px;
+            background-color: var(--teens-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Teens Dashboard */
+        .teens-dashboard {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-subtitle {
+            color: var(--teens-gray);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Data Explorer */
+        .data-explorer {
+            background-color: #1E1E1E;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .explorer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 30px;
         }
-        
-        .climate-grid {
+
+        .explorer-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            color: white;
+        }
+
+        .explorer-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: var(--radius-small);
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background-color: var(--teens-green);
+        }
+
+        .explorer-filters {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--teens-green);
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-small);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--teens-green);
+        }
+
+        .filter-select option {
+            background-color: #1E1E1E;
+            color: white;
+        }
+
+        .comparison-area {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             margin-bottom: 30px;
         }
-        
-        .climate-card {
-            background: white;
+
+        .country-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-small);
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .metric-header {
-            font-weight: bold;
-            color: #1a237e;
+
+        .country-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+            border-color: var(--teens-green);
+        }
+
+        .country-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .country-flag {
+            width: 50px;
+            height: 30px;
+            border-radius: 4px;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .country-name {
+            font-weight: 700;
+            color: white;
+            font-size: 18px;
+        }
+
+        .country-metric {
             margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
         }
-        
-        .metric-value {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2196F3;
-        }
-        
+
         .metric-label {
-            color: #666;
+            color: var(--teens-gray);
             font-size: 14px;
         }
-        
-        .compare-section {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
-        
-        .compare-title {
-            font-size: 20px;
-            color: #1a237e;
-            margin-bottom: 20px;
-        }
-        
-        .metrics-list {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .metrics-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-            color: #666;
-        }
-        
-        .explore-options {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .explore-btn {
-            background: #f0f0f0;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            color: #666;
-            cursor: pointer;
-        }
-        
-        .explore-btn.active {
-            background: #2196F3;
+
+        .metric-value {
+            font-weight: 600;
             color: white;
         }
-        
-        .country-selector {
+
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .trend-up {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: var(--teens-green);
+        }
+
+        .trend-down {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--teens-red);
+        }
+
+        /* Charts */
+        .charts-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
-        
-        .country-card {
-            background: #f8f9fa;
+
+        .chart-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-small);
             padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
-        .country-name {
-            font-weight: bold;
-            color: #1a237e;
-            margin-bottom: 10px;
-        }
-        
-        .country-value {
-            font-size: 18px;
-            color: #2196F3;
-        }
-        
-        .store-btn {
-            background: #4CAF50;
+
+        .chart-title {
+            font-weight: 600;
             color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            color: #666;
+
+        .chart-title i {
+            color: var(--teens-green);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--teens-gray);
+            font-weight: 600;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-placeholder i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--teens-purple);
+        }
+
+        /* Missions Panel */
+        .missions-panel {
+            background-color: #1E1E1E;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .missions-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .missions-title i {
+            color: var(--teens-purple);
+        }
+
+        .mission-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-small);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mission-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+            border-color: var(--teens-purple);
+        }
+
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .mission-title {
+            font-weight: 700;
+            color: white;
+            font-size: 18px;
+        }
+
+        .mission-badge {
+            padding: 4px 12px;
+            background-color: var(--teens-purple);
+            color: white;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .mission-description {
+            color: var(--teens-gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .mission-progress {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .mission-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teens-purple), var(--teens-green));
+            border-radius: 3px;
+            width: 65%;
+        }
+
+        .mission-stats {
+            display: flex;
+            justify-content: space-between;
+            color: var(--teens-gray);
             font-size: 14px;
         }
-        
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #1a237e;
+
+        /* Export Section */
+        .export-section {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .export-btn {
+            padding: 12px 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: var(--radius-small);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .export-btn:hover {
+            background-color: var(--teens-green);
+            transform: translateY(-2px);
+        }
+
+        /* Topic Packs */
+        .topic-packs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .topic-pack {
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.1), rgba(52, 152, 219, 0.1));
+            border-radius: var(--radius-small);
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .topic-pack:hover {
+            transform: translateY(-3px);
+            border-color: var(--teens-green);
+        }
+
+        .topic-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--teens-green);
+        }
+
+        .topic-name {
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .topic-desc {
+            color: var(--teens-gray);
+            font-size: 14px;
+        }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--teens-blue), var(--teens-purple));
+            color: white;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-area {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .teens-header {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .teens-nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .teens-dashboard {
+                padding: 20px;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .comparison-area {
+                grid-template-columns: 1fr;
+            }
+            
+            .explorer-filters {
+                flex-direction: column;
+            }
+            
+            .export-section {
+                flex-direction: column;
+            }
+            
+            .topic-packs {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-home {
+                left: 15px;
+                bottom: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero">
-            <h1>Explore, Compare, Think.</h1>
-            <p>See how countries change over time.</p>
+    <!-- Teens Header -->
+    <header class="teens-header">
+        <div class="teens-logo">
+            <a href="index.html">
+                <img src="../assets/images/logo-bg.png" alt="Logo" class="logo-img">
+            </a>
         </div>
         
-        <!-- Trend Explorer -->
-        <div class="trend-explorer">
-            <h2 class="trend-title">Trend Explorer</h2>
-            <p style="color: #666; margin-bottom: 20px;">
-                A big combine differ + chart module: teams drag a year slider and mini charts update temperature, rainfall, CO2 per capita
-            </p>
-            
-            <input type="range" min="2000" max="2023" value="2023" class="year-slider" id="yearSlider">
-            
-            <div class="year-labels">
-                <span>2000</span>
-                <span id="currentYear">2023</span>
-                <span>2023</span>
+        <nav class="teens-nav">
+            <a href="#" class="teens-nav-item active">Dashboard</a>
+            <a href="#" class="teens-nav-item">Countries</a>
+            <a href="#" class="teens-nav-item">Compare</a>
+            <a href="#" class="teens-nav-item">Projects</a>
+            <a href="#" class="teens-nav-item">Quizzes</a>
+        </nav>
+        
+        <div class="teens-user">
+            <div class="student-mode active" id="studentModeToggle">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="mode-label">Student Mode</span>
+            </div>
+            <div class="teens-profile">TS</div>
+        </div>
+    </header>
+    
+    <!-- Teens Dashboard -->
+    <main class="teens-dashboard">
+        <h1 class="dashboard-title">Data Detective Dashboard</h1>
+        <p class="dashboard-subtitle">Analyze trends, compare countries, and complete missions to become a data expert!</p>
+        
+        <!-- Topic Packs (Student Mode Feature) -->
+        <div class="topic-packs" id="topicPacks">
+            <div class="topic-pack" data-topic="population">
+                <div class="topic-icon"><i class="fas fa-users"></i></div>
+                <div class="topic-name">Population & Migration</div>
+                <div class="topic-desc">Study demographic changes and movement patterns</div>
+            </div>
+            <div class="topic-pack" data-topic="economy">
+                <div class="topic-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="topic-name">Economic Growth & Trade</div>
+                <div class="topic-desc">Analyze GDP, trade flows, and economic development</div>
+            </div>
+            <div class="topic-pack" data-topic="climate">
+                <div class="topic-icon"><i class="fas fa-leaf"></i></div>
+                <div class="topic-name">Climate & Energy</div>
+                <div class="topic-desc">Explore environmental data and energy transitions</div>
+            </div>
+            <div class="topic-pack" data-topic="government">
+                <div class="topic-icon"><i class="fas fa-landmark"></i></div>
+                <div class="topic-name">Government Changes</div>
+                <div class="topic-desc">Track political systems and policy impacts</div>
             </div>
         </div>
         
-        <!-- Climate Data -->
-        <div class="climate-grid">
-            <div class="climate-card">
-                <div class="metric-header">Language</div>
-                <div class="metric-value">4</div>
-                <div class="metric-label">hello languages</div>
-            </div>
-            
-            <div class="climate-card">
-                <div class="metric-header">Religion</div>
-                <div class="metric-value">5</div>
-                <div class="metric-label">info</div>
-            </div>
-            
-            <div class="climate-card">
-                <div class="metric-header">Urbanization</div>
-                <div class="metric-value">1-2</div>
-                <div class="metric-label">City population</div>
-            </div>
-        </div>
-        
-        <!-- Compare Section -->
-        <div class="compare-section">
-            <h2 class="compare-title">Compare With</h2>
-            
-            <ul class="metrics-list">
-                <li>Temperature trend</li>
-                <li>CO2 per capita</li>
-                <li>GDP per capita</li>
-                <li>Urbanization percent</li>
-                <li>Life expectancy</li>
-            </ul>
-            
-            <p style="color: #666; margin-bottom: 15px;">
-                You land in Sydney—what do you explore first?
-            </p>
-            
-            <div class="explore-options">
-                <button class="explore-btn active">Climate & Weather</button>
-                <button class="explore-btn">City Life</button>
-                <button class="explore-btn">Extreme Events</button>
-            </div>
-            
-            <div class="country-selector">
-                <div class="country-card">
-                    <div class="country-name">Country A</div>
-                    <div class="country-value">Select</div>
+        <div class="dashboard-grid">
+            <!-- Main Data Explorer -->
+            <div class="data-explorer">
+                <div class="explorer-header">
+                    <h2 class="explorer-title">Country Comparison Workspace</h2>
+                    <div class="explorer-controls">
+                        <button class="control-btn" id="addCountryBtn">
+                            <i class="fas fa-plus"></i> Add Country
+                        </button>
+                        <button class="control-btn" id="resetBtn">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
                 </div>
                 
-                <div class="country-card">
-                    <div class="country-name">Country B</div>
-                    <div class="country-value">France</div>
+                <div class="explorer-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Select Metrics</label>
+                        <select class="filter-select" id="metricsSelect">
+                            <option>GDP Growth</option>
+                            <option>Population</option>
+                            <option>Carbon Emissions</option>
+                            <option>Education Rate</option>
+                            <option selected>Urbanization</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Time Range</label>
+                        <select class="filter-select" id="timeRangeSelect">
+                            <option>2000-2024</option>
+                            <option>2010-2024</option>
+                            <option>2000-2010</option>
+                            <option>Custom Range</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">Region Filter</label>
+                        <select class="filter-select" id="regionSelect">
+                            <option>All Regions</option>
+                            <option>Asia</option>
+                            <option>Europe</option>
+                            <option>North America</option>
+                            <option>Africa</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="comparison-area" id="comparisonArea">
+                    <!-- Country 1 -->
+                    <div class="country-card" data-country="australia">
+                        <div class="country-header">
+                            <img src="https://flagcdn.com/w40/au.png" class="country-flag" alt="Australia">
+                            <div class="country-name">Australia</div>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Population</span>
+                            <span class="metric-value">26.0M <span class="trend-indicator trend-up">+18%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">GDP Growth</span>
+                            <span class="metric-value">2.3% <span class="trend-indicator trend-up">+0.4%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Urbanization</span>
+                            <span class="metric-value">86% <span class="trend-indicator trend-up">+5%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">CO2 Emissions</span>
+                            <span class="metric-value">15.4t <span class="trend-indicator trend-down">-12%</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Country 2 -->
+                    <div class="country-card" data-country="usa">
+                        <div class="country-header">
+                            <img src="https://flagcdn.com/w40/us.png" class="country-flag" alt="United States">
+                            <div class="country-name">United States</div>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Population</span>
+                            <span class="metric-value">331M <span class="trend-indicator trend-up">+15%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">GDP Growth</span>
+                            <span class="metric-value">2.1% <span class="trend-indicator trend-up">+0.2%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Urbanization</span>
+                            <span class="metric-value">83% <span class="trend-indicator trend-up">+4%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">CO2 Emissions</span>
+                            <span class="metric-value">14.7t <span class="trend-indicator trend-down">-8%</span></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Country 3 -->
+                    <div class="country-card" data-country="japan">
+                        <div class="country-header">
+                            <img src="https://flagcdn.com/w40/jp.png" class="country-flag" alt="Japan">
+                            <div class="country-name">Japan</div>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Population</span>
+                            <span class="metric-value">125M <span class="trend-indicator trend-down">-1%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">GDP Growth</span>
+                            <span class="metric-value">1.0% <span class="trend-indicator trend-up">+0.1%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">Urbanization</span>
+                            <span class="metric-value">92% <span class="trend-indicator trend-up">+2%</span></span>
+                        </div>
+                        <div class="country-metric">
+                            <span class="metric-label">CO2 Emissions</span>
+                            <span class="metric-value">8.5t <span class="trend-indicator trend-down">-15%</span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="charts-container">
+                    <div class="chart-box">
+                        <div class="chart-title">
+                            <i class="fas fa-chart-line"></i>
+                            GDP Growth (2000-2024)
+                        </div>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            Interactive Line Chart
+                            <small style="margin-top: 10px; font-weight: normal;">Drag to zoom, hover for details</small>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <div class="chart-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Population Comparison
+                        </div>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar"></i>
+                            Interactive Bar Chart
+                            <small style="margin-top: 10px; font-weight: normal;">Click bars to filter data</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="export-section">
+                    <button class="export-btn" id="exportPNG">
+                        <i class="fas fa-file-image"></i>
+                        Export as PNG
+                    </button>
+                    <button class="export-btn" id="exportPDF">
+                        <i class="fas fa-file-pdf"></i>
+                        Save as PDF
+                    </button>
+                    <button class="export-btn" id="shareClassroom">
+                        <i class="fas fa-share-alt"></i>
+                        Share to Classroom
+                    </button>
                 </div>
             </div>
             
-            <button class="store-btn">Store this comparison</button>
+            <!-- Missions Panel -->
+            <div class="missions-panel">
+                <h2 class="missions-title">
+                    <i class="fas fa-tasks"></i>
+                    Data Detective Missions
+                </h2>
+                
+                <div class="mission-card" data-mission="economic-patterns">
+                    <div class="mission-header">
+                        <div class="mission-title">Find Economic Patterns</div>
+                        <div class="mission-badge">Economics</div>
+                    </div>
+                    <p class="mission-description">Identify two countries with similar GDP growth but different population trends since 2000.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>65% complete</span>
+                        <span>+50 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="climate-analysis">
+                    <div class="mission-header">
+                        <div class="mission-title">Climate Change Analysis</div>
+                        <div class="mission-badge">Environment</div>
+                    </div>
+                    <p class="mission-description">Analyze CO2 emissions trends for 3 countries and predict 2030 levels.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>30% complete</span>
+                        <span>+75 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="urbanization-explorer">
+                    <div class="mission-header">
+                        <div class="mission-title">Urbanization Explorer</div>
+                        <div class="mission-badge">Geography</div>
+                    </div>
+                    <p class="mission-description">Compare urbanization rates in developing vs developed countries over 20 years.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 10%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>10% complete</span>
+                        <span>+100 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="population-detective">
+                    <div class="mission-header">
+                        <div class="mission-title">Population Detective</div>
+                        <div class="mission-badge">Demographics</div>
+                    </div>
+                    <p class="mission-description">Find a country whose population has doubled since 2000 and analyze causes.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>Not started</span>
+                        <span>+150 XP</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- Footer -->
-        <div class="footer">
-            <p>GEOFEMEDIA</p>
-            <a href="../index.html" class="back-link">← Back to Home</a>
-        </div>
-    </div>
+    </main>
     
+    <!-- Back to Home -->
+    <a href="../index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
     <script>
-        // Year slider interaction
-        const yearSlider = document.getElementById('yearSlider');
-        const currentYear = document.getElementById('currentYear');
-        
-        yearSlider.addEventListener('input', function() {
-            currentYear.textContent = this.value;
-        });
-        
-        // Explore buttons interaction
-        document.querySelectorAll('.explore-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                document.querySelectorAll('.explore-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                this.classList.add('active');
+        // Teens Experience JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Student Mode Toggle
+            const studentModeToggle = document.getElementById('studentModeToggle');
+            const topicPacks = document.getElementById('topicPacks');
+            
+            studentModeToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                
+                if (this.classList.contains('active')) {
+                    topicPacks.style.display = 'grid';
+                    showNotification('Student Mode activated! Topic packs and school tools enabled.');
+                } else {
+                    topicPacks.style.display = 'none';
+                    showNotification('Student Mode deactivated.');
+                }
             });
+            
+            // Topic Packs
+            const topicPackElements = document.querySelectorAll('.topic-pack');
+            topicPackElements.forEach(pack => {
+                pack.addEventListener('click', function() {
+                    const topic = this.getAttribute('data-topic');
+                    const topicNames = {
+                        'population': 'Population & Migration',
+                        'economy': 'Economic Growth & Trade',
+                        'climate': 'Climate & Energy',
+                        'government': 'Government Changes'
+                    };
+                    
+                    // Update metrics select based on topic
+                    const metricsSelect = document.getElementById('metricsSelect');
+                    switch(topic) {
+                        case 'population':
+                            metricsSelect.innerHTML = `
+                                <option>Population Growth</option>
+                                <option>Migration Rate</option>
+                                <option>Age Distribution</option>
+                                <option>Population Density</option>
+                            `;
+                            break;
+                        case 'economy':
+                            metricsSelect.innerHTML = `
+                                <option>GDP Growth</option>
+                                <option>Trade Balance</option>
+                                <option>Inflation Rate</option>
+                                <option>Unemployment Rate</option>
+                            `;
+                            break;
+                        case 'climate':
+                            metricsSelect.innerHTML = `
+                                <option>CO2 Emissions</option>
+                                <option>Renewable Energy</option>
+                                <option>Temperature Change</option>
+                                <option>Forest Coverage</option>
+                            `;
+                            break;
+                        case 'government':
+                            metricsSelect.innerHTML = `
+                                <option>Government Type</option>
+                                <option>Political Stability</option>
+                                <option>Corruption Index</option>
+                                <option>Education Spending</option>
+                            `;
+                            break;
+                    }
+                    
+                    showNotification(`Topic pack loaded: ${topicNames[topic]}`);
+                    
+                    // Animate the pack
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Country Cards
+            const countryCards = document.querySelectorAll('.country-card');
+            countryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const country = this.getAttribute('data-country');
+                    const countryNames = {
+                        'australia': 'Australia',
+                        'usa': 'United States',
+                        'japan': 'Japan'
+                    };
+                    
+                    // Toggle selection
+                    this.classList.toggle('selected');
+                    
+                    if (this.classList.contains('selected')) {
+                        this.style.borderColor = 'var(--teens-green)';
+                        showNotification(`${countryNames[country]} selected for detailed analysis`);
+                    } else {
+                        this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    }
+                });
+            });
+            
+            // Add Country Button
+            const addCountryBtn = document.getElementById('addCountryBtn');
+            addCountryBtn.addEventListener('click', function() {
+                if (document.querySelectorAll('.country-card').length >= 4) {
+                    showNotification('Maximum 4 countries allowed for comparison');
+                    return;
+                }
+                
+                // In a real app, this would open a country selector modal
+                showNotification('Opening country selector... Choose a country to add to comparison');
+                
+                // Simulate adding a new country
+                const comparisonArea = document.getElementById('comparisonArea');
+                const newCountryCard = document.createElement('div');
+                newCountryCard.className = 'country-card';
+                newCountryCard.innerHTML = `
+                    <div class="country-header">
+                        <img src="https://flagcdn.com/w40/ca.png" class="country-flag" alt="Canada">
+                        <div class="country-name">Canada</div>
+                    </div>
+                    <div class="country-metric">
+                        <span class="metric-label">Population</span>
+                        <span class="metric-value">38.2M <span class="trend-indicator trend-up">+18%</span></span>
+                    </div>
+                    <div class="country-metric">
+                        <span class="metric-label">GDP Growth</span>
+                        <span class="metric-value">1.7% <span class="trend-indicator trend-up">+0.3%</span></span>
+                    </div>
+                    <div class="country-metric">
+                        <span class="metric-label">Urbanization</span>
+                        <span class="metric-value">81% <span class="trend-indicator trend-up">+4%</span></span>
+                    </div>
+                    <div class="country-metric">
+                        <span class="metric-label">CO2 Emissions</span>
+                        <span class="metric-value">15.1t <span class="trend-indicator trend-down">-10%</span></span>
+                    </div>
+                `;
+                
+                comparisonArea.appendChild(newCountryCard);
+                
+                // Add click event to new card
+                newCountryCard.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    
+                    if (this.classList.contains('selected')) {
+                        this.style.borderColor = 'var(--teens-green)';
+                        showNotification('Canada selected for detailed analysis');
+                    } else {
+                        this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    }
+                });
+            });
+            
+            // Reset Button
+            const resetBtn = document.getElementById('resetBtn');
+            resetBtn.addEventListener('click', function() {
+                // Reset all selections
+                countryCards.forEach(card => {
+                    card.classList.remove('selected');
+                    card.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                });
+                
+                // Reset metrics select
+                document.getElementById('metricsSelect').selectedIndex = 0;
+                document.getElementById('timeRangeSelect').selectedIndex = 0;
+                document.getElementById('regionSelect').selectedIndex = 0;
+                
+                showNotification('All filters and selections have been reset');
+            });
+            
+            // Export Buttons
+            document.getElementById('exportPNG').addEventListener('click', function() {
+                showNotification('Generating PNG image of your dashboard...');
+            });
+            
+            document.getElementById('exportPDF').addEventListener('click', function() {
+                showNotification('Creating PDF report with citations...');
+            });
+            
+            document.getElementById('shareClassroom').addEventListener('click', function() {
+                showNotification('Sharing to Google Classroom...');
+            });
+            
+            // Mission Cards
+            const missionCards = document.querySelectorAll('.mission-card');
+            missionCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const mission = this.getAttribute('data-mission');
+                    const missionNames = {
+                        'economic-patterns': 'Find Economic Patterns',
+                        'climate-analysis': 'Climate Change Analysis',
+                        'urbanization-explorer': 'Urbanization Explorer',
+                        'population-detective': 'Population Detective'
+                    };
+                    
+                    showNotification(`Opening mission: ${missionNames[mission]}`);
+                    
+                    // Animate the card
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Filter interactions
+            const filterSelects = document.querySelectorAll('.filter-select');
+            filterSelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const filterType = this.id.replace('Select', '');
+                    const filterNames = {
+                        'metricsSelect': 'Metrics',
+                        'timeRangeSelect': 'Time Range',
+                        'regionSelect': 'Region'
+                    };
+                    
+                    showNotification(`Filter updated: ${filterNames[filterType]} = ${this.value}`);
+                });
+            });
+            
+            // Navigation
+            const navItems = document.querySelectorAll('.teens-nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    const page = this.textContent;
+                    showNotification(`Loading ${page} page...`);
+                });
+            });
+            
+            // Show notification function
+            function showNotification(message) {
+                // Remove existing notification
+                const existingNotif = document.querySelector('.custom-notification');
+                if (existingNotif) existingNotif.remove();
+                
+                const notification = document.createElement('div');
+                notification.className = 'custom-notification';
+                notification.textContent = message;
+                notification.style.position = 'fixed';
+                notification.style.top = '20px';
+                notification.style.right = '20px';
+                notification.style.backgroundColor = 'var(--teens-green)';
+                notification.style.color = 'white';
+                notification.style.padding = '15px 25px';
+                notification.style.borderRadius = 'var(--radius-small)';
+                notification.style.boxShadow = 'var(--shadow-heavy)';
+                notification.style.zIndex = '10000';
+                notification.style.fontWeight = '600';
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                notification.style.transition = 'opacity 0.3s, transform 0.3s';
+                notification.style.maxWidth = '400px';
+                notification.style.wordBreak = 'break-word';
+                
+                document.body.appendChild(notification);
+                
+                // Animate in
+                setTimeout(() => {
+                    notification.style.opacity = '1';
+                    notification.style.transform = 'translateX(0)';
+                }, 10);
+                
+                // Animate out after 3 seconds
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    notification.style.transform = 'translateX(100px)';
+                    setTimeout(() => {
+                        if (notification.parentNode) notification.parentNode.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Initialize with Student Mode active
+            topicPacks.style.display = 'grid';
         });
+
+        // Working Download Functionality for Teens
+document.getElementById('exportPNG').addEventListener('click', function() {
+    downloadFile('geofroggy_dashboard.png', 'image/png');
+    showNotification('PNG image downloaded! Check your downloads folder.');
+});
+
+document.getElementById('exportPDF').addEventListener('click', function() {
+    downloadFile('geofroggy_report.pdf', 'application/pdf');
+    showNotification('PDF report downloaded! Check your downloads folder.');
+});
+
+document.getElementById('shareClassroom').addEventListener('click', function() {
+    // Simulate Google Classroom sharing
+    const classroomUrl = `https://classroom.google.com/share?url=${encodeURIComponent(window.location.href)}&title=GeoFroggy%20Data%20Analysis`;
+    
+    // Open in new tab
+    window.open(classroomUrl, '_blank');
+    showNotification('Opening Google Classroom... Paste the link to share!');
+});
+
+// Generic download function
+function downloadFile(filename, contentType) {
+    // Create a canvas element for PNG export simulation
+    if (contentType === 'image/png') {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1200;
+        canvas.height = 800;
+        const ctx = canvas.getContext('2d');
+        
+        // Create a simple image representation
+        ctx.fillStyle = '#1E1E1E';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add title
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 32px Inter, sans-serif';
+        ctx.fillText('GeoFroggy Data Analysis Dashboard', 50, 60);
+        
+        // Add timestamp
+        ctx.font = '16px Inter, sans-serif';
+        ctx.fillStyle = '#7F8C8D';
+        ctx.fillText(`Generated on: ${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`, 50, 90);
+        
+        // Add some chart representation
+        ctx.fillStyle = '#27AE60';
+        ctx.fillRect(50, 150, 500, 300);
+        
+        ctx.fillStyle = '#8E44AD';
+        ctx.fillRect(600, 150, 500, 300);
+        
+        // Convert to data URL and trigger download
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataURL;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    } 
+    // For PDF, create a simple text-based PDF simulation
+    else if (contentType === 'application/pdf') {
+        const pdfContent = `
+GEOFROGGY DATA ANALYSIS REPORT
+===============================
+Generated: ${new Date().toLocaleDateString()}
+Student: Teen Explorer
+Level: Data Detective
+
+SELECTED COUNTRIES:
+-------------------
+1. Australia
+   - Population: 26.0M (+18%)
+   - GDP Growth: 2.3%
+   - Urbanization: 86%
+   - CO2 Emissions: 15.4t (-12%)
+
+2. United States
+   - Population: 331M (+15%)
+   - GDP Growth: 2.1%
+   - Urbanization: 83%
+   - CO2 Emissions: 14.7t (-8%)
+
+3. Japan
+   - Population: 125M (-1%)
+   - GDP Growth: 1.0%
+   - Urbanization: 92%
+   - CO2 Emissions: 8.5t (-15%)
+
+ANALYSIS NOTES:
+---------------
+This report shows comparative analysis of economic and 
+environmental indicators across selected countries.
+
+Data Source: GeoFroggy Database
+Report generated for educational purposes.
+        `;
+        
+        const blob = new Blob([pdfContent], { type: 'application/pdf' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href);
+    }
+}
     </script>
 </body>
 </html>
