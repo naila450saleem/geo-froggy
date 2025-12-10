@@ -798,6 +798,7 @@ body {
     .newsletter-box input {
         width: 300px;
         margin-top: 5px;
+        transform: translateX(-80px);
     }
 
     .links-row {
@@ -1097,13 +1098,14 @@ body {
     }
     
     .newsletter-box input {
-        width: 250px !important;
-        max-width: 100% !important;
+       width: 350px !important;
+    max-width: 350px !important;
     }
     
     .newsletter-box button {
         width: 250px !important;
         max-width: 100% !important;
+        
     }
     
     .links-row {
@@ -1645,7 +1647,15 @@ body {
     .newsletter h4, .newsletter-box {
         text-align: left !important;
         margin: 0;
+    
     }
+     .newsletter h4 {
+        text-align: left !important;
+        margin: 0;
+        margin-left: -120px;
+    
+    }
+
 
     /* Footer links row */
     .links-row {
