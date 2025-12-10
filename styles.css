@@ -883,6 +883,7 @@ body {
 
     .newsletter-box input {
         width: 150px;
+        transform: translateX(-10px);
     }
 
    @media (max-width: 768px) {
@@ -1721,5 +1722,7 @@ body {
 }
 
 }
+
+
 
 
