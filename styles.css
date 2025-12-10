@@ -1322,6 +1322,7 @@ body {
     
     .newsletter-box input {
         width: 330px;
+       transform: translateX(-10px);
     }
     
     .links-row {
@@ -1653,7 +1654,7 @@ body {
      .newsletter h4 {
         text-align: left !important;
         margin: 0;
-        margin-left: -120px;
+        margin-left: -40px;
     
     }
 
