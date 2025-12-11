@@ -593,18 +593,32 @@
         padding: 10px 15px;
     }
     .teens-logo img {
-        width: 40px;
-        height: 40px;
+        width: 300px;
+        height: auto;
+        padding-left: 70px;
     }
     .teens-nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
+        display: none;
     }
     .year-selector {
-        flex-direction: column;
+        flex-direction: row;
         align-items: flex-start;
-        gap: 5px;
+        gap: 15px;
+        flex-wrap: nowrap;
+    }
+     .year-selector label {
+        font-weight: 600;
+        font-size: 18px;
+        white-space: nowrap; /* prevent label from wrapping */
+    }
+
+    .year-selector select {
+        padding: 5px 8px;
+        font-size: 12px;
+        border-radius: 6px;
+        min-width: 100px; /* minimum width */
+        max-width: 150px; /* adjust as per space */
+        flex-shrink: 0; /* prevent shrinking too much */
     }
     .export-btn {
         width: 100%;
@@ -620,6 +634,31 @@
     .metrics-grid, .charts-container, .geography-list {
         gap: 8px;
     }
+    .mode-label {
+            display: none;
+        }
+        .fa-solid, .fas{
+            display: none;
+        }
+        .student-mode.active{
+            display: none;
+        }
+
+        .teens-profile {
+            width: 45px;
+            height: 45px;
+            background-color: var(--teens-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            margin-left: 100px;
+        }
+        
+       
 }
 
 /* ------------------ Very small devices / phones <= 360px ------------------ */
