@@ -34,21 +34,36 @@
             background-color: var(--adults-dark);
             color: #E0E0E0;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* Adults Header */
-        .adults-header {
-            background-color: var(--adults-light-blue);
-            color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+   .adults-header {
+    width: 100%; /* Keep this */
+    background-color: var(--adults-light-blue);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-sizing: border-box; /* Keep this */
+}
+
+.adults-logo a {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    width: 250px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: contain;
+}
 
         .adults-logo {
             display: flex;
@@ -661,49 +676,113 @@
 }
 
 /* ------------------ Small phones / portrait <= 480px ------------------ */
+/* ------------------ Small phones / portrait <= 480px (The final fixed version) ------------------ */
 @media (max-width: 480px) {
+    /* 1. Header main container: Stack elements vertically */
     .adults-header {
-        padding: 10px 15px;
+        flex-direction: column; 
+        align-items: flex-start;
+        padding: 12px 15px; /* Adjusted padding */
+        gap: 10px; /* Space between rows (Top Row & Stats) */
     }
-    .adults-logo-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
+
+    /* 2. Top Row: Logo (Left) and Pro Mode Toggle (Right) */
+    .header-top-row { 
+        width: 100%;
+        display: flex;
+        justify-content: space-between; /* Logo left, Pro Mode right */
+        align-items: center;
+    }
+
+    /* Logo/Image size fixes */
+    .logo-img { 
+        width: 150px; /* Smaller logo for mobile */
     }
     .adults-logo-text {
-        font-size: 22px;
-    }
-    .adults-stats {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        gap: 8px;
-    }
-    .stat-number {
         font-size: 20px;
     }
+    .pro-mode-toggle { 
+        padding: 8px 15px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+    
+    /* 3. Scrollable Stats Section (The core fix) */
+    .adults-stats {
+        order: 2; /* Ensures it is placed after the top-row */
+        /* width: 100% + horizontal padding (15px left + 15px right = 30px) */
+        width: calc(100% + 30px); 
+        /* Pull left by the header's left padding to stretch to edge */
+        margin-left: -15px; 
+        padding: 10px 15px; /* Add padding inside the stats row */
+        justify-content: flex-start; 
+        overflow-x: auto; /* Enable horizontal scrolling */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+        margin-top: 0;
+        background-color: transparent; 
+    }
+    
+    .stat-item {
+        flex: 0 0 auto; /* IMPORTANT: Prevents shrinking and forces horizontal scroll */
+        min-width: 120px;
+        padding: 10px;
+        border-radius: var(--radius-small);
+        background: var(--adults-light-blue); 
+        box-shadow: none; 
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .stat-number {
+        font-size: 18px;
+        color: var(--adults-accent);
+    }
+    
     .stat-label {
         font-size: 10px;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 3px;
+    }
+
+    /* 4. Hide unwanted elements that disrupt column flow */
+    .adults-nav {
+        display: none; /* Hide main navigation on small screens */
+    }
+    /* Hide the duplicate Pro Mode toggle that is outside header-top-row */
+    .adults-header > .pro-mode-toggle { 
+        display: none; 
+    }
+    
+    /* 5. Search Bar Fix (General width is already handled, ensuring button is in line) */
+    .search-bar {
+        flex-direction: row; 
+        width: 100%;
+        margin-top: 10px; /* Add some margin for the search bar which is outside the header */
+       
     }
     .search-input {
-        padding: 12px 15px;
-        font-size: 14px;
+        /* Ensure input stretches and has correct radius */
+        border-radius: var(--radius-small) 0 0 var(--radius-small);
+        margin-left: 60px;
+        margin-bottom: 5px;
     }
     .search-btn {
-        padding: 12px 15px;
-        font-size: 14px;
+        /* Ensure button has correct radius */
+        border-radius: 0 var(--radius-small) var(--radius-small) 0;
     }
-    .filters-panel,
-    .visualization-area {
-        padding: 15px;
-    }
-    .viz-tabs {
-        gap: 5px;
-    }
-    .back-home {
-        padding: 10px 15px;
-        font-size: 12px;
-    }
+     .dashboard-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            color: white;
+            white-space: nowrap;
+            
+        }
+    
+    /* ------------------ Other screen-size adjustments (Keep as is) ------------------ */
 }
+
 
 /* ------------------ Very small devices / phones <= 360px ------------------ */
 @media (max-width: 360px) {
@@ -739,17 +818,21 @@
     }
 }
 
+
     </style>
 </head>
 <body>
-    <header class="adults-header">
+   <header class="adults-header">
+    <div class="header-top-row"> 
         <div class="adults-logo">
             <a href="index.html">
                 <img src="../assets/images/logo-bg.png" alt="Logo" class="logo-img">
             </a>
         </div>
         
-        <div class="adults-stats">
+
+    </div>
+    <div class="adults-stats">
             <div class="stat-item">
                 <div class="stat-number">1.6B+</div>
                 <div class="stat-label">GeoEntities</div>
