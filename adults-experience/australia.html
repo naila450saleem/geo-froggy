@@ -697,6 +697,7 @@
         align-items: flex-start;
         padding: 12px 15px; /* Adjusted padding */
         gap: 10px; /* Space between rows (Top Row & Stats) */
+        width: 190%;
     }
 
     /* 2. Top Row: Logo (Left) and Pro Mode Toggle (Right) */
@@ -709,7 +710,8 @@
 
     /* Logo/Image size fixes */
     .logo-img { 
-        width: 300px; /* Smaller logo for mobile */
+        width: 350px; /* Smaller logo for mobile */
+       margin-left: 150px;    
     }
     
     .pro-mode-toggle { 
@@ -719,12 +721,12 @@
     }
     
     /* 3. Scrollable Stats Section (The core fix) */
-    .adults-stats {
+      .adults-stats {
         order: 2; /* Ensures it is placed after the top-row */
         /* width: 100% + horizontal padding (15px left + 15px right = 30px) */
         width: calc(100% + 30px); 
         /* Pull left by the header's left padding to stretch to edge */
-        margin-left: -15px; 
+        margin-left: 20px; 
         padding: 10px 15px; /* Add padding inside the stats row */
         justify-content: flex-start; 
         overflow-x: auto; /* Enable horizontal scrolling */
@@ -735,10 +737,9 @@
         margin-top: 0;
         background-color: transparent; 
     }
-    
-    .stat-item {
+.stat-item {
         flex: 0 0 auto; /* IMPORTANT: Prevents shrinking and forces horizontal scroll */
-        min-width: 120px;
+        min-width: 200px;
         padding: 10px;
         border-radius: var(--radius-small);
         background: var(--adults-light-blue); 
