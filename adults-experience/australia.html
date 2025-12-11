@@ -187,8 +187,9 @@
 
         .dashboard-title {
             font-family: 'Inter', sans-serif;
-            font-size: 36px;
+            font-size: 30px;
             color: white;
+            white-space: nowrap;
         }
 
         .search-bar {
@@ -197,15 +198,19 @@
         }
 
         .search-input {
-            flex: 1;
-            padding: 15px 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-small) 0 0 var(--radius-small);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-        }
+    width: 250px;       /* input box ki desired width */
+    padding: 10px 15px; /* padding chhoti ki */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-small) 0 0 var(--radius-small);
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    box-sizing: border-box;
+    flex: none;          /* flex ko disable kiya */
+    margin-left: 200px;
+}
+
 
         .search-input::placeholder {
             color: rgba(255, 255, 255, 0.5);
@@ -696,11 +701,9 @@
 
     /* Logo/Image size fixes */
     .logo-img { 
-        width: 150px; /* Smaller logo for mobile */
+        width: 300px; /* Smaller logo for mobile */
     }
-    .adults-logo-text {
-        font-size: 20px;
-    }
+    
     .pro-mode-toggle { 
         padding: 8px 15px;
         font-size: 14px;
