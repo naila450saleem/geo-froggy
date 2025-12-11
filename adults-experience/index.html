@@ -615,6 +615,24 @@
                 font-size: 14px;
             }
         }
+
+        #viewFullHistoryBtn {
+    margin-left: auto;            /* Push to right */
+    background: linear-gradient(135deg, var(--adults-blue), var(--adults-accent));
+    color: #fff;                  /* White text */
+    font-weight: bold;            /* Bold text */
+    padding: 12px 20px;           /* Larger padding */
+    border-radius: 30px;           /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* Slight shadow for 3D effect */
+    transition: all 0.3s ease;    /* Smooth hover effect */
+}
+
+#viewFullHistoryBtn:hover {
+    background-color: #e64a19;    /* Darker orange on hover */
+    transform: translateY(-2px);  /* Lift effect */
+    box-shadow: 0 6px 10px rgba(0,0,0,0.25);
+}
+
     </style>
 </head>
 <body>
@@ -682,21 +700,46 @@
                             <div class="filter-checkbox"></div>
                             <span>All Regions</span>
                         </div>
-                        <div class="filter-option" data-region="north-america">
+                        <div class="filter-option" data-region="australia">
+    <div class="filter-checkbox"></div>
+    <span>Australia</span>
+</div>
+
+                        <div class="filter-option" data-region="china">
                             <div class="filter-checkbox"></div>
-                            <span>North America</span>
+                            <span>China</span>
                         </div>
-                        <div class="filter-option" data-region="europe">
+                        <div class="filter-option" data-region="france">
                             <div class="filter-checkbox"></div>
-                            <span>Europe</span>
+                            <span>France</span>
                         </div>
-                        <div class="filter-option" data-region="asia">
+                        <div class="filter-option" data-region="germany">
                             <div class="filter-checkbox"></div>
-                            <span>Asia</span>
+                            <span>Germany</span>
                         </div>
-                        <div class="filter-option" data-region="africa">
+                        <div class="filter-option" data-region="india">
                             <div class="filter-checkbox"></div>
-                            <span>Africa</span>
+                            <span>India</span>
+                        </div>
+                         <div class="filter-option" data-region="nigeria">
+                            <div class="filter-checkbox"></div>
+                            <span>Nigeria</span>
+                        </div>
+                         <div class="filter-option" data-region="russia">
+                            <div class="filter-checkbox"></div>
+                            <span>Russia</span>
+                        </div>
+                         <div class="filter-option" data-region="saudi-arabia">
+                            <div class="filter-checkbox"></div>
+                            <span>Saudi Arabia</span>
+                        </div>
+                         <div class="filter-option" data-region="united-kingdom">
+                            <div class="filter-checkbox"></div>
+                            <span>United Kingdom</span>
+                        </div>
+                        <div class="filter-option" data-region="united-states">
+                            <div class="filter-checkbox"></div>
+                            <span>United States</span>
                         </div>
                     </div>
                 </div>
@@ -832,88 +875,80 @@
                             <i class="fas fa-eye"></i>
                             Show Raw Numbers
                         </button>
+                       <button class="viz-btn" id="viewFullHistoryBtn">
+    <i class="fas fa-history"></i>
+    View Full History
+</button>
+
                     </div>
                 </div>
                 
                 <div class="data-table-container">
-                    <table class="data-table" id="dataTable">
-                        <thead>
-                            <tr>
-                                <th>Country <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                                <th>GDP (2024) <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                                <th>Growth (2000-2024) <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                                <th>Population <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                                <th>Urbanization <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                                <th>CO2 Emissions <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>United States</strong></td>
-                                <td>$25.4T</td>
-                                <td>+45%</td>
-                                <td>331M</td>
-                                <td>83%</td>
-                                <td>14.7t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>China</strong></td>
-                                <td>$18.5T</td>
-                                <td>+320%</td>
-                                <td>1.4B</td>
-                                <td>64%</td>
-                                <td>7.4t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Germany</strong></td>
-                                <td>$4.3T</td>
-                                <td>+28%</td>
-                                <td>83M</td>
-                                <td>77%</td>
-                                <td>8.1t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Japan</strong></td>
-                                <td>$4.2T</td>
-                                <td>+12%</td>
-                                <td>125M</td>
-                                <td>92%</td>
-                                <td>8.5t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>India</strong></td>
-                                <td>$3.7T</td>
-                                <td>+280%</td>
-                                <td>1.4B</td>
-                                <td>35%</td>
-                                <td>1.9t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Australia</strong></td>
-                                <td>$1.7T</td>
-                                <td>+65%</td>
-                                <td>26M</td>
-                                <td>86%</td>
-                                <td>15.4t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Brazil</strong></td>
-                                <td>$1.6T</td>
-                                <td>+42%</td>
-                                <td>213M</td>
-                                <td>87%</td>
-                                <td>2.2t</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Canada</strong></td>
-                                <td>$1.5T</td>
-                                <td>+38%</td>
-                                <td>38M</td>
-                                <td>81%</td>
-                                <td>15.1t</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                   <table class="data-table" id="dataTable">
+    <thead>
+        <tr>
+            <th>Country <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+            <th>GDP <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+            <th>Growth <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+            <th>Population <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+            <th>Urbanization <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+            <th>CO2 Emissions <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+        </tr>
+    </thead>
+    <tbody>
+    <!-- United States -->
+    <tr data-year="2023"><td><strong>United States</strong></td><td>$25.5T</td><td>+45%</td><td>334M</td><td>83%</td><td>4.68B t</td></tr>
+    <tr data-year="2010"><td><strong>United States</strong></td><td>$15.0T</td><td>+25%</td><td>309M</td><td>82%</td><td>5.51B t</td></tr>
+    <tr data-year="2000"><td><strong>United States</strong></td><td>$10.3T</td><td>0%</td><td>282M</td><td>79%</td><td>5.85B t</td></tr>
+
+    <!-- Australia -->
+    <tr data-year="2023"><td><strong>Australia</strong></td><td>$1.8T</td><td>+65%</td><td>26M</td><td>86%</td><td>0.57B t</td></tr>
+    <tr data-year="2010"><td><strong>Australia</strong></td><td>$1.2T</td><td>+55%</td><td>22M</td><td>85%</td><td>0.61B t</td></tr>
+    <tr data-year="2000"><td><strong>Australia</strong></td><td>$0.5T</td><td>0%</td><td>19M</td><td>83%</td><td>0.57B t</td></tr>
+
+    <!-- China -->
+    <tr data-year="2023"><td><strong>China</strong></td><td>$18.3T</td><td>+320%</td><td>1.42B</td><td>64%</td><td>13.26B t</td></tr>
+    <tr data-year="2010"><td><strong>China</strong></td><td>$6.1T</td><td>+180%</td><td>1.34B</td><td>50%</td><td>9.47B t</td></tr>
+    <tr data-year="2000"><td><strong>China</strong></td><td>$1.2T</td><td>0%</td><td>1.27B</td><td>36%</td><td>3.80B t</td></tr>
+
+    <!-- France -->
+    <tr data-year="2023"><td><strong>France</strong></td><td>$2.8T</td><td>+55%</td><td>68M</td><td>82%</td><td>0.33B t</td></tr>
+    <tr data-year="2010"><td><strong>France</strong></td><td>$2.6T</td><td>+50%</td><td>64M</td><td>80%</td><td>0.41B t</td></tr>
+    <tr data-year="2000"><td><strong>France</strong></td><td>$1.3T</td><td>0%</td><td>60M</td><td>75%</td><td>0.41B t</td></tr>
+
+    <!-- Germany -->
+    <tr data-year="2023"><td><strong>Germany</strong></td><td>$4.2T</td><td>+28%</td><td>83M</td><td>77%</td><td>0.67B t</td></tr>
+    <tr data-year="2010"><td><strong>Germany</strong></td><td>$3.4T</td><td>+22%</td><td>81M</td><td>74%</td><td>0.75B t</td></tr>
+    <tr data-year="2000"><td><strong>Germany</strong></td><td>$2.0T</td><td>0%</td><td>82M</td><td>73%</td><td>0.80B t</td></tr>
+
+    <!-- India -->
+    <tr data-year="2023"><td><strong>India</strong></td><td>$3.7T</td><td>+280%</td><td>1.42B</td><td>35%</td><td>2.69B t</td></tr>
+    <tr data-year="2010"><td><strong>India</strong></td><td>$1.7T</td><td>+150%</td><td>1.23B</td><td>30%</td><td>1.83B t</td></tr>
+    <tr data-year="2000"><td><strong>India</strong></td><td>$0.5T</td><td>0%</td><td>1.05B</td><td>27%</td><td>1.04B t</td></tr>
+
+    <!-- Nigeria -->
+    <tr data-year="2023"><td><strong>Nigeria</strong></td><td>$0.5T</td><td>+75%</td><td>216M</td><td>51%</td><td>0.28B t</td></tr>
+    <tr data-year="2010"><td><strong>Nigeria</strong></td><td>$0.3T</td><td>+50%</td><td>158M</td><td>48%</td><td>0.22B t</td></tr>
+    <tr data-year="2000"><td><strong>Nigeria</strong></td><td>$0.1T</td><td>0%</td><td>123M</td><td>42%</td><td>0.15B t</td></tr>
+
+    <!-- Russia -->
+    <tr data-year="2023"><td><strong>Russia</strong></td><td>$1.8T</td><td>+45%</td><td>146M</td><td>74%</td><td>1.91B t</td></tr>
+    <tr data-year="2010"><td><strong>Russia</strong></td><td>$1.5T</td><td>+35%</td><td>142M</td><td>73%</td><td>2.10B t</td></tr>
+    <tr data-year="2000"><td><strong>Russia</strong></td><td>$0.5T</td><td>0%</td><td>146M</td><td>72%</td><td>2.17B t</td></tr>
+
+    <!-- Saudi Arabia -->
+    <tr data-year="2023"><td><strong>Saudi Arabia</strong></td><td>$1.1T</td><td>+40%</td><td>36M</td><td>84%</td><td>0.73B t</td></tr>
+    <tr data-year="2010"><td><strong>Saudi Arabia</strong></td><td>$0.8T</td><td>+30%</td><td>28M</td><td>80%</td><td>0.66B t</td></tr>
+    <tr data-year="2000"><td><strong>Saudi Arabia</strong></td><td>$0.2T</td><td>0%</td><td>22M</td><td>72%</td><td>0.62B t</td></tr>
+
+    <!-- United Kingdom -->
+    <tr data-year="2023"><td><strong>United Kingdom</strong></td><td>$3.1T</td><td>+35%</td><td>67M</td><td>83%</td><td>0.38B t</td></tr>
+    <tr data-year="2010"><td><strong>United Kingdom</strong></td><td>$2.5T</td><td>+28%</td><td>63M</td><td>80%</td><td>0.46B t</td></tr>
+    <tr data-year="2000"><td><strong>United Kingdom</strong></td><td>$1.6T</td><td>0%</td><td>59M</td><td>75%</td><td>0.48B t</td></tr>
+</tbody>
+
+</table>
+
                 </div>
             </div>
         </div>
@@ -1018,6 +1053,19 @@
                 rangeValues.innerHTML = `<span>2000</span><span>${currentYear}</span>`;
             }
             
+            function filterTableByYear(year) {
+    const rows = document.querySelectorAll('#dataTable tbody tr');
+    rows.forEach(row => {
+        const rowYear = parseInt(row.getAttribute('data-year')) || 2024; // default
+        if (rowYear <= year) {
+            row.style.display = ''; // show rows
+        } else {
+            row.style.display = 'none'; // hide rows
+        }
+    });
+}
+
+
             rangeHandle.addEventListener('mousedown', function() {
                 isDragging = true;
                 document.addEventListener('mousemove', handleDrag);
@@ -1037,14 +1085,18 @@
                 document.removeEventListener('mousemove', handleDrag);
                 document.removeEventListener('mouseup', stopDrag);
                 
-                showNotification(`Year range: 2000 - ${currentYear}`);
+                filterTableByYear(currentYear);
+showNotification(`Year range: 2000 - ${currentYear}`);
+
             }
             
             yearSlider.addEventListener('click', function(e) {
                 const rect = this.getBoundingClientRect();
                 let x = e.clientX - rect.left;
                 updateSlider(x);
-                showNotification(`Year range: 2000 - ${currentYear}`);
+                filterTableByYear(currentYear);
+showNotification(`Year range: 2000 - ${currentYear}`);
+
             });
             
             // Search Functionality
@@ -1361,6 +1413,36 @@ Distribution restricted to authorized users only.
     document.body.removeChild(link);
     URL.revokeObjectURL(link.href);
 }
+
+document.querySelectorAll('#regionOptions .filter-option').forEach(option => {
+    option.addEventListener('click', function() {
+        const region = this.getAttribute('data-region');
+
+        if (region !== 'all') {
+            window.location.href = `${region}.html`; // redirect to australia.html, asia.html etc.
+        }
+    });
+});
+
+// Make all buttons clickable
+const buttons = document.querySelectorAll('.viz-btn');
+buttons.forEach(btn => {
+    btn.addEventListener('click', function(e){
+        e.preventDefault(); // stops default action
+        showNotification(`Clicked: ${this.textContent.trim()}`); // shows notification
+    });
+});
+
+function filterTableByIndicators(selectedIndicators) {
+    const rows = document.querySelectorAll('#dataTable tbody tr');
+    rows.forEach(row => {
+        const rowIndicator = row.getAttribute('data-indicator'); 
+        row.style.display = selectedIndicators.includes(rowIndicator) ? '' : 'none';
+    });
+}
+
+
+
     </script>
 </body>
 </html>

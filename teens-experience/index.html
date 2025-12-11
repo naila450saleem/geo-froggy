@@ -618,6 +618,25 @@
                 font-size: 14px;
             }
         }
+
+        .country-card {
+    display: block;       /* Make the <a> behave like a block */
+    text-decoration: none; /* Remove link underline */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: var(--radius-small);
+    padding: 20px;
+    background-color: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+}
+
+.country-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+    border-color: var(--teens-green);
+}
+
     </style>
 </head>
 <body>
@@ -724,80 +743,83 @@
                     </div>
                 </div>
                 
-                <div class="comparison-area" id="comparisonArea">
-                    <!-- Country 1 -->
-                    <div class="country-card" data-country="australia">
-                        <div class="country-header">
-                            <img src="https://flagcdn.com/w40/au.png" class="country-flag" alt="Australia">
-                            <div class="country-name">Australia</div>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Population</span>
-                            <span class="metric-value">26.0M <span class="trend-indicator trend-up">+18%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">GDP Growth</span>
-                            <span class="metric-value">2.3% <span class="trend-indicator trend-up">+0.4%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Urbanization</span>
-                            <span class="metric-value">86% <span class="trend-indicator trend-up">+5%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">CO2 Emissions</span>
-                            <span class="metric-value">15.4t <span class="trend-indicator trend-down">-12%</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Country 2 -->
-                    <div class="country-card" data-country="usa">
-                        <div class="country-header">
-                            <img src="https://flagcdn.com/w40/us.png" class="country-flag" alt="United States">
-                            <div class="country-name">United States</div>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Population</span>
-                            <span class="metric-value">331M <span class="trend-indicator trend-up">+15%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">GDP Growth</span>
-                            <span class="metric-value">2.1% <span class="trend-indicator trend-up">+0.2%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Urbanization</span>
-                            <span class="metric-value">83% <span class="trend-indicator trend-up">+4%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">CO2 Emissions</span>
-                            <span class="metric-value">14.7t <span class="trend-indicator trend-down">-8%</span></span>
-                        </div>
-                    </div>
-                    
-                    <!-- Country 3 -->
-                    <div class="country-card" data-country="japan">
-                        <div class="country-header">
-                            <img src="https://flagcdn.com/w40/jp.png" class="country-flag" alt="Japan">
-                            <div class="country-name">Japan</div>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Population</span>
-                            <span class="metric-value">125M <span class="trend-indicator trend-down">-1%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">GDP Growth</span>
-                            <span class="metric-value">1.0% <span class="trend-indicator trend-up">+0.1%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">Urbanization</span>
-                            <span class="metric-value">92% <span class="trend-indicator trend-up">+2%</span></span>
-                        </div>
-                        <div class="country-metric">
-                            <span class="metric-label">CO2 Emissions</span>
-                            <span class="metric-value">8.5t <span class="trend-indicator trend-down">-15%</span></span>
-                        </div>
-                    </div>
-                </div>
-                
+               <div class="comparison-area" id="comparisonArea">
+    <!-- Country 1 -->
+    <a href="australia.html" class="country-card" data-country="australia">
+        <div class="country-header">
+            <img src="https://flagcdn.com/w40/au.png" class="country-flag" alt="Australia">
+            <div class="country-name">Australia</div>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Population</span>
+            <span class="metric-value">26.0M <span class="trend-indicator trend-up">+18%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">GDP Growth</span>
+            <span class="metric-value">2.3% <span class="trend-indicator trend-up">+0.4%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Urbanization</span>
+            <span class="metric-value">86% <span class="trend-indicator trend-up">+5%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">CO2 Emissions</span>
+            <span class="metric-value">15.4t <span class="trend-indicator trend-down">-12%</span></span>
+        </div>
+    </a>
+
+    <!-- Country 2 -->
+    <a href="usa.html" class="country-card" data-country="usa">
+        <div class="country-header">
+            <img src="https://flagcdn.com/w40/us.png" class="country-flag" alt="United States">
+            <div class="country-name">United States</div>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Population</span>
+            <span class="metric-value">331M <span class="trend-indicator trend-up">+15%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">GDP Growth</span>
+            <span class="metric-value">2.1% <span class="trend-indicator trend-up">+0.2%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Urbanization</span>
+            <span class="metric-value">83% <span class="trend-indicator trend-up">+4%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">CO2 Emissions</span>
+            <span class="metric-value">14.7t <span class="trend-indicator trend-down">-8%</span></span>
+        </div>
+    </a>
+
+    <!-- Country 3 -->
+    <a href="japan.html" class="country-card" data-country="japan">
+        <div class="country-header">
+            <img src="https://flagcdn.com/w40/jp.png" class="country-flag" alt="Japan">
+            <div class="country-name">Japan</div>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Population</span>
+            <span class="metric-value">125M <span class="trend-indicator trend-down">-1%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">GDP Growth</span>
+            <span class="metric-value">1.0% <span class="trend-indicator trend-up">+0.1%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">Urbanization</span>
+            <span class="metric-value">92% <span class="trend-indicator trend-up">+2%</span></span>
+        </div>
+        <div class="country-metric">
+            <span class="metric-label">CO2 Emissions</span>
+            <span class="metric-value">8.5t <span class="trend-indicator trend-down">-15%</span></span>
+        </div>
+    </a>
+</div>
+
+                <!-- Add more country -->
+
+
                 <div class="charts-container">
                     <div class="chart-box">
                         <div class="chart-title">

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoFroggy Teens - Australia Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All the CSS styles you provided in the original request go here */
+        :root {
+            --teens-blue: #2C3E50;
+            --teens-green: #27AE60;
+            --teens-purple: #8E44AD;
+            --teens-orange: #E67E22;
+            --teens-red: #E74C3C;
+            --teens-gray: #7F8C8D;
+            --teens-light: #ECF0F1;
+            --teens-dark: #1A252F;
+            --white: #FFFFFF;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --radius: 20px;
+            --radius-small: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E0E0E0;
+            min-height: 100vh;
+        }
+
+        /* Teens Header */
+        .teens-header {
+            background-color: var(--teens-dark);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .teens-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Added a specific style for the logo text since it was missing but used in the original header */
+        .teens-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .teens-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--teens-blue), var(--teens-purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .teens-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .teens-nav-item {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .teens-nav-item:hover, .teens-nav-item.active {
+            color: white;
+        }
+
+        .teens-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--teens-green);
+            border-radius: 3px;
+        }
+
+        .teens-user {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .student-mode {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .student-mode:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .student-mode.active {
+            background-color: var(--teens-green);
+        }
+
+        .mode-label {
+            font-weight: 600;
+        }
+
+        .teens-profile {
+            width: 45px;
+            height: 45px;
+            background-color: var(--teens-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Year Selector */
+.year-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: white;
+}
+
+.year-selector label {
+    font-weight: 600;
+}
+
+.year-selector select {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #000;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.year-selector select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.year-selector select:focus {
+    outline: none;
+    border-color: var(--teens-green);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+        /* Teens Dashboard */
+        .teens-dashboard {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-subtitle {
+            color: var(--teens-gray);
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* New Style: Country Profile Container */
+        .country-profile-container {
+            background-color: #1E1E1E;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+
+        .profile-flag {
+            width: 80px;
+            height: 50px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid var(--teens-green);
+        }
+
+        .profile-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 32px;
+            color: var(--teens-green);
+            font-weight: 700;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .metric-box {
+            background-color: rgba(39, 174, 96, 0.1);
+            border: 1px solid var(--teens-green);
+            border-radius: var(--radius-small);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric-value-large {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 5px;
+        }
+
+        .metric-label-small {
+            font-size: 14px;
+            color: var(--teens-light);
+            font-weight: 500;
+        }
+        
+        .trend-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .trend-up {
+            background-color: rgba(39, 174, 96, 0.2);
+            color: var(--teens-green);
+        }
+
+        .trend-down {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--teens-red);
+        }
+
+        .geography-section {
+            padding: 20px 0;
+        }
+
+        .section-heading {
+            font-size: 20px;
+            color: var(--teens-purple);
+            margin-bottom: 15px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .geography-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 30px;
+        }
+
+        .geography-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.05);
+        }
+
+        .geo-label {
+            color: var(--teens-gray);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .geo-value {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Charts */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .chart-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-small);
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-title {
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-title i {
+            color: var(--teens-green);
+        }
+
+        .chart-placeholder {
+            height: 200px;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6));
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--teens-gray);
+            font-weight: 600;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .chart-placeholder i {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--teens-purple);
+        }
+
+        /* Missions Panel */
+        .missions-panel {
+            background-color: #1E1E1E;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .missions-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            color: white;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .missions-title i {
+            color: var(--teens-purple);
+        }
+
+        .mission-card {
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: var(--radius-small);
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mission-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+            border-color: var(--teens-purple);
+        }
+
+        .mission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .mission-title {
+            font-weight: 700;
+            color: white;
+            font-size: 18px;
+        }
+
+        .mission-badge {
+            padding: 4px 12px;
+            background-color: var(--teens-purple);
+            color: white;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .mission-description {
+            color: var(--teens-gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .mission-progress {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .mission-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--teens-purple), var(--teens-green));
+            border-radius: 3px;
+            width: 65%;
+        }
+
+        .mission-stats {
+            display: flex;
+            justify-content: space-between;
+            color: var(--teens-gray);
+            font-size: 14px;
+        }
+
+        /* Export Section */
+        .export-section {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .export-btn {
+            padding: 12px 25px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: var(--radius-small);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .export-btn:hover {
+            background-color: var(--teens-green);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .teens-header {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .teens-nav {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .teens-dashboard {
+                padding: 20px;
+            }
+            
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .geography-list {
+                grid-template-columns: 1fr;
+            }
+
+            .export-section {
+                flex-direction: column;
+            }
+            
+            .back-home {
+                left: 15px;
+                bottom: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="teens-header">
+
+         <div class="teens-logo">
+            <a href="index.html">
+                <img src="../assets/images/logo-bg.png" alt="Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <nav class="teens-nav">
+            <a href="index.html" class="teens-nav-item">Dashboard</a>
+            <a href="#" class="teens-nav-item active">Countries</a>
+            <a href="#" class="teens-nav-item">Compare</a>
+            <a href="#" class="teens-nav-item">Projects</a>
+            <a href="#" class="teens-nav-item">Quizzes</a>
+        </nav>
+        
+       <div class="teens-user">
+    <div class="year-selector">
+        <label for="dataYear">Data Year:</label>
+        <select id="dataYear" class="teens-nav-item">
+            </select>
+    </div>
+    
+    <div class="student-mode active" id="studentModeToggle">
+        <i class="fas fa-graduation-cap"></i>
+        <span class="mode-label">Student Mode</span>
+    </div>
+    <div class="teens-profile">TS</div>
+</div>
+    </header>
+    
+    <main class="teens-dashboard">
+        <h1 class="dashboard-title">Australia - Country Profile</h1>
+        <p class="dashboard-subtitle">A deep dive into the demographics, economics, and geography of Australia.</p>
+        
+        <div class="dashboard-grid">
+            <div class="country-profile-container">
+                
+                <div class="profile-header">
+                    <img src="https://flagcdn.com/w80/au.png" class="profile-flag" alt="Australia Flag">
+                    <h2 class="profile-title">Australia</h2>
+                </div>
+                
+                <h3 class="section-heading"><i class="fas fa-microchip"></i> Key Metrics Overview (2024 Est.)</h3>
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="metric-value-large">26.0M <span class="trend-indicator trend-up">+18%</span></div>
+                        <div class="metric-label-small">Population (Since 2000)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value-large">2.3% <span class="trend-indicator trend-up">+0.4%</span></div>
+                        <div class="metric-label-small">GDP Growth (Latest Year)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value-large">86% <span class="trend-indicator trend-up">+5%</span></div>
+                        <div class="metric-label-small">Urbanization Rate (Since 2000)</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-value-large">15.4t <span class="trend-indicator trend-down">-12%</span></div>
+                        <div class="metric-label-small">CO2 Emissions (Per Capita)</div>
+                    </div>
+                </div>
+
+                <div class="geography-section">
+                    <h3 class="section-heading"><i class="fas fa-globe-asia"></i> Geographical Profile (2023)</h3>
+                    <ul class="geography-list">
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-map-marker-alt"></i> Location</span>
+                            [cite_start]<span class="geo-value">Oceania, continent [cite: 1]</span>
+                        </li>
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-compass"></i> Coordinates</span>
+                            [cite_start]<span class="geo-value">27 00 S, 133 00 E [cite: 1]</span>
+                        </li>
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-layer-group"></i> Total Area</span>
+                            [cite_start]<span class="geo-value">7,741,220 sq km [cite: 1]</span>
+                        </li>
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-water"></i> Coastline</span>
+                            [cite_start]<span class="geo-value">25,760 km [cite: 1]</span>
+                        </li>
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-ruler-combined"></i> Area Comparison</span>
+                            [cite_start]<span class="geo-value">Slightly smaller than US 48 states [cite: 1]</span>
+                        </li>
+                        <li class="geography-item">
+                            <span class="geo-label"><i class="fas fa-border-all"></i> Land Boundaries</span>
+                            [cite_start]<span class="geo-value">0 km [cite: 1]</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <h3 class="section-heading" style="margin-top: 40px;"><i class="fas fa-chart-area"></i> Trend Visualizations</h3>
+                <div class="charts-container">
+                    <div class="chart-box">
+                        <div class="chart-title">
+                            <i class="fas fa-chart-line"></i>
+                            Australia's Population Growth (2000-2024)
+                        </div>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                            Interactive Line Chart                             <small style="margin-top: 10px; font-weight: normal;">Visualizing 24 years of demographic change</small>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <div class="chart-title">
+                            <i class="fas fa-chart-bar"></i>
+                            CO2 Emissions Per Capita Trend
+                        </div>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar"></i>
+                            Interactive Bar Chart                             <small style="margin-top: 10px; font-weight: normal;">Tracking environmental impact over time</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="export-section">
+                    <button class="export-btn" id="exportPNG">
+                        <i class="fas fa-file-image"></i>
+                        Export Visualizations
+                    </button>
+                    <button class="export-btn" id="shareClassroom">
+                        <i class="fas fa-share-alt"></i>
+                        Share to Classroom
+                    </button>
+                </div>
+            </div>
+            
+            <div class="missions-panel">
+                <h2 class="missions-title">
+                    <i class="fas fa-tasks"></i>
+                    Data Detective Missions
+                </h2>
+                
+                <div class="mission-card" data-mission="economic-patterns">
+                    <div class="mission-header">
+                        <div class="mission-title">Find Economic Patterns</div>
+                        <div class="mission-badge">Economics</div>
+                    </div>
+                    <p class="mission-description">Identify two countries with similar GDP growth but different population trends since 2000.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>65% complete</span>
+                        <span>+50 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="climate-analysis">
+                    <div class="mission-header">
+                        <div class="mission-title">Climate Change Analysis</div>
+                        <div class="mission-badge">Environment</div>
+                    </div>
+                    <p class="mission-description">Analyze CO2 emissions trends for 3 countries and predict 2030 levels.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>30% complete</span>
+                        <span>+75 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="urbanization-explorer">
+                    <div class="mission-header">
+                        <div class="mission-title">Urbanization Explorer</div>
+                        <div class="mission-badge">Geography</div>
+                    </div>
+                    <p class="mission-description">Compare urbanization rates in developing vs developed countries over 20 years.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 10%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>10% complete</span>
+                        <span>+100 XP</span>
+                    </div>
+                </div>
+                
+                <div class="mission-card" data-mission="population-detective">
+                    <div class="mission-header">
+                        <div class="mission-title">Population Detective</div>
+                        <div class="mission-badge">Demographics</div>
+                    </div>
+                    <p class="mission-description">Find a country whose population has doubled since 2000 and analyze causes.</p>
+                    <div class="mission-progress">
+                        <div class="mission-progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="mission-stats">
+                        <span>Not started</span>
+                        <span>+150 XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <a href="../index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <script>// countryProfile.js
+
+    // year selecoter
+document.addEventListener("DOMContentLoaded", function() {
+    const yearSelect = document.getElementById("dataYear");
+    
+    // Populate dropdown from 2000 to 2023
+    for (let year = 2000; year <= 2023; year++) {
+        const option = document.createElement("option");
+        option.value = year;
+        option.textContent = year;
+        yearSelect.appendChild(option);
+    }
+    
+    // Optional: default selected year
+    yearSelect.value = 2023;
+
+    // Handle selection change
+    yearSelect.addEventListener("change", function() {
+        const selectedYear = this.value;
+        console.log("Selected year:", selectedYear);
+        // TODO: Update metrics and charts based on selectedYear
+    });
+});
+
+// 1. Data load karne ke liye function
+async function loadCountryData(countryName = 'australia') {
+    try {
+        // Yahan aapko apne JSON file ka path dena hoga
+        // Hum maan rahe hain ki aapki file ka naam 'australia.json' hai
+        const response = await fetch(`${countryName}.json`);
+        
+        // Agar file nahi mili to error dega
+        if (!response.ok) {
+            throw new Error(`Failed to load ${countryName}.json: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        return data; // Saara data object ki shakal mein return karega
+        
+    } catch (error) {
+        console.error("Error loading country data:", error);
+        // Agar data load na ho to kuch default message dikha sakte hain
+        document.querySelector('.dashboard-title').textContent = "Error: Data could not be loaded.";
+        return null;
+    }
+}
+
+
+// 2. HTML elements ko dynamic values se update karne ke liye main function
+function updateProfile(countryData, year) {
+    
+    const yearData = countryData[year];
+    
+    // Agar us saal ka data hi na ho (jaise 2001 ka data json mein nahi hai)
+    if (!yearData) {
+        console.warn(`Data for year ${year} is not available.`);
+        document.querySelector('.dashboard-subtitle').textContent = `Data for year ${year} is not available. Please select another year.`;
+        // Baaki elements ko clear ya default kar dein
+        return;
+    }
+
+    // JSON file se data extract karna
+    // Note: Aapko apne JSON structure ke hisaab se yeh paths adjust karne honge.
+    const population = yearData['people-and-society']['population'].split(' ')[0]; // Jaise '26,461,166 (2023 est.)' se sirf number nikalna
+    const urbanizationRate = yearData['people-and-society']['urbanization'].find(item => item.field === 'urban_population')?.value;
+    const location = yearData['geography']['location'];
+    const totalArea = yearData['geography']['area'].find(item => item.field === 'total')?.value;
+    const coastline = yearData['geography']['coastline'];
+    const landBoundaries = yearData['geography']['land_boundaries'];
+    
+    // HTML mein values update karna
+    
+    // Title/Subtitle Update
+    document.querySelector('.dashboard-title').textContent = `Australia - Country Profile (${year})`;
+    document.querySelector('.dashboard-subtitle').textContent = `A deep dive into the demographics, economics, and geography of Australia in ${year}.`;
+
+    // Key Metrics Update
+    // Population:
+    // **HTML mein is class ko add karein: <div class="metric-value-large" id="metric-population">...</div>
+    document.querySelector('.metric-box:nth-child(1) .metric-value-large').textContent = population; 
+    document.querySelector('.metric-box:nth-child(1) .metric-label-small').textContent = `Population (${year} est.)`; 
+    
+    // Urbanization Rate: (Assume the JSON only contains Urban Population)
+    // **HTML mein is class ko add karein: <div class="metric-value-large" id="metric-urbanization">...</div>
+    document.querySelector('.metric-box:nth-child(3) .metric-value-large').textContent = urbanizationRate ? urbanizationRate.split(' ')[0] : 'N/A';
+    document.querySelector('.metric-box:nth-child(3) .metric-label-small').textContent = `Urbanization Rate (${year})`;
+
+    // Geographical Profile Update (yeh sirf available data ke liye hai)
+    // Location:
+    document.querySelectorAll('.geography-item .geo-value')[0].innerHTML = `${location}`;
+    
+    // Total Area:
+    document.querySelectorAll('.geography-item .geo-value')[2].innerHTML = `${totalArea}`;
+    
+    // Coastline:
+    document.querySelectorAll('.geography-item .geo-value')[3].innerHTML = `${coastline}`;
+    
+    // Land Boundaries:
+    document.querySelectorAll('.geography-item .geo-value')[5].innerHTML = `${landBoundaries}`;
+
+
+    // **NOTE: Baaki metrics (GDP Growth, CO2) aur Coordinates ko bhi isi tarah update karein.**
+    // Agar aapke JSON mein GDP Growth aur CO2 emissions ka data available hai, to unhe bhi isi logic se update karein.
+    // Example (Mera JSON snippet GDP aur CO2 ka data nahi de raha tha, isliye yahan skip kiya hai)
+
+}
+
+
+// 3. Initialization: Year selector ko setup karna aur data load karna
+async function initProfile() {
+    const countryName = 'australia'; // Country name yahan se change hoga
+    const countryData = await loadCountryData(countryName);
+
+    if (!countryData) return;
+
+    // JSON file mein maujood saare saal (years) nikalna
+    const availableYears = Object.keys(countryData).sort().reverse();
+    
+    const yearSelector = document.getElementById('dataYear');
+    
+    // Year Selector (Dropdown) mein options add karna
+    availableYears.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelector.appendChild(option);
+    });
+
+    // Default saal (sabse naya saal) load karna
+    const defaultYear = availableYears[0];
+    updateProfile(countryData, defaultYear);
+
+    // Event Listener: Jab user saal badle to updateProfile function call ho
+    yearSelector.addEventListener('change', (event) => {
+        const selectedYear = event.target.value;
+        updateProfile(countryData, selectedYear);
+    });
+}
+
+// Page load hone par function call karna
+initProfile();
+</script>
+</body>
+</html>

@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <title>GeoFroggy Insights - Professional Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --adults-dark: #1A1A2E;
+            --adults-blue: #0F3460;
+            --adults-light-blue: #16213E;
+            --adults-accent: #00B4D8;
+            --adults-light-accent: #90E0EF;
+            --adults-light: #E6F7FF;
+            --adults-gray: #6C757D;
+            --white: #FFFFFF;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.12);
+            --radius: 20px;
+            --radius-small: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--adults-dark);
+            color: #E0E0E0;
+            min-height: 100vh;
+        }
+
+        /* Adults Header */
+        .adults-header {
+            background-color: var(--adults-light-blue);
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .adults-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .adults-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--adults-blue), var(--adults-accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .adults-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .adults-stats {
+            display: flex;
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--adults-accent);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .adults-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .adults-nav-item {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .adults-nav-item:hover, .adults-nav-item.active {
+            color: white;
+        }
+
+        .adults-nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--adults-accent);
+            border-radius: 3px;
+        }
+
+        .pro-mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: rgba(0, 180, 216, 0.1);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .pro-mode-toggle:hover {
+            background-color: rgba(0, 180, 216, 0.2);
+        }
+
+        .pro-mode-toggle.active {
+            background-color: var(--adults-accent);
+        }
+
+        .pro-label {
+            font-weight: 600;
+            color: var(--adults-accent);
+        }
+
+        .pro-mode-toggle.active .pro-label {
+            color: white;
+        }
+
+        /* Adults Dashboard */
+        .adults-dashboard {
+            padding: 40px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 36px;
+            color: white;
+        }
+
+        .search-bar {
+            display: flex;
+            width: 400px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-small) 0 0 var(--radius-small);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .search-btn {
+            padding: 15px 25px;
+            background-color: var(--adults-accent);
+            color: white;
+            border: none;
+            border-radius: 0 var(--radius-small) var(--radius-small) 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #0093b3;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Filters Panel */
+        .filters-panel {
+            background-color: var(--adults-light-blue);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filters-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-section {
+            margin-bottom: 30px;
+        }
+
+        .filter-section-title {
+            font-weight: 600;
+            color: var(--adults-accent);
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-option:hover {
+            color: white;
+        }
+
+        .filter-checkbox {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-option.active .filter-checkbox {
+            background-color: var(--adults-accent);
+            border-color: var(--adults-accent);
+        }
+
+        .filter-checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            display: none;
+        }
+
+        .filter-option.active .filter-checkbox::after {
+            display: block;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .range-fill {
+            position: absolute;
+            height: 100%;
+            background-color: var(--adults-accent);
+            border-radius: 3px;
+            width: 60%;
+        }
+
+        .range-handle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            border: 2px solid var(--adults-accent);
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        /* Visualization Area */
+        .visualization-area {
+            background-color: var(--adults-light-blue);
+            border-radius: var(--radius);
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .viz-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            color: white;
+        }
+
+        .viz-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .viz-btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-small);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .viz-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .viz-btn.primary {
+            background-color: var(--adults-accent);
+            border-color: var(--adults-accent);
+        }
+
+        .viz-btn.primary:hover {
+            background-color: #0093b3;
+        }
+
+        .viz-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .viz-tab {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: var(--radius-small) var(--radius-small) 0 0;
+        }
+
+        .viz-tab:hover, .viz-tab.active {
+            color: white;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Chart Placeholders */
+        .chart-container {
+            height: 400px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-small);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 30px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .chart-container i {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--adults-accent);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .small-chart {
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-small);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 600;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .small-chart i {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--adults-accent);
+        }
+
+        /* Data Table */
+        .data-table-container {
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius-small);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px 20px;
+            text-align: left;
+            font-weight: 600;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .data-table td {
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--adults-blue), var(--adults-accent));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Pro Mode Features */
+        .pro-features {
+            display: none;
+            background-color: rgba(0, 180, 216, 0.1);
+            border-radius: var(--radius-small);
+            padding: 20px;
+            margin-top: 30px;
+            border: 1px solid var(--adults-accent);
+        }
+
+        .pro-features.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .pro-features-title {
+            color: var(--adults-accent);
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pro-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pro-feature i {
+            color: var(--adults-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .adults-header {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .adults-stats {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 15px;
+            }
+            
+            .search-bar {
+                width: 100%;
+                margin-top: 20px;
+            }
+            
+            .adults-dashboard {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .adults-nav {
+                display: none;
+            }
+            
+            .viz-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .viz-controls {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+            
+            .viz-tabs {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .back-home {
+                left: 15px;
+                bottom: 15px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="adults-header">
+        <div class="adults-logo">
+            <a href="index.html">
+                <img src="../assets/images/logo-bg.png" alt="Logo" class="logo-img">
+            </a>
+        </div>
+        
+        <div class="adults-stats">
+            <div class="stat-item">
+                <div class="stat-number">1.6B+</div>
+                <div class="stat-label">GeoEntities</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1.3B+</div>
+                <div class="stat-label">Data Records</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1.1B+</div>
+                <div class="stat-label">Data Sources</div>
+            </div>
+        </div>
+        
+        <nav class="adults-nav">
+            <a href="#" class="adults-nav-item active">Dashboard</a>
+            <a href="#" class="adults-nav-item">Visualize</a>
+            <a href="#" class="adults-nav-item">Compare</a>
+            <a href="#" class="adults-nav-item">My Reports</a>
+            <a href="#" class="adults-nav-item">Export</a>
+        </nav>
+        
+        <div class="pro-mode-toggle" id="proModeToggle">
+            <i class="fas fa-crown"></i>
+            <span class="pro-label">Pro Mode</span>
+        </div>
+    </header>
+    
+    <main class="adults-dashboard">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Australia National Analysis</h1>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search countries, indicators, or years..." id="searchInput">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="filters-panel">
+                <h2 class="filters-title">Filters & Indicators</h2>
+                
+                <div class="filter-section">
+                    <div class="filter-section-title">
+                        <i class="fas fa-globe-americas"></i>
+                        Region
+                    </div>
+                    <div class="filter-options" id="regionOptions">
+                        <div class="filter-option" data-region="all">
+                            <div class="filter-checkbox"></div>
+                            <span>All Regions</span>
+                        </div>
+                        <div class="filter-option active" data-region="australia">
+                            <div class="filter-checkbox"></div>
+                            <span>Australia</span>
+                        </div>
+                        <div class="filter-option" data-region="north-america">
+                            <div class="filter-checkbox"></div>
+                            <span>North America</span>
+                        </div>
+                        <div class="filter-option" data-region="europe">
+                            <div class="filter-checkbox"></div>
+                            <span>Europe</span>
+                        </div>
+                        <div class="filter-option" data-region="asia">
+                            <div class="filter-checkbox"></div>
+                            <span>Asia</span>
+                        </div>
+                        <div class="filter-option" data-region="africa">
+                            <div class="filter-checkbox"></div>
+                            <span>Africa</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <div class="filter-section-title">
+                        <i class="fas fa-chart-line"></i>
+                        Indicators
+                    </div>
+                    <div class="filter-options" id="indicatorOptions">
+                        <div class="filter-option active" data-indicator="economy">
+                            <div class="filter-checkbox"></div>
+                            <span>Economy</span>
+                        </div>
+                        <div class="filter-option" data-indicator="population">
+                            <div class="filter-checkbox"></div>
+                            <span>Population</span>
+                        </div>
+                        <div class="filter-option" data-indicator="environment">
+                            <div class="filter-checkbox"></div>
+                            <span>Environment</span>
+                        </div>
+                        <div class="filter-option" data-indicator="health">
+                            <div class="filter-checkbox"></div>
+                            <span>Health</span>
+                        </div>
+                        <div class="filter-option" data-indicator="education">
+                            <div class="filter-checkbox"></div>
+                            <span>Education</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <div class="filter-section-title">
+                        <i class="fas fa-calendar-alt"></i>
+                        Year Range
+                    </div>
+                    <div class="range-slider" id="yearSlider">
+                        <div class="range-fill" id="rangeFill"></div>
+                        <div class="range-handle" id="rangeHandle" style="left: 60%"></div>
+                    </div>
+                    <div class="range-values" id="rangeValues">
+                        <span>2000</span>
+                        <span>2024</span>
+                    </div>
+                </div>
+                
+                <div class="pro-features" id="proFeatures">
+                    <div class="pro-features-title">
+                        <i class="fas fa-crown"></i>
+                        Pro Features
+                    </div>
+                    <div class="pro-feature">
+                        <i class="fas fa-database"></i>
+                        <span>Raw data access</span>
+                    </div>
+                    <div class="pro-feature">
+                        <i class="fas fa-filter"></i>
+                        <span>Advanced filtering</span>
+                    </div>
+                    <div class="pro-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Forecasting tools</span>
+                    </div>
+                    <div class="pro-feature">
+                        <i class="fas fa-download"></i>
+                        <span>CSV/Excel export</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="visualization-area">
+                <div class="viz-header">
+                    <h2 class="viz-title">Key Economic & Environmental Indicators for Australia (2000-2024)</h2>
+                    <div class="viz-controls">
+                        <button class="viz-btn" id="saveViewBtn">
+                            <i class="fas fa-bookmark"></i>
+                            Save View
+                        </button>
+                        <button class="viz-btn" id="exportCSVBtn">
+                            <i class="fas fa-file-csv"></i>
+                            Export CSV
+                        </button>
+                        <button class="viz-btn primary" id="downloadReportBtn">
+                            <i class="fas fa-download"></i>
+                            Download Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="viz-tabs">
+                    <button class="viz-tab active" data-tab="overview">Overview</button>
+                    <button class="viz-tab" data-tab="trends">Trend Analysis</button>
+                    <button class="viz-tab" data-tab="correlations">Correlations</button>
+                    <button class="viz-tab" data-tab="forecasts">Forecasts</button>
+                    <button class="viz-tab" data-tab="rawdata">Raw Data</button>
+                </div>
+                
+                <div class="chart-container" id="mainChart">
+                    <i class="fas fa-chart-line"></i>
+                    Australia GDP Growth vs. CO2 Emissions Trend Line Chart (GDP: +65%, CO2: 15.4t)
+                    <small style="margin-top: 10px; font-weight: normal; color: rgba(255, 255, 255, 0.4);">
+                        Interactive visualization - Focus on the +65% GDP growth trend
+                    </small>
+                </div>
+                
+                <div class="charts-grid">
+                    <div class="small-chart" id="scatterChart">
+                        <i class="fas fa-braille"></i>
+                        Scatter plot: Population (26M) vs. Urbanization (86%)
+                    </div>
+                    <div class="small-chart" id="heatmapChart">
+                        <i class="fas fa-th"></i>
+                        Heat map: Australian States/Territories Comparison
+                    </div>
+                </div>
+                
+                <div class="viz-header" style="margin-top: 40px;">
+                    <h2 class="viz-title">Data Table</h2>
+                    <div class="viz-controls">
+                        <button class="viz-btn" id="sortBtn">
+                            <i class="fas fa-sort-alpha-down"></i>
+                            Sort A-Z
+                        </button>
+                        <button class="viz-btn" id="filterTableBtn">
+                            <i class="fas fa-filter"></i>
+                            Filter Table
+                        </button>
+                        <button class="viz-btn" id="showRawBtn">
+                            <i class="fas fa-eye"></i>
+                            Show Raw Numbers
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="data-table-container">
+                    <table class="data-table" id="dataTable">
+                        <thead>
+                            <tr>
+                                <th>Country <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                                <th>GDP (2024) <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                                <th>Growth (2000-2024) <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                                <th>Population <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                                <th>Urbanization <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                                <th>CO2 Emissions <i class="fas fa-sort" style="margin-left: 5px; opacity: 0.5;"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Australia</strong></td>
+                                <td>$1.7T</td>
+                                <td>+65%</td>
+                                <td>26M</td>
+                                <td>86%</td>
+                                <td>15.4t</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <a href="../index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i>
+        Back to Home
+    </a>
+
+    <script>
+/* ========== AUSTRALIA: CLEAN & COMPLETE DATA (2000-2023) + CHARTS ========== */
+document.addEventListener('DOMContentLoaded', function() {
+
+  /***********************
+   * 1) Raw data object (text values you provided)
+   * We'll parse numbers out of the strings and then interpolate missing years.
+   ***********************/
+  const raw = {
+    2000: { economy: { GDP_PPP: "$400.3 billion (1999 est.)", GDP_real_growth_rate: "4.1%", GDP_per_capita_PPP: "$21,400" }, population: "18,970,767 (July 2000 est.)", health: { life_expectancy_at_birth: "total population: 79.8 years", birth_rate: "12.8 births/1,000", death_rate: "7.33 deaths/1,000", infant_mortality_rate: "5.08/1,000" }, education: { school_expenditures: "5% of GDP" } },
+    2001: { economy: { GDP_PPP: "$424.3 billion (2000 est.)", GDP_real_growth_rate: "4.2%", GDP_per_capita_PPP: "$22,500" }, population: "19,357,595 (July 2001 est.)" },
+    2002: { economy: { GDP_PPP: "$447.8 billion (2001 est.)", GDP_real_growth_rate: "1.8%", GDP_per_capita_PPP: "$23,400" }, population: "19,546,792 (July 2002 est.)" },
+    2003: { economy: { GDP_PPP: "$468.9 billion (2002 est.)", GDP_real_growth_rate: "3.8%", GDP_per_capita_PPP: "$24,200" }, population: "19,731,984 (July 2003 est.)" },
+    2004: { economy: { GDP_PPP: "$487.6 billion (2003 est.)", GDP_real_growth_rate: "2.9%", GDP_per_capita_PPP: "$24,900" }, population: "19,913,146 (July 2004 est.)" },
+    2005: { economy: { GDP_PPP: "$505.7 billion (2004 est.)", GDP_real_growth_rate: "3.2%", GDP_per_capita_PPP: "$25,500" }, population: "20,090,432 (July 2005 est.)" },
+    2006: { economy: { GDP_PPP: "$530.1 billion (2005 est.)", GDP_real_growth_rate: "2.4%", GDP_per_capita_PPP: "$26,500" }, population: "20,263,015 (July 2006 est.)" },
+    2007: { economy: { GDP_PPP: "$555 billion (2006 est.)", GDP_real_growth_rate: "2.7%", GDP_per_capita_PPP: "$27,300" }, population: "20,434,176 (July 2007 est.)" },
+    2008: { economy: { GDP_PPP: "$584.2 billion (2007 est.)", GDP_real_growth_rate: "4.3%", GDP_per_capita_PPP: "$28,400" }, population: "20,600,856 (July 2008 est.)" },
+    2009: { economy: { GDP_PPP: "$603.9 billion (2008 est.)", GDP_real_growth_rate: "3.9%", GDP_per_capita_PPP: "$29,000" }, population: "21,262,641 (July 2009 est.)" },
+    2010: { economy: { GDP_PPP: "$611.8 billion (2009 est.)", GDP_real_growth_rate: "1.4%", GDP_per_capita_PPP: "$28,600" }, population: "21,515,754 (July 2010 est.)" },
+    2011: { economy: { GDP_PPP: "$851.6 billion (2010 est.)", GDP_real_growth_rate: "2.7%", GDP_per_capita_PPP: "$40,000" }, population: "21,766,711 (July 2011 est.)" },
+    2012: { economy: { GDP_PPP: "$921.1 billion (2011 est.)", GDP_real_growth_rate: "2.1%", GDP_per_capita_PPP: "$42,700" }, population: "22,015,576 (July 2012 est.)" },
+    2013: { economy: { GDP_PPP: "$982.5 billion (2012 est.)", GDP_real_growth_rate: "3.4%", GDP_per_capita_PPP: "$44,900" }, population: "22,262,501 (July 2013 est.)" },
+    2014: { economy: { GDP_PPP: "$1047.0 billion (2013 est.)", GDP_real_growth_rate: "2.5%", GDP_per_capita_PPP: "$47,100" }, population: "22,507,617 (July 2014 est.)" },
+    2015: { economy: { GDP_PPP: "$1109.0 billion (2014 est.)", GDP_real_growth_rate: "2.5%", GDP_per_capita_PPP: "$49,000" }, population: "22,751,014 (July 2015 est.)" },
+    2016: { economy: { GDP_PPP: "$1157.0 billion (2015 est.)", GDP_real_growth_rate: "2.5%", GDP_per_capita_PPP: "$50,200" }, population: "23,001,655 (July 2016 est.)" },
+    2017: { economy: { GDP_PPP: "$1213.0 billion (2016 est.)", GDP_real_growth_rate: "2.7%", GDP_per_capita_PPP: "$51,800" }, population: "23,232,413 (July 2017 est.)" },
+    2018: { economy: { GDP_PPP: "$1258.0 billion (2017 est.)", GDP_real_growth_rate: "2.4%", GDP_per_capita_PPP: "$53,200" }, population: "23,470,145 (July 2018 est.)" },
+    2019: { economy: { GDP_PPP: "$1309.0 billion (2018 est.)", GDP_real_growth_rate: "2.8%", GDP_per_capita_PPP: "$54,900" }, population: "23,700,709 (July 2019 est.)" },
+    2020: { economy: { GDP_PPP: "$1332.0 billion (2019 est.)", GDP_real_growth_rate: "1.8%", GDP_per_capita_PPP: "$55,200" }, population: "23,732,875 (July 2020 est.)", health: { life_expectancy_at_birth: "total population: 83.29 years" }, education: { school_expenditures: "5.3% of GDP" } },
+    2021: { economy: { GDP_PPP: "$1323.0 billion (2020 est.)", GDP_real_growth_rate: "-0.3%", GDP_per_capita_PPP: "$54,500" }, population: "25,972,836 (July 2021 est.)" },
+    2022: { economy: { GDP_PPP: "$1528.0 billion (2021 est.)", GDP_real_growth_rate: "2.8%", GDP_per_capita_PPP: "$61,500" }, population: "26,177,413 (July 2022 est.)" },
+    2023: { economy: { GDP_PPP: "$1637.0 billion (2022 est.)", GDP_real_growth_rate: "3.7%", GDP_per_capita_PPP: "$65,000" }, population: "26,381,357 (July 2023 est.)", health: { life_expectancy_at_birth: "total population: 83.5 years" }, education: { school_expenditures: "4.9% of GDP" } }
+  };
+
+  /***********************
+   * 2) Helpers: parse numbers out of strings
+   ***********************/
+  function parseNumberFromString(str) {
+    if (str == null) return null;
+    // Remove commas, $ and text, keep digits, dots and minus sign
+    const m = ('' + str).match(/-?[\d,.]+(?:\.\d+)?/g);
+    if (!m) return null;
+    // Use the first meaningful token and remove commas
+    const token = m[0].replace(/,/g, '');
+    const num = parseFloat(token);
+    return isNaN(num) ? null : num;
+  }
+
+  function parsePopulation(str) {
+    const num = parseNumberFromString(str);
+    return num ? Math.round(num) : null;
+  }
+
+  function parsePercent(str) {
+    if (!str) return null;
+    const n = parseNumberFromString(str);
+    return n === null ? null : +n; // percent as number (e.g., 5 => 5)
+  }
+
+  function parseGDPinBillion(str) {
+    if (!str) return null;
+    // Many entries were already converted to "1047.0 billion", etc. If original had "$400.3 billion", parse 400.3
+    const n = parseNumberFromString(str);
+    if (n === null) return null;
+    // if string contains 'trillion' treat accordingly (none here) - keep n as billions if given as billions/converted already
+    // If original had "$1.332 trillion" we'd need to convert -> but we standardized above to billion values except entries like 1.332 trillion.
+    // handle common case where the token is >2000 => maybe provided as billions (we assume all tokens are in billions already from earlier normalization)
+    return +n;
+  }
+
+  function parseGDPperCapita(str) {
+    if (!str) return null;
+    const n = parseNumberFromString(str);
+    return n === null ? null : +n;
+  }
+
+  function parseLifeExpectancy(str) {
+    if (!str) return null;
+    const n = parseNumberFromString(str);
+    return n === null ? null : +n;
+  }
+
+  /***********************
+   * 3) Build cleaned numeric arrays for years 2000..2023
+   ***********************/
+  const startYear = 2000;
+  const endYear = 2023;
+  const years = [];
+  for (let y = startYear; y <= endYear; y++) years.push(y);
+
+  const cleaned = {}; // cleaned[year] = {gdp, population, gdp_per_capita, life_expectancy, education_pct, co2_per_capita}
+  years.forEach(y => {
+    cleaned[y] = { year: y, gdp_billion: null, population: null, gdp_per_capita: null, life_expectancy: null, education_pct: null, co2_per_capita: null };
+    const r = raw[y];
+    if (r && r.economy) {
+      cleaned[y].gdp_billion = parseGDPinBillion(r.economy.GDP_PPP) || null;
+      cleaned[y].gdp_growth = parseNumberFromString(r.economy.GDP_real_growth_rate) || null;
+      cleaned[y].gdp_per_capita = parseGDPperCapita(r.economy.GDP_per_capita_PPP) || null;
+    }
+    if (r && r.population) cleaned[y].population = parsePopulation(r.population);
+    if (r && r.health && r.health.life_expectancy_at_birth) cleaned[y].life_expectancy = parseLifeExpectancy(r.health.life_expectancy_at_birth);
+    if (r && r.education && r.education.school_expenditures) cleaned[y].education_pct = parsePercent(r.education.school_expenditures);
+    // co2 missing -> will be generated below
+  });
+
+  /***********************
+   * 4) Interpolate missing numeric values linearly
+   ***********************/
+  function linearFill(field) {
+    // find indices with values
+    const idxs = [];
+    for (let i = 0; i < years.length; i++) {
+      const v = cleaned[years[i]][field];
+      if (v != null && !isNaN(v)) idxs.push(i);
+    }
+    if (idxs.length === 0) return; // nothing to fill
+    // fill leading empty
+    const firstIdx = idxs[0];
+    for (let i = 0; i < firstIdx; i++) cleaned[years[i]][field] = cleaned[years[firstIdx]][field];
+    // fill between known points
+    for (let k = 0; k < idxs.length - 1; k++) {
+      const i1 = idxs[k], i2 = idxs[k + 1];
+      const v1 = cleaned[years[i1]][field], v2 = cleaned[years[i2]][field];
+      const span = i2 - i1;
+      for (let j = 1; j < span; j++) {
+        const t = j / span;
+        cleaned[years[i1 + j]][field] = +(v1 + (v2 - v1) * t).toFixed(3);
+      }
+    }
+    // fill trailing empty
+    const lastIdx = idxs[idxs.length - 1];
+    for (let i = lastIdx + 1; i < years.length; i++) cleaned[years[i]][field] = cleaned[years[lastIdx]][field];
+  }
+
+  // Apply fills for sensible numeric fields
+  ['gdp_billion', 'population', 'gdp_per_capita', 'life_expectancy', 'education_pct'].forEach(linearFill);
+
+  /***********************
+   * 5) Generate CO2 per capita (synthetic) for 2000..2023
+   * We'll make a smooth gentle decline from ~17.0 (2000) to ~15.4 (2023)
+   * plus a small deterministic wave for realism.
+   ***********************/
+  const co2Start = 17.0;
+  const co2End = 15.4;
+  for (let i = 0; i < years.length; i++) {
+    const t = i / (years.length - 1);
+    // base linear
+    let base = co2Start + (co2End - co2Start) * t;
+    // small deterministic wave (use sine with year index)
+    const wave = Math.sin(i * 1.1) * 0.12;
+    const val = +(base + wave).toFixed(2);
+    cleaned[years[i]].co2_per_capita = val;
+  }
+
+  /***********************
+   * 6) Create canvases (inject into your placeholders)
+   ***********************/
+  function ensureCanvases() {
+    const main = document.getElementById('mainChart');
+    if (main && !main.querySelector('canvas')) {
+      main.innerHTML = '<canvas id="mainChartCanvas" style="width:100%;height:360px;"></canvas>';
+    }
+    const sc = document.getElementById('scatterChart');
+    if (sc && !sc.querySelector('canvas')) {
+      sc.innerHTML = '<canvas id="scatterChartCanvas" style="width:100%;height:240px;"></canvas>';
+    }
+    const hm = document.getElementById('heatmapChart');
+    if (hm && !hm.querySelector('canvas')) {
+      hm.innerHTML = '<canvas id="educationBarCanvas" style="width:100%;height:240px;"></canvas>';
+    }
+  }
+  ensureCanvases();
+
+  /***********************
+   * 7) Prepare arrays for charts
+   ***********************/
+  const labels = years.map(String);
+  const gdpSeries = years.map(y => +(cleaned[y].gdp_billion || 0));
+  const popSeries = years.map(y => +(cleaned[y].population ? (cleaned[y].population / 1_000_000).toFixed(3) : 0)); // millions
+  const gdpPerCapitaSeries = years.map(y => +(cleaned[y].gdp_per_capita || 0));
+  const lifeExpSeries = years.map(y => +(cleaned[y].life_expectancy || 0));
+  const eduPctSeries = years.map(y => +(cleaned[y].education_pct || 0));
+  const co2Series = years.map(y => +(cleaned[y].co2_per_capita || 0));
+
+  /***********************
+   * 8) Render Chart.js charts
+   ***********************/
+  // Main chart: GDP (billion) + Population (millions) on secondary axis
+  const mainCtx = document.getElementById('mainChartCanvas').getContext('2d');
+  const mainChart = new Chart(mainCtx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'GDP (Billion USD)',
+          data: gdpSeries,
+          tension: 0.3,
+          borderWidth: 2,
+          pointRadius: 3,
+          fill: true
+        },
+        {
+          label: 'Population (Millions)',
+          data: popSeries,
+          tension: 0.35,
+          borderDash: [4,2],
+          borderWidth: 2,
+          pointRadius: 2,
+          yAxisID: 'y_pop'
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { position: 'top' }, tooltip: { mode: 'nearest' } },
+      scales: {
+        y: { beginAtZero: false, title: { display: true, text: 'GDP (Billion USD)' } },
+        y_pop: {
+          position: 'right',
+          grid: { drawOnChartArea: false },
+          title: { display: true, text: 'Population (Millions)' }
+        },
+        x: { title: { display: true, text: 'Year' } }
+      }
+    }
+  });
+
+  // Scatter: GDP per capita vs Life expectancy (each point = year)
+  const scatterCtx = document.getElementById('scatterChartCanvas').getContext('2d');
+  const scatterData = years.map((y, i) => ({ x: gdpPerCapitaSeries[i], y: lifeExpSeries[i], year: y }));
+  const scatterChart = new Chart(scatterCtx, {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: 'GDP per capita vs Life expectancy',
+        data: scatterData,
+        pointRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              const pt = context.raw;
+              return `Year ${pt.year}: $${pt.x} per capita · Life exp ${pt.y} yrs`;
+            }
+          }
+        },
+        legend: { display: false }
+      },
+      scales: {
+        x: { title: { display: true, text: 'GDP per capita (USD)' } },
+        y: { title: { display: true, text: 'Life expectancy (years)' } }
+      }
+    }
+  });
+
+  // Bar: Education expenditure (% of GDP) per year
+  const eduCtx = document.getElementById('educationBarCanvas').getContext('2d');
+  const eduChart = new Chart(eduCtx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Education expenditure (% of GDP)',
+        data: eduPctSeries,
+        barPercentage: 0.8
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: { enabled: true } },
+      scales: {
+        y: { beginAtZero: true, title: { display: true, text: '% of GDP' } },
+        x: { title: { display: true, text: 'Year' } }
+      }
+    }
+  });
+
+  /***********************
+   * 9) Render summary table under charts
+   ***********************/
+  function renderYearlyTable() {
+    // Remove prior if exists
+    const old = document.getElementById('australiaYearlyTable');
+    if (old) old.remove();
+
+    const container = document.querySelector('.visualization-area');
+    const wrapper = document.createElement('div');
+    wrapper.id = 'australiaYearlyTable';
+    wrapper.style.marginTop = '22px';
+    wrapper.style.borderRadius = '10px';
+    wrapper.style.background = 'rgba(0,0,0,0.03)';
+    wrapper.style.padding = '10px';
+
+    // Build HTML table
+    let html = '<h3 style="margin:6px 0 10px 0; color: white; font-size: 18px;">Australia — Cleaned Yearly Data (2000–2023)</h3>';
+    html += '<div style="overflow:auto; max-height:260px;">';
+    html += '<table style="width:100%; border-collapse:collapse; color: #e0e0e0; font-family: Inter, sans-serif;">';
+    html += '<thead><tr style="text-align:left; border-bottom:1px solid rgba(255,255,255,0.06);">';
+    html += '<th style="padding:8px 10px;">Year</th>';
+    html += '<th style="padding:8px 10px;">GDP (B USD)</th>';
+    html += '<th style="padding:8px 10px;">Population (M)</th>';
+    html += '<th style="padding:8px 10px;">GDP per cap (USD)</th>';
+    html += '<th style="padding:8px 10px;">Life exp (yrs)</th>';
+    html += '<th style="padding:8px 10px;">Edu (% GDP)</th>';
+    html += '<th style="padding:8px 10px;">CO₂ (t/cap)</th>';
+    html += '</tr></thead><tbody>';
+
+    years.forEach(y => {
+      html += '<tr style="border-bottom:1px solid rgba(255,255,255,0.04)">';
+      html += `<td style="padding:6px 10px;">${y}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].gdp_billion !== null) ? cleaned[y].gdp_billion.toLocaleString(undefined, {maximumFractionDigits:1}) : '—'}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].population !== null) ? (cleaned[y].population / 1_000_000).toFixed(3) : '—'}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].gdp_per_capita !== null) ? cleaned[y].gdp_per_capita.toLocaleString() : '—'}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].life_expectancy !== null) ? cleaned[y].life_expectancy.toFixed(2) : '—'}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].education_pct !== null) ? cleaned[y].education_pct.toFixed(2) : '—'}</td>`;
+      html += `<td style="padding:6px 10px;">${(cleaned[y].co2_per_capita !== null) ? cleaned[y].co2_per_capita.toFixed(2) : '—'}</td>`;
+      html += '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+    wrapper.innerHTML = html;
+    container.appendChild(wrapper);
+  }
+  renderYearlyTable();
+
+  /***********************
+   * 10) Notification (small)
+   ***********************/
+  (function showNote() {
+    const note = document.createElement('div');
+    note.textContent = 'Australia dataset loaded (clean numeric values). Missing fields were interpolated; CO₂ per-capita was generated.';
+    note.style.position = 'fixed';
+    note.style.top = '18px';
+    note.style.right = '18px';
+    note.style.padding = '10px 14px';
+    note.style.background = 'var(--adults-accent)';
+    note.style.color = '#fff';
+    note.style.borderRadius = '10px';
+    note.style.zIndex = 9999;
+    document.body.appendChild(note);
+    setTimeout(()=> note.remove(), 4500);
+  })();
+
+});
+</script>
+
+</body>
+</html>
