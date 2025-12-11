@@ -553,69 +553,192 @@
             color: var(--adults-accent);
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .charts-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* ====================== Adults Dashboard & Header Responsive ====================== */
 
-        @media (max-width: 992px) {
-            .adults-header {
-                flex-wrap: wrap;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            .adults-stats {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin-top: 15px;
-            }
-            
-            .search-bar {
-                width: 100%;
-                margin-top: 20px;
-            }
-            
-            .adults-dashboard {
-                padding: 20px;
-            }
-        }
+/* ------------------ Default / Large Desktop ------------------ */
+.dashboard-grid {
+    grid-template-columns: 300px 1fr;
+    gap: 30px;
+}
+.charts-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
 
-        @media (max-width: 768px) {
-            .adults-nav {
-                display: none;
-            }
-            
-            .viz-header {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
-            }
-            
-            .viz-controls {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-            
-            .viz-tabs {
-                overflow-x: auto;
-                padding-bottom: 10px;
-            }
-            
-            .back-home {
-                left: 15px;
-                bottom: 15px;
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-        }
+/* ------------------ Large screens <= 1200px ------------------ */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ------------------ Medium screens <= 1024px ------------------ */
+@media (max-width: 1024px) {
+    .adults-header {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    .adults-stats {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .search-bar {
+        width: 100%;
+        margin-top: 15px;
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ------------------ Small tablets / large phones <= 768px ------------------ */
+@media (max-width: 768px) {
+    .adults-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .adults-stats {
+        justify-content: flex-start;
+        width: 100%;
+        gap: 10px;
+    }
+    .search-bar {
+        flex-direction: column;
+        width: 100%;
+    }
+    .search-input {
+        border-radius: var(--radius-small);
+        margin-bottom: 10px;
+    }
+    .search-btn {
+        border-radius: var(--radius-small);
+    }
+    .adults-nav {
+        display: none; /* hide nav on small screens */
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .charts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .filters-panel,
+    .visualization-area {
+        width: 100%;
+        padding: 20px;
+    }
+    .viz-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .viz-controls {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+    .viz-tabs {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    .back-home {
+        left: 15px;
+        bottom: 15px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* ------------------ Small phones / portrait <= 480px ------------------ */
+@media (max-width: 480px) {
+    .adults-header {
+        padding: 10px 15px;
+    }
+    .adults-logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .adults-logo-text {
+        font-size: 22px;
+    }
+    .adults-stats {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+    .stat-number {
+        font-size: 20px;
+    }
+    .stat-label {
+        font-size: 10px;
+    }
+    .search-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    .search-btn {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    .filters-panel,
+    .visualization-area {
+        padding: 15px;
+    }
+    .viz-tabs {
+        gap: 5px;
+    }
+    .back-home {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+}
+
+/* ------------------ Very small devices / phones <= 360px ------------------ */
+@media (max-width: 360px) {
+    .adults-header {
+        font-size: 14px;
+    }
+    .adults-logo-text {
+        font-size: 20px;
+    }
+    .adults-stats {
+        gap: 5px;
+    }
+    .stat-number {
+        font-size: 18px;
+    }
+    .stat-label {
+        font-size: 9px;
+    }
+    .search-input {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .search-btn {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .filters-panel,
+    .visualization-area {
+        padding: 10px;
+    }
+    .charts-grid {
+        gap: 10px;
+    }
+}
+
     </style>
 </head>
 <body>

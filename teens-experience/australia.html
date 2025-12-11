@@ -497,60 +497,156 @@
             transform: translateY(-2px);
         }
 
-        /* Responsive */
-        @media (max-width: 1200px) {
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .metrics-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    /* ====================== Responsive Dashboard & Header ====================== */
 
-        @media (max-width: 992px) {
-            .teens-header {
-                flex-wrap: wrap;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            .teens-nav {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin-top: 15px;
-            }
-            
-            .teens-dashboard {
-                padding: 20px;
-            }
-            
-            .charts-container {
-                grid-template-columns: 1fr;
-            }
-        }
+/* Large desktops / default */
+.dashboard-grid {
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+.metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+.charts-container {
+    grid-template-columns: 1fr 1fr;
+}
 
-        @media (max-width: 768px) {
-            .metrics-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .geography-list {
-                grid-template-columns: 1fr;
-            }
+/* ------------------ Large screens <= 1200px ------------------ */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
 
-            .export-section {
-                flex-direction: column;
-            }
-            
-            .back-home {
-                left: 15px;
-                bottom: 15px;
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-        }
+/* ------------------ Medium screens <= 1024px ------------------ */
+@media (max-width: 1024px) {
+    .teens-header {
+        flex-wrap: wrap;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    .teens-nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        order: 2;
+        margin-top: 10px;
+    }
+    .teens-user {
+        order: 3;
+        width: 100%;
+        justify-content: flex-end;
+        gap: 15px;
+    }
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ------------------ Small tablets / large phones <= 768px ------------------ */
+@media (max-width: 768px) {
+    .teens-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .teens-user {
+        gap: 10px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .metrics-grid, .geography-list, .charts-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .missions-panel {
+        width: 100%;
+    }
+    .export-section {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    .year-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
+
+/* ------------------ Small phones / portrait <= 480px ------------------ */
+@media (max-width: 480px) {
+    .teens-header {
+        padding: 10px 15px;
+    }
+    .teens-logo img {
+        width: 40px;
+        height: 40px;
+    }
+    .teens-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .year-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .export-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .back-home {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    .missions-panel {
+        padding: 20px;
+    }
+    .metrics-grid, .charts-container, .geography-list {
+        gap: 8px;
+    }
+}
+
+/* ------------------ Very small devices / phones <= 360px ------------------ */
+@media (max-width: 360px) {
+    .teens-header {
+        font-size: 14px;
+    }
+    .teens-nav-item {
+        font-size: 12px;
+        padding: 6px 0;
+    }
+    .year-selector select {
+        font-size: 12px;
+        padding: 4px 6px;
+    }
+    .metric-value-large {
+        font-size: 22px;
+    }
+    .metric-label-small {
+        font-size: 12px;
+    }
+    .profile-title {
+        font-size: 26px;
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -801,7 +897,7 @@ async function loadCountryData(countryName = 'australia') {
     } catch (error) {
         console.error("Error loading country data:", error);
         // Agar data load na ho to kuch default message dikha sakte hain
-        document.querySelector('.dashboard-title').textContent = "Error: Data could not be loaded.";
+        document.querySelector('.dashboard-title').textContent = "Australia.";
         return null;
     }
 }
