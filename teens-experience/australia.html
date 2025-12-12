@@ -32,15 +32,15 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #121212;
-            color: #E0E0E0;
+            background-color: #E0E0E0;
+            color: #000;
             min-height: 100vh;
         }
 
         /* Teens Header */
         .teens-header {
-            background-color: var(--teens-dark);
-            color: white;
+            background-color: #E6F7FF;
+            color: #000;
             padding: 20px 40px;
             display: flex;
             justify-content: space-between;
@@ -68,7 +68,7 @@
         }
 
         .teens-nav-item {
-            color: rgba(255, 255, 255, 0.8);
+            color: #000;
             text-decoration: none;
             font-weight: 600;
             font-size: 16px;
@@ -78,7 +78,7 @@
         }
 
         .teens-nav-item:hover, .teens-nav-item.active {
-            color: white;
+            color: #000;
         }
 
         .teens-nav-item.active::after {
@@ -140,7 +140,7 @@
     align-items: center;
     gap: 8px;
     font-size: 14px;
-    color: white;
+    color: black;
 }
 
 .year-selector label {
@@ -150,7 +150,7 @@
 .year-selector select {
     background-color: rgba(255, 255, 255, 0.1);
     color: #000;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid #000;
     border-radius: 8px;
     padding: 6px 10px;
     cursor: pointer;
@@ -174,12 +174,20 @@
             padding: 40px;
             max-width: 1400px;
             margin: 0 auto;
+            background-color: #fff;
+             border-radius: 14px; /* optional */
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    margin-bottom: 40px;
+    margin-top: 40px;
+    overflow: hidden;
+    padding-top: 80px;
         }
+        
 
         .dashboard-title {
             font-family: 'Inter', sans-serif;
             font-size: 36px;
-            color: white;
+            color: #000;
             margin-bottom: 10px;
         }
 
@@ -197,11 +205,11 @@
 
         /* New Style: Country Profile Container */
         .country-profile-container {
-            background-color: #1E1E1E;
+            background-color: #fff;
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #000;
         }
 
         .profile-header {
@@ -246,13 +254,13 @@
         .metric-value-large {
             font-size: 28px;
             font-weight: 700;
-            color: var(--white);
+            color: #000;
             margin-bottom: 5px;
         }
 
         .metric-label-small {
             font-size: 14px;
-            color: var(--teens-light);
+            color: #1E1E1E;
             font-weight: 500;
         }
         
@@ -327,15 +335,15 @@
         }
 
         .chart-box {
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: #fff;
             border-radius: var(--radius-small);
             padding: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid black;
         }
 
         .chart-title {
             font-weight: 600;
-            color: white;
+            color: rgb(9, 9, 9);
             margin-bottom: 15px;
             font-size: 16px;
             display: flex;
@@ -355,7 +363,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--teens-gray);
+            color: #fff;
             font-weight: 600;
             border: 1px dashed rgba(255, 255, 255, 0.1);
         }
@@ -368,17 +376,17 @@
 
         /* Missions Panel */
         .missions-panel {
-            background-color: #1E1E1E;
+            background-color: #fff;
             border-radius: var(--radius);
             padding: 30px;
             box-shadow: var(--shadow);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #000;
         }
 
         .missions-title {
             font-family: 'Inter', sans-serif;
             font-size: 24px;
-            color: white;
+            color: black;
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -414,7 +422,7 @@
 
         .mission-title {
             font-weight: 700;
-            color: white;
+            color: #000;
             font-size: 18px;
         }
 
@@ -428,7 +436,7 @@
         }
 
         .mission-description {
-            color: var(--teens-gray);
+            color: #1E1E1E;
             margin-bottom: 15px;
             line-height: 1.5;
         }
@@ -451,7 +459,7 @@
         .mission-stats {
             display: flex;
             justify-content: space-between;
-            color: var(--teens-gray);
+            color: #000;
             font-size: 14px;
         }
 
@@ -480,6 +488,30 @@
         .export-btn:hover {
             background-color: var(--teens-green);
             transform: translateY(-2px);
+        }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            padding: 15px 25px;
+           background: linear-gradient(135deg, #27AE60, #2C3E50);
+            color: #000;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-home:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
 
     /* ====================== Responsive Dashboard & Header ====================== */
@@ -772,7 +804,7 @@
                     <div class="chart-box">
                         <div class="chart-title">
                             <i class="fas fa-chart-line"></i>
-                            Australia's Population Growth (2000-2024)
+                            Australia's Population Growth 
                         </div>
                         <div class="chart-placeholder">
                             <i class="fas fa-chart-line"></i>
