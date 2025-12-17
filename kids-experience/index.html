@@ -3,29 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoFroggy - World Explorer (Kids 8-12)</title>
-   
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Geofroggy - World Explorer</title>
     <style>
-        :root {
-            --primary-blue: #175883;
-            --secondary-green: #8DC63F;
-            --accent-lime: #A5D64F;
-            --accent-yellow: #FFD166;
-            --accent-red: #EF476F;
-            --light-blue: #E8F4FD;
-            --light-green: #F0F9E8;
-            --white: #FFFFFF;
-            --gray-light: #F5F7FA;
-            --gray: #A0AEC0;
-            --gray-dark: #2D3748;
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.12);
-            --radius: 24px;
-            --radius-small: 16px;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -33,2548 +12,852 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--white);
-            color: var(--gray-dark);
-            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f0f4f8 100%);
             min-height: 100vh;
-            transition: all 0.3s ease;
         }
 
-        body.kid-mode {
-            font-family: 'Comic Neue', 'Fredoka', sans-serif;
-        }
-
-        /* Entry Portal Animation */
-        .entry-portal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: portalEntrance 2s ease-out forwards;
-        }
-
-        @keyframes portalEntrance {
-            0% { opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { opacity: 0; visibility: hidden; }
-        }
-
-        .portal-content {
-            text-align: center;
-            animation: portalContent 2s ease-out;
-        }
-
-        @keyframes portalContent {
-            0% { transform: scale(0.5); opacity: 0; }
-            30% { transform: scale(1.1); opacity: 1; }
-            70% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0; }
-        }
-
-        .portal-globe {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #87CEEB, #1E90FF);
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            position: relative;
-            overflow: hidden;
-            animation: globeRipple 2s infinite;
-        }
-
-        @keyframes globeRipple {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(23, 88, 131, 0.3), 0 0 0 0 rgba(141, 198, 63, 0.2); }
-            50% { box-shadow: 0 0 0 20px rgba(23, 88, 131, 0), 0 0 0 40px rgba(141, 198, 63, 0); }
-        }
-
-        .portal-frog {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 60px;
-            animation: frogBlink 3s infinite;
-        }
-
-        @keyframes frogBlink {
-            0%, 90%, 100% { transform: translate(-50%, -50%) scale(1); }
-            95% { transform: translate(-50%, -50%) scale(1.1); }
-        }
-
-        .portal-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 48px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-            animation: titlePop 0.5s ease-out 0.5s both;
-        }
-
-        /* Header */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
-            background-color: var(--white);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+            padding: 20px 40px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
-        .logo-container {
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #4CAF50;
         }
 
         .logo-icon {
             width: 50px;
             height: 50px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            animation: logoBounce 2s infinite;
-        }
-
-        @keyframes logoBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .logo-text {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-green));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .kid-mode-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--light-green);
-            border-radius: 50px;
-            padding: 8px 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--secondary-green);
-        }
-
-        .kid-mode-toggle.active {
-            background-color: var(--secondary-green);
-        }
-
-        .toggle-switch {
-            width: 50px;
-            height: 26px;
-            background-color: var(--white);
-            border-radius: 50px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--secondary-green);
-            border-radius: 50%;
-            top: 3px;
-            left: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .kid-mode-toggle.active .toggle-switch::after {
-            left: 27px;
-            background-color: var(--white);
-        }
-
-        .toggle-label {
-            font-weight: 600;
-            color: var(--gray-dark);
-        }
-
-        .kid-mode-toggle.active .toggle-label {
-            color: var(--white);
-        }
-
-        .profile-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .xp-badge {
-            background: linear-gradient(135deg, #FFD166, #FFBC42);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            color: var(--gray-dark);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 10px rgba(255, 209, 102, 0.3);
-        }
-
-        .profile-avatar {
-            width: 45px;
-            height: 45px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 18px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            font-size: 30px;
         }
 
-        .profile-avatar:hover {
-            transform: scale(1.1);
+        .back-link {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
-        /* Navigation */
-        .navigation {
-            display: flex;
-            background-color: var(--white);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            border-radius: 20px;
-            margin: 15px 30px;
-            padding: 8px;
-            justify-content: center;
+        .back-link:hover {
+            color: #4CAF50;
         }
 
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 16px;
-            transition: all 0.3s ease;
-            min-width: 110px;
-            position: relative;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .nav-item.active {
-            background-color: var(--light-blue);
-        }
-
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 4px;
-            background-color: var(--primary-blue);
-            border-radius: 2px;
-        }
-
-        .nav-icon {
-            font-size: 24px;
-            width: 45px;
-            height: 45px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item.active .nav-icon {
-            background-color: var(--primary-blue);
-            color: white;
-            transform: translateY(-5px);
-        }
-
-        .nav-item:not(.active) .nav-icon {
-            background-color: var(--gray-light);
-            color: var(--gray);
-        }
-
-        .nav-label {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray);
-        }
-
-        .nav-item.active .nav-label {
-            color: var(--primary-blue);
-        }
-
-        .nav-item:hover:not(.active) {
-            transform: translateY(-3px);
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 0 30px 30px;
-            min-height: calc(100vh - 160px);
-        }
-
-        /* Page Content */
-        .page-content {
+        .page {
             display: none;
-            animation: fadeIn 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-content.active {
+        .page.active {
             display: block;
         }
 
-        /* Explore Page */
-        .map-container {
-            background-color: var(--light-blue);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            margin-bottom: 25px;
+        /* Welcome Page */
+        .welcome-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 40px;
         }
 
-        .map-header {
+        .welcome-content h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-content h1 {
+            color: #1a237e;
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .welcome-content p {
+            color: #333;
+            font-size: 20px;
             margin-bottom: 20px;
         }
 
-        .map-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 32px;
-            color: var(--primary-blue);
+        .hero-image {
+    width: 100%;
+    max-width: 520px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .feature-list li {
+            color: #333;
+            font-size: 18px;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .map-subtitle {
-            font-size: 16px;
-            color: var(--gray-dark);
-            line-height: 1.5;
+        .feature-list li::before {
+            content: '✅';
+            font-size: 20px;
         }
 
-        .world-map-wrapper {
-            width: 100%;
-            height: 500px;
-            background-color: white;
-            border-radius: 20px;
-            overflow: hidden;
+        .button-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+
+        .welcome-visual {
             position: relative;
-            border: 8px solid white;
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+            height: 500px;
+        }
+
+        .globe {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 50%, #0288D1 100%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .frog-mascot {
+            position: absolute;
+            width: 120px;
+            height: 140px;
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            border-radius: 50% 50% 45% 45%;
+            bottom: 0;
+            left: 20%;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 3px solid #A5D6A7;
+            border-radius: 50px;
+            padding: 12px 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            flex-shrink: 0;
+        }
+
+        .feature-card h3 {
+            color: #1a237e;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Map Page */
+        .map-container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         .world-map {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #87CEEB, #1E90FF);
+            height: 400px;
+            background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
+            border-radius: 20px;
             position: relative;
             overflow: hidden;
+            margin-bottom: 30px;
         }
+
+        .map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
 
         .continent {
             position: absolute;
-            border-radius: 12px;
+            background: #C8E6C9;
             cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            border: 3px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s;
         }
 
         .continent:hover {
             transform: scale(1.05);
+        }
+
+        .map-mascot {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 120px;
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            border-radius: 50% 50% 45% 45%;
             z-index: 10;
-            filter: brightness(1.1);
         }
 
-        .continent.asia { width: 220px; height: 180px; top: 110px; left: 320px; background: linear-gradient(135deg, #4CAF50, #2E7D32); }
-        .continent.europe { width: 140px; height: 120px; top: 80px; left: 270px; background: linear-gradient(135deg, #2196F3, #0D47A1); }
-        .continent.africa { width: 130px; height: 190px; top: 180px; left: 290px; background: linear-gradient(135deg, #FF9800, #E65100); }
-        .continent.north-america { width: 180px; height: 160px; top: 110px; left: 90px; background: linear-gradient(135deg, #F44336, #B71C1C); }
-        .continent.south-america { width: 120px; height: 170px; top: 260px; left: 160px; background: linear-gradient(135deg, #9C27B0, #4A148C); }
-        .continent.australia { width: 160px; height: 120px; top: 330px; left: 400px; background: linear-gradient(135deg, #FFC107, #FF9800); }
-
-        .continent-icon {
-            font-size: 40px;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.2));
+        .speech-bubble {
+            position: absolute;
+            top: -60px;
+            right: 0;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 16px;
+            color: #333;
         }
 
-        .continent-name {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            padding: 0 10px;
+        .tap-hint {
             text-align: center;
+            background: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .country-pin {
-            position: absolute;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            cursor: pointer;
+        .nav-tabs {
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 16px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            z-index: 100;
-            border: 2px solid white;
-            animation: float 4s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .country-pin:hover {
-            transform: scale(1.3) !important;
-            z-index: 20;
-        }
-
-        .pin-australia { top: 370px; left: 450px; background-color: var(--secondary-green); animation-delay: 0s; }
-        .pin-usa { top: 150px; left: 120px; background-color: var(--primary-blue); animation-delay: 0.4s; }
-        .pin-brazil { top: 300px; left: 190px; background-color: var(--accent-yellow); animation-delay: 0.8s; }
-        .pin-china { top: 150px; left: 400px; background-color: var(--accent-red); animation-delay: 1.2s; }
-        .pin-india { top: 180px; left: 370px; background-color: var(--accent-lime); animation-delay: 1.6s; }
-        .pin-japan { top: 130px; left: 460px; background-color: #FF6B6B; animation-delay: 2s; }
-
-        .map-controls {
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .map-btn {
-            width: 40px;
-            height: 40px;
-            background-color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--primary-blue);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .map-btn:hover {
-            background-color: var(--primary-blue);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        /* Country Data Panel */
-        .data-panel {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                max-width: 1100px;  /* jitna chahen */
+    margin: 0 auto;     /* horizontally center */
         }
 
-        .data-card {
-            background-color: var(--light-blue);
-            border-radius: var(--radius-small);
-            padding: 20px;
-            transition: transform 0.3s ease;
-        }
-
-        .data-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 15px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
+        .explore-nav{
+           display: flex;
             justify-content: center;
-            font-size: 24px;
-            color: white;
+            gap: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                max-width: 500px;  /* jitna chahen */
+    margin: 0 auto;     /* horizontally center */ 
         }
 
-        .card-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 20px;
-            color: var(--primary-blue);
+        .nav-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 20px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 15px;
+            transition: background 0.3s;
         }
 
-        .card-content {
-            font-size: 16px;
-            color: var(--gray-dark);
-            line-height: 1.5;
+        .nav-tab.active {
+            background: #E8F5E9;
         }
 
-        /* Play Page */
-        .games-grid {
+        .nav-tab:hover {
+            background: #F1F8F4;
+        }
+
+        .nav-icon {
+            font-size: 28px;
+        }
+
+        .nav-label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* Games Page */
+        .games-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .games-header h1 {
+            color: #1565C0;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .games-header p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .progress-fill {
+            width: 150px;
+            height: 8px;
+            background: #E0E0E0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill-inner {
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50 0%, #81C784 100%);
+        }
+
+        .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
         }
 
         .game-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
             border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
+        }
+
+        .game-card:nth-child(1) {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-color: #90CAF9;
+        }
+
+        .game-card:nth-child(2) {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-color: #FFCC80;
+        }
+
+        .game-card:nth-child(3) {
+            background: linear-gradient(135deg, #F3E5F5 0%, #E1BEE7 100%);
+            border-color: #CE93D8;
+        }
+
+        .game-card:nth-child(4) {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-color: #A5D6A7;
         }
 
         .game-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--light-blue);
-        }
-
-        .game-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
         }
 
         .game-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-        }
-
-        .game-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 24px;
-            color: var(--primary-blue);
-        }
-
-        .game-description {
-            font-size: 16px;
-            color: var(--gray-dark);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .game-badge {
-            display: inline-block;
-            background-color: var(--accent-yellow);
-            color: var(--gray-dark);
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        /* Stories Page */
-        .stories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .story-card {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            padding: 25px;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .story-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--light-green);
-        }
-
-        .story-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            font-size: 64px;
             margin-bottom: 15px;
         }
 
-        .story-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: white;
-            background: linear-gradient(135deg, var(--accent-red), #FF6B6B);
-        }
-
-        .story-title {
-            font-family: 'Fredoka', sans-serif;
+        .game-card h3 {
+            color: #1a237e;
             font-size: 22px;
-            color: var(--primary-blue);
+            margin-bottom: 10px;
         }
 
-        .story-theme {
+        .game-card p {
+            color: #666;
             font-size: 14px;
-            color: var(--secondary-green);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .story-description {
-            font-size: 16px;
-            color: var(--gray-dark);
-            line-height: 1.5;
-        }
-
-        .play-button {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            transform: scale(1.1);
-        }
-
-        /* Passport Page */
-        .passport-container {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .passport-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .passport-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 36px;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .passport-subtitle {
-            font-size: 18px;
-            color: var(--gray-dark);
-        }
-
-        .passport-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background-color: var(--light-blue);
-            border-radius: var(--radius-small);
-            padding: 20px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 36px;
-            color: var(--primary-blue);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 16px;
-            color: var(--gray-dark);
-        }
-
-        .sticker-collection {
-            margin-bottom: 40px;
-        }
-
-        .collection-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 24px;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        .sticker-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-            gap: 15px;
-        }
-
-        .sticker {
-            width: 80px;
-            height: 80px;
-            border-radius: var(--radius-small);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            background-color: white;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .sticker.unlocked {
-            border: 3px solid var(--secondary-green);
-            animation: stickerPop 0.5s ease-out;
-        }
-
-        @keyframes stickerPop {
-            0% { transform: scale(0); }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        .sticker.locked {
-            background-color: var(--gray-light);
-            color: var(--gray);
-            opacity: 0.6;
-            filter: grayscale(0.7);
-        }
-
-        .badge-collection {
-            margin-bottom: 40px;
-        }
-
-        .badge-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 20px;
-        }
-
-        .badge {
-            text-align: center;
-        }
-
-        .badge-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: white;
-            margin: 0 auto 10px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .badge-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray-dark);
-        }
-
-        /* Country Capsule Modal */
-        .capsule-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .capsule-content {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            width: 90%;
-            max-width: 1000px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: capsuleAppear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes capsuleAppear {
-            0% { transform: scale(0.7); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .capsule-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: var(--gray);
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .capsule-close:hover {
-            background-color: var(--primary-blue);
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        .capsule-header {
-            padding: 30px;
-            background: linear-gradient(135deg, var(--light-blue), #d4e7f7);
-            border-radius: var(--radius) var(--radius) 0 0;
-        }
-
-        .country-hero {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .country-flag {
-            width: 100px;
-            height: 70px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            border: 3px solid white;
-        }
-
-        .country-info h2 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 36px;
-            color: var(--primary-blue);
-            margin-bottom: 8px;
-        }
-
-        .country-info p {
-            font-size: 18px;
-            color: var(--gray-dark);
-            margin-bottom: 5px;
-        }
-
-        .capsule-body {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .capsule-section {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 20px;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* ENHANCED TIMELINE SLIDER */
-        .timeline-container {
-            background-color: var(--light-blue);
-            border-radius: var(--radius-small);
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .timeline-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 15px;
         }
 
-        .timeline-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 18px;
-            color: var(--primary-blue);
-        }
-
-        .play-timeline {
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            color: white;
-            border: none;
+        .game-category {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.7);
             border-radius: 20px;
-            padding: 8px 16px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
         }
 
-        .play-timeline:hover {
+        .play-btn {
+            padding: 10px 30px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .game-card:nth-child(1) .play-btn {
+            background: #42A5F5;
+            color: white;
+        }
+
+        .game-card:nth-child(2) .play-btn {
+            background: #FF9800;
+            color: white;
+        }
+
+        .game-card:nth-child(3) .play-btn {
+            background: #AB47BC;
+            color: white;
+        }
+
+        .game-card:nth-child(4) .play-btn {
+            background: #66BB6A;
+            color: white;
+        }
+
+        .play-btn:hover {
             transform: scale(1.05);
         }
 
-        .timeline-slider-container {
-            position: relative;
-            height: 80px;
-            margin: 20px 0;
-        }
-
-        .timeline-slider {
-            width: 100%;
-            height: 8px;
-            background-color: var(--gray-light);
-            border-radius: 4px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-        }
-
-        .timeline-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-green));
-            border-radius: 4px;
-            width: 60%;
-            transition: width 0.3s ease;
-        }
-
-        .slider-handle {
-            width: 24px;
-            height: 24px;
-            background-color: var(--white);
-            border-radius: 50%;
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            cursor: grab;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border: 3px solid var(--primary-blue);
-            z-index: 2;
-            transition: all 0.3s ease;
-        }
-
-        .slider-handle:hover {
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-
-        .slider-handle:active {
-            cursor: grabbing;
-        }
-
-        .year-marks {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 25px;
-            position: relative;
-        }
-
-        .year-mark {
-            position: relative;
+        /* Stories Page */
+        .stories-header {
             text-align: center;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--gray);
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin-bottom: 40px;
         }
 
-        .year-mark:hover {
-            color: var(--primary-blue);
-            transform: scale(1.1);
+        .stories-header h1 {
+            color: #1a237e;
+            font-size: 48px;
+            margin-bottom: 10px;
         }
 
-        .year-mark::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 10px;
-            background-color: var(--gray-light);
+        .stories-header p {
+            color: #666;
+            font-size: 18px;
         }
 
-        .year-mark.active {
-            color: var(--primary-blue);
-            font-size: 14px;
-        }
-
-        .year-mark.active::before {
-            background-color: var(--primary-blue);
-            height: 15px;
-        }
-
-        .timeline-visualization {
+        .category-tabs {
             display: flex;
-            align-items: flex-end;
             justify-content: center;
-            height: 120px;
-            margin: 20px 0;
-            gap: 10px;
-        }
-
-        .timeline-bar {
-            width: 40px;
-            background: linear-gradient(0deg, var(--primary-blue), #4a9eda);
-            border-radius: 8px 8px 0 0;
-            transition: height 0.5s ease;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .timeline-bar::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 20px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.3), transparent);
-        }
-
-        .timeline-bar-label {
-            position: absolute;
-            bottom: -25px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--primary-blue);
-            white-space: nowrap;
-        }
-
-        .visualization-icon {
-            position: absolute;
-            top: -30px;
-            font-size: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .tree-icon { color: #2E7D32; }
-        .city-icon { color: #FF9800; }
-        .people-icon { color: #2196F3; }
-
-        .timeline-narration {
-            background-color: var(--light-green);
-            border-radius: var(--radius-small);
-            padding: 15px;
-            margin-top: 20px;
-            border-left: 4px solid var(--secondary-green);
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .narration-text {
-            font-size: 16px;
-            color: var(--gray-dark);
-            font-style: italic;
-            line-height: 1.4;
-        }
-
-        .narration-author {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .frog-avatar {
-            width: 30px;
-            height: 30px;
-            background: linear-gradient(135deg, var(--secondary-green), var(--accent-lime));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 16px;
-        }
-
-        .author-name {
-            font-weight: 600;
-            color: var(--primary-blue);
-        }
-
-        .metric-selector {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-
-        .metric-btn {
-            padding: 8px 16px;
-            background-color: var(--white);
-            border: 2px solid var(--gray-light);
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--gray);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .metric-btn.active {
-            background-color: var(--primary-blue);
-            color: white;
-            border-color: var(--primary-blue);
-        }
-
-        .metric-btn:hover:not(.active) {
-            border-color: var(--primary-blue);
-            color: var(--primary-blue);
-        }
-
-        /* Game Modal */
-        .game-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            padding: 20px;
-        }
-
-        .game-content {
-            background-color: var(--white);
-            border-radius: var(--radius);
-            width: 90%;
-            max-width: 600px;
-            padding: 30px;
-            position: relative;
-            animation: capsuleAppear 0.5s ease-out;
-        }
-
-        .game-title-modal {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 28px;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .game-question {
-            font-size: 20px;
-            color: var(--gray-dark);
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .game-options {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
             margin-bottom: 30px;
+            /* flex-wrap: wrap; */
         }
 
-        .game-option {
-            padding: 15px;
-            background-color: var(--light-blue);
-            border-radius: var(--radius-small);
+        .category-tab {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 2px solid #E0E0E0;
             cursor: pointer;
-            text-align: center;
-            font-size: 18px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .game-option:hover {
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-        }
-
-        .game-feedback {
-            text-align: center;
-            font-size: 20px;
-            font-weight: 600;
-            margin: 20px 0;
-            min-height: 30px;
-        }
-
-        .game-controls {
+            transition: all 0.3s;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .game-btn {
-            padding: 12px 30px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            color: white;
-            border: none;
-            border-radius: var(--radius-small);
-            font-family: 'Fredoka', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .game-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Back to Home */
-        .back-home {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-            z-index: 1000;
-            transition: all 0.3s ease;
-            display: flex;
+            flex-direction: column;
             align-items: center;
             gap: 8px;
-            font-family: 'Fredoka', sans-serif;
+            min-width: 140px;
         }
 
-        .back-home:hover {
+        .category-tab:hover,
+        .category-tab.active {
+            border-color: #4CAF50;
+            background: #E8F5E9;
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
         }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            .capsule-body {
-                grid-template-columns: 1fr;
-            }
+        .category-icon {
+            font-size: 36px;
         }
 
-        @media (max-width: 992px) {
-            .header {
-                padding: 12px 20px;
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            
-            .navigation {
-                margin: 12px 20px;
-                overflow-x: auto;
-                justify-content: flex-start;
-            }
-            
-            .nav-item {
-                min-width: 90px;
-                padding: 10px 15px;
-            }
-            
-            .main-content {
-                padding: 0 20px 20px;
-            }
-            
-            .continent {
-                transform: scale(0.9);
-            }
-            
-            .asia { left: 280px; top: 100px; }
-            .europe { left: 230px; top: 70px; }
-            .africa { left: 250px; top: 160px; }
-            .north-america { left: 60px; top: 100px; }
-            .south-america { left: 140px; top: 230px; }
-            .australia { left: 340px; top: 290px; }
-            
-            .pin-australia { left: 380px; top: 330px; }
-            .pin-usa { left: 80px; top: 140px; }
-            .pin-brazil { left: 140px; top: 270px; }
-            .pin-china { left: 320px; top: 140px; }
-            .pin-india { left: 290px; top: 170px; }
-            .pin-japan { left: 380px; top: 120px; }
+        .story-featured {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+             max-width: 1100px;   /* ya jitna chahen */
+    margin: 0 auto;       /* center horizontally */
+        }
+
+        .story-thumbnail {
+            width: 200px;
+            height: 150px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            border-radius: 15px;
+            flex-shrink: 0;
+        }
+
+        .story-info h2 {
+            color: #1a237e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .story-info p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .mascot-corner {
+            width: 150px;
+            height: 180px;
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            border-radius: 50% 50% 45% 45%;
+            position: absolute;
+            right: 40px;
+            top: -30px;
         }
 
         @media (max-width: 768px) {
-            .logo-text {
-                font-size: 22px;
-            }
-            
-            .portal-title {
-                font-size: 36px;
-            }
-            
-            .map-title {
-                font-size: 26px;
-            }
-            
-            .world-map-wrapper {
-                height: 400px;
-            }
-            
-            .continent {
-                transform: scale(0.7);
-            }
-            
-            .asia { left: 220px; top: 80px; }
-            .europe { left: 180px; top: 50px; }
-            .africa { left: 200px; top: 130px; }
-            .north-america { left: 30px; top: 80px; }
-            .south-america { left: 100px; top: 190px; }
-            .australia { left: 280px; top: 240px; }
-            
-            .pin-australia { left: 320px; top: 280px; }
-            .pin-usa { left: 50px; top: 120px; }
-            .pin-brazil { left: 110px; top: 220px; }
-            .pin-china { left: 260px; top: 120px; }
-            .pin-india { left: 230px; top: 140px; }
-            .pin-japan { left: 300px; top: 100px; }
-            
-            .game-options {
+            .welcome-section {
                 grid-template-columns: 1fr;
             }
-            
-            .back-home {
-                left: 10px;
-                bottom: 10px;
-                padding: 10px 15px;
-                font-size: 14px;
-            }
-        }
 
-        @media (max-width: 576px) {
-            .controls {
-                flex-direction: column;
-                gap: 10px;
+            .feature-cards,
+            .game-grid {
+                grid-template-columns: 1fr;
             }
-            
-            .portal-title {
-                font-size: 28px;
-            }
-            
-            .portal-globe {
-                width: 150px;
-                height: 150px;
-            }
-            
-            .world-map-wrapper {
-                height: 300px;
-            }
-            
-            .continent {
-                transform: scale(0.5);
-            }
-            
-            .asia { left: 180px; top: 60px; }
-            .europe { left: 140px; top: 30px; }
-            .africa { left: 160px; top: 100px; }
-            .north-america { left: 10px; top: 60px; }
-            .south-america { left: 70px; top: 150px; }
-            .australia { left: 220px; top: 190px; }
-            
-            .pin-australia { left: 260px; top: 230px; }
-            .pin-usa { left: 30px; top: 100px; }
-            .pin-brazil { left: 80px; top: 180px; }
-            .pin-china { left: 210px; top: 100px; }
-            .pin-india { left: 180px; top: 110px; }
-            .pin-japan { left: 240px; top: 80px; }
-            
-            .sticker-grid {
-                grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
-            }
-            
-            .sticker {
-                width: 60px;
-                height: 60px;
-                font-size: 24px;
+
+            .welcome-content h1 {
+                font-size: 36px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Entry Portal Animation -->
-    <div class="entry-portal">
-        <div class="portal-content">
-            <div class="portal-globe">
-                <div class="portal-frog">🐸</div>
-            </div>
-            <h1 class="portal-title">Let's Explore!</h1>
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">🐸</div>
+            <span>Geofroggy</span>
         </div>
+        <a href="#" class="back-link">Back to Grown-Up View</a>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo-container">
-            <div class="logo-icon">🌍</div>
-            <div class="logo-text">GeoFroggy</div>
-        </div>
-        
-        <div class="controls">
-            <div class="kid-mode-toggle active" id="kidModeToggle">
-                <div class="toggle-switch"></div>
-                <div class="toggle-label">Kid Mode ON</div>
-            </div>
-            
-            <div class="profile-container">
-                <div class="xp-badge">
-                    <i class="fas fa-star"></i>
-                    <span>2,850 XP</span>
+    <div class="container">
+        <!-- Welcome Page -->
+        <div id="welcome" class="page active">
+            <div class="welcome-section">
+                <div class="welcome-content">
+                    <h2>Baloo/Fredoka</h2>
+                    <h1>welcome to World Explorer</h1>
+                    <p>Discover countries, stories, and games powered by real-world data</p>
+                    <ul class="feature-list">
+                        <li>Tap and spin the world map</li>
+                        <li>Play geography mini-games</li>
+                        <li>Collect stamps in your travel passport</li>
+                    </ul>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="showPage('map')">Start Exploring</button>
+                        <button class="btn btn-secondary">Watch How It Works</button>
+                    </div>
                 </div>
-                <div class="profile-avatar" id="profileAvatar">ES</div>
+                <div class="welcome-visual">
+    <img 
+      src="images/kids-hero.png" 
+      alt="Geofroggy World Explorer"
+      class="hero-image"
+    >
+</div>
+
+            </div>
+
+            <div class="feature-cards">
+                <div class="feature-card" onclick="showPage('map')">
+                    <div class="feature-icon">🐸</div>
+                    <div>
+                        <h3>Explore Map</h3>
+                        <p>Tap countries to see fun facts</p>
+                    </div>
+                </div>
+                <div class="feature-card" onclick="showPage('games')">
+                    <div class="feature-icon">🎮</div>
+                    <div>
+                        <h3>Play Games</h3>
+                        <p>Try quick quiz challenges</p>
+                    </div>
+                </div>
+                <div class="feature-card" onclick="showPage('stories')">
+                    <div class="feature-icon">🌳</div>
+                    <div>
+                        <h3>Story Journeys</h3>
+                        <p>Follow 1-minute world stories</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
 
-    <!-- Navigation -->
-    <nav class="navigation">
-        <div class="nav-item active" data-page="explore">
-            <div class="nav-icon">🌍</div>
-            <div class="nav-label">Explore</div>
-        </div>
-        <div class="nav-item" data-page="play">
-            <div class="nav-icon">🎮</div>
-            <div class="nav-label">Play</div>
-        </div>
-        <div class="nav-item" data-page="stories">
-            <div class="nav-icon">📘</div>
-            <div class="nav-label">Stories</div>
-        </div>
-        <div class="nav-item" data-page="passport">
-            <div class="nav-icon">⭐</div>
-            <div class="nav-label">My Passport</div>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <!-- Explore Page -->
-        <section class="page-content active" id="explorePage">
+        <!-- Map Page -->
+        <div id="map" class="page">
             <div class="map-container">
-                <div class="map-header">
-                    <h1 class="map-title">
-                        <i class="fas fa-globe-americas"></i>
-                        World Explorer Mode
-                    </h1>
-                    <p class="map-subtitle">Tap any country to discover fun facts, see how it changed over time, and collect stickers for your passport!</p>
-                </div>
-                
-                <div class="world-map-wrapper">
-                    <div class="world-map">
-                        <!-- Continents -->
-                        <div class="continent asia" data-continent="asia">
-                            <div class="continent-icon">⛰️</div>
-                            <div class="continent-name">Asia</div>
-                        </div>
-                        
-                        <div class="continent europe" data-continent="europe">
-                            <div class="continent-icon">🏙️</div>
-                            <div class="continent-name">Europe</div>
-                        </div>
-                        
-                        <div class="continent africa" data-continent="africa">
-                            <div class="continent-icon">🌵</div>
-                            <div class="continent-name">Africa</div>
-                        </div>
-                        
-                        <div class="continent north-america" data-continent="north-america">
-                            <div class="continent-icon">🌲</div>
-                            <div class="continent-name">North America</div>
-                        </div>
-                        
-                        <div class="continent south-america" data-continent="south-america">
-                            <div class="continent-icon">🌋</div>
-                            <div class="continent-name">South America</div>
-                        </div>
-                        
-                        <div class="continent australia" data-continent="australia">
-                            <div class="continent-icon">🏜️</div>
-                            <div class="continent-name">Australia</div>
-                        </div>
-                        
-                        <!-- Country Pins -->
-                        <div class="country-pin pin-australia" data-country="australia">🇦🇺</div>
-                        <div class="country-pin pin-usa" data-country="usa">🇺🇸</div>
-                        <div class="country-pin pin-brazil" data-country="brazil">🇧🇷</div>
-                        <div class="country-pin pin-china" data-country="china">🇨🇳</div>
-                        <div class="country-pin pin-india" data-country="india">🇮🇳</div>
-                        <div class="country-pin pin-japan" data-country="japan">🇯🇵</div>
-                    </div>
-                    
-                    <div class="map-controls">
-                        <div class="map-btn" id="zoomIn">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                        <div class="map-btn" id="zoomOut">
-                            <i class="fas fa-search-minus"></i>
-                        </div>
-                        <div class="map-btn" id="resetMap">
-                            <i class="fas fa-globe-americas"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="data-panel">
-                <div class="data-card">
-                    <div class="card-header">
-                        <div class="card-icon">👥</div>
-                        <div class="card-title">World Population</div>
-                    </div>
-                    <div class="card-content">
-                        <p>About <strong>8 billion people</strong> live on Earth today! That's a lot of friends to make!</p>
-                    </div>
-                </div>
-                
-                <div class="data-card">
-                    <div class="card-header">
-                        <div class="card-icon">🌳</div>
-                        <div class="card-title">Our Green Planet</div>
-                    </div>
-                    <div class="card-content">
-                        <p>Forests cover about <strong>31%</strong> of Earth's land. They're home to many animals!</p>
-                    </div>
-                </div>
-                
-                <div class="data-card">
-                    <div class="card-header">
-                        <div class="card-icon">🏙️</div>
-                        <div class="card-title">City Life</div>
-                    </div>
-                    <div class="card-content">
-                        <p>More than <strong>half</strong> of all people now live in cities. Cities are growing fast!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+               <div class="world-map">
+    <img 
+      src="images/world-map.png" 
+      alt="World Explorer Map"
+      class="map-image"
+    >
 
-        <!-- Play Page -->
-        <section class="page-content" id="playPage">
-            <h1 class="map-title" style="margin-bottom: 25px;">
-                <i class="fas fa-gamepad"></i>
-                Play & Learn
-            </h1>
-            
-            <div class="games-grid">
-                <div class="game-card" data-game="scavenger">
-                    <div class="game-header">
-                        <div class="game-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="game-title">Find It!</div>
-                    </div>
-                    <div class="game-description">
-                        Can you find the country with the largest desert? A fun scavenger hunt around the world!
-                    </div>
-                    <div class="game-badge">+25 XP</div>
+    <div class="map-mascot">
+        <div class="speech-bubble">"Let's explore the world!"</div>
+    </div>
+</div>
+
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div class="tap-hint">👆 Tap a country to begin</div>
                 </div>
-                
-                <div class="game-card" data-game="compare">
-                    <div class="game-header">
-                        <div class="game-icon">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <div class="game-title">Which Is Bigger?</div>
-                    </div>
-                    <div class="game-description">
-                        Compare countries, populations, and landmarks. Tap which is bigger and win badges!
-                    </div>
-                    <div class="game-badge">+30 XP</div>
+                <div class="nav-tabs explore-nav">
+    <button class="nav-tab active">
+        <div class="nav-icon">🌍</div>
+        <div class="nav-label">Explore</div>
+    </button>
+    <button class="nav-tab" onclick="showPage('games')">
+        <div class="nav-icon">🎮</div>
+        <div class="nav-label">Play</div>
+    </button>
+    <button class="nav-tab" onclick="showPage('stories')">
+        <div class="nav-icon">📖</div>
+        <div class="nav-label">Stories</div>
+    </button>
+    <button class="nav-tab">
+        <div class="nav-icon">🎫</div>
+        <div class="nav-label">My Passport</div>
+    </button>
+</div>
+
+            </div>
+        </div>
+
+        <!-- Games Page -->
+        <div id="games" class="page">
+            <div class="games-header">
+                <h1>Choose a game to start your adventure!</h1>
+                <p>Learn about the world through quick, fun challenges.</p>
+                <div class="game-actions">
+                    <button class="btn btn-primary">▶ Start a Random Game</button>
+                    <button class="btn btn-secondary">Pick a Game</button>
                 </div>
-                
-                <div class="game-card" data-game="flags">
-                    <div class="game-header">
-                        <div class="game-icon">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <div class="game-title">Match the Flag!</div>
+                <div class="progress-bar">
+                    <span>My Level</span>
+                    <span><strong>World Explorer Level 3</strong></span>
+                    <div class="progress-fill">
+                        <div class="progress-fill-inner"></div>
                     </div>
-                    <div class="game-description">
-                        Drag flags to their correct countries. Learn about flags from around the world!
-                    </div>
-                    <div class="game-badge">+20 XP</div>
-                </div>
-                
-                <div class="game-card" data-game="landmarks">
-                    <div class="game-header">
-                        <div class="game-icon">
-                            <i class="fas fa-landmark"></i>
-                        </div>
-                        <div class="game-title">Landmark Match</div>
-                    </div>
-                    <div class="game-description">
-                        Match famous landmarks to their countries. From the Eiffel Tower to the Pyramids!
-                    </div>
-                    <div class="game-badge">+35 XP</div>
+                    <span>✓ Today's Goal: Play 2 games to earn a new sticker.</span>
                 </div>
             </div>
-        </section>
+
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-icon">🔍</div>
+                    <h3>Find It!</h3>
+                    <p>Hunt for countries with special clues.</p>
+                    <div class="game-category">Scavenger Hunt</div>
+                    <button class="play-btn">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🏔️</div>
+                    <h3>Which Is Bigger?</h3>
+                    <p>Guess which country, city, or mountain is bigger.</p>
+                    <div class="game-category">Compare & Guess</div>
+                    <button class="play-btn">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🚩</div>
+                    <h3>Match the Flag!</h3>
+                    <p>Drag flags to the right country.</p>
+                    <div class="game-category">Flag Match</div>
+                    <button class="play-btn">Play</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🗼</div>
+                    <h3>Landmark Match</h3>
+                    <p>Match famous places to where they belong.</p>
+                    <div class="game-category">Landmarks</div>
+                    <button class="play-btn">Play</button>
+                </div>
+            </div>
+
+            <div class="nav-tabs explore-nav">
+                <button class="nav-tab" onclick="showPage('map')">
+                    <div class="nav-icon">🌍</div>
+                    <div class="nav-label">Explore</div>
+                </button>
+                <button class="nav-tab active">
+                    <div class="nav-icon">🎮</div>
+                    <div class="nav-label">Play</div>
+                </button>
+                <button class="nav-tab" onclick="showPage('stories')">
+                    <div class="nav-icon">📖</div>
+                    <div class="nav-label">Stories</div>
+                </button>
+                <button class="nav-tab">
+                    <div class="nav-icon">⭐</div>
+                    <div class="nav-label">My Passport</div>
+                </button>
+            </div>
+        </div>
 
         <!-- Stories Page -->
-        <section class="page-content" id="storiesPage">
-            <h1 class="map-title" style="margin-bottom: 25px;">
-                <i class="fas fa-book-open"></i>
-                Story Mode
-            </h1>
-            
-            <div class="stories-grid">
-                <div class="story-card" data-story="australia">
-                    <div class="story-header">
-                        <div class="story-icon">🐨</div>
-                        <div>
-                            <div class="story-title">Australia Adventure</div>
-                            <div class="story-theme">Animals & Nature</div>
-                        </div>
-                    </div>
-                    <div class="story-description">
-                        Hop across Australia with Koala Kylie! Discover cities, unique animals, and the Great Barrier Reef in this 1-minute adventure.
-                    </div>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
+        <div id="stories" class="page">
+            <div style="position: relative;">
+                <div class="mascot-corner"></div>
+                <div class="stories-header">
+                    <h1>Story Journeys Around the World</h1>
+                    <p>Listen, watch, and travel the world through short stories.</p>
                 </div>
-                
-                <div class="story-card" data-story="brazil">
-                    <div class="story-header">
-                        <div class="story-icon">🌳</div>
-                        <div>
-                            <div class="story-title">Brazil: Forests & Cities</div>
-                            <div class="story-theme">Nature & People</div>
-                        </div>
-                    </div>
-                    <div class="story-description">
-                        Explore the Amazon rainforest and bustling cities like Rio de Janeiro. A journey through Brazil's amazing diversity!
-                    </div>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <div class="story-card" data-story="china">
-                    <div class="story-header">
-                        <div class="story-icon">🏮</div>
-                        <div>
-                            <div class="story-title">China: Ancient to Modern</div>
-                            <div class="story-theme">Cities & Culture</div>
-                        </div>
-                    </div>
-                    <div class="story-description">
-                        Travel from the Great Wall to modern megacities. Discover how China changed from ancient times to today!
-                    </div>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                
-                <div class="story-card" data-story="usa">
-                    <div class="story-header">
-                        <div class="story-icon">🗽</div>
-                        <div>
-                            <div class="story-title">USA: Coast to Coast</div>
-                            <div class="story-theme">Landmarks & People</div>
-                        </div>
-                    </div>
-                    <div class="story-description">
-                        Journey from New York to California! Explore famous landmarks, national parks, and diverse cities across the USA.
-                    </div>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Passport Page -->
-        <section class="page-content" id="passportPage">
-            <div class="passport-container">
-                <div class="passport-header">
-                    <h1 class="passport-title">My Explorer Passport</h1>
-                    <p class="passport-subtitle">Collect stamps, stickers, and badges as you explore the world!</p>
-                </div>
-                
-                <div class="passport-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Countries Visited</div>
+                <div class="category-tabs">
+                    <div class="category-tab active">
+                        <div class="category-icon">🐾</div>
+                        <div><strong>1. Animals</strong><br>Meet animals around the world</div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-number">42</div>
-                        <div class="stat-label">Stickers Collected</div>
+                    <div class="category-tab">
+                        <div class="category-icon">👥</div>
+                        <div><strong>2. People</strong><br>How people live, work, and celebrate</div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-number">7</div>
-                        <div class="stat-label">Badges Earned</div>
+                    <div class="category-tab">
+                        <div class="category-icon">🏙️</div>
+                        <div><strong>3. Cities</strong><br>Explore cities and how they grow</div>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-number">Level 8</div>
-                        <div class="stat-label">Explorer Level</div>
+                    <div class="category-tab">
+                        <div class="category-icon">🌳</div>
+                        <div><strong>4. Nature</strong><br>Forests, deserts, oceans, and more</div>
+                    </div>
+                    <div class="category-tab">
+                        <div class="category-icon">🏛️</div>
+                        <div><strong>5. Landmarks</strong><br>Amazing places to discover</div>
                     </div>
                 </div>
-                
-                <div class="sticker-collection">
-                    <h2 class="collection-title">My Sticker Collection</h2>
-                    <div class="sticker-grid">
-                        <div class="sticker unlocked">🇦🇺</div>
-                        <div class="sticker unlocked">🇺🇸</div>
-                        <div class="sticker unlocked">🇧🇷</div>
-                        <div class="sticker unlocked">🗼</div>
-                        <div class="sticker unlocked">🐨</div>
-                        <div class="sticker unlocked">🏔️</div>
-                        <div class="sticker unlocked">🌋</div>
-                        <div class="sticker unlocked">🏜️</div>
-                        <div class="sticker unlocked">🌳</div>
-                        <div class="sticker unlocked">🏙️</div>
-                        <div class="sticker locked">🐼</div>
-                        <div class="sticker locked">🗿</div>
-                        <div class="sticker locked">🏯</div>
-                        <div class="sticker locked">🐘</div>
-                        <div class="sticker locked">🏰</div>
-                    </div>
-                </div>
-                
-                <div class="badge-collection">
-                    <h2 class="collection-title">My Badges</h2>
-                    <div class="badge-grid">
-                        <div class="badge">
-                            <div class="badge-icon">🌍</div>
-                            <div class="badge-name">World Explorer</div>
-                        </div>
-                        
-                        <div class="badge">
-                            <div class="badge-icon">🗺️</div>
-                            <div class="badge-name">Map Master</div>
-                        </div>
-                        
-                        <div class="badge">
-                            <div class="badge-icon">👥</div>
-                            <div class="badge-name">Population Pro</div>
-                        </div>
-                        
-                        <div class="badge">
-                            <div class="badge-icon">🏆</div>
-                            <div class="badge-name">Quiz Champion</div>
-                        </div>
-                        
-                        <div class="badge">
-                            <div class="badge-icon">⏳</div>
-                            <div class="badge-name">Timeline Master</div>
-                        </div>
-                        
-                        <div class="badge">
-                            <div class="badge-icon">🔍</div>
-                            <div class="badge-name">Super Scout</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
 
-    <!-- Country Capsule Modal -->
-    <div class="capsule-modal" id="countryCapsule">
-        <div class="capsule-content">
-            <div class="capsule-close" id="closeCapsule">×</div>
-            
-            <div class="capsule-header">
-                <div class="country-hero">
-                    <img src="https://flagcdn.com/w320/au.png" class="country-flag" id="countryFlag">
-                    <div class="country-info">
-                        <h2 id="countryName">Australia</h2>
-                        <p id="countryCapital">Capital: Canberra</p>
-                        <p id="countryPopulation">About 26 million people live here</p>
+                <div class="story-featured">
+                    <div class="story-thumbnail"></div>
+                    <div class="story-info">
+                        <h2>A Hop Across Australia</h2>
+                        <p>See how cities grew and nature changed over time, including...</p>
+                        <button class="btn btn-primary">Start Story</button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="capsule-body">
-                <!-- TIMELINE SLIDER SECTION - ENHANCED -->
-                <div class="capsule-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-history"></i>
-                        Timeline Explorer (2000–2024)
-                    </h3>
-                    
-                    <div class="timeline-container">
-                        <div class="timeline-header">
-                            <div class="timeline-title">See how things changed over time!</div>
-                            <button class="play-timeline" id="playTimeline">
-                                <i class="fas fa-play"></i>
-                                Play Timeline
-                            </button>
-                        </div>
-                        
-                        <div class="metric-selector">
-                            <button class="metric-btn active" data-metric="population">
-                                <i class="fas fa-users"></i>
-                                Population
-                            </button>
-                            <button class="metric-btn" data-metric="forest">
-                                <i class="fas fa-tree"></i>
-                                Forests
-                            </button>
-                            <button class="metric-btn" data-metric="cities">
-                                <i class="fas fa-city"></i>
-                                Cities
-                            </button>
-                        </div>
-                        
-                        <div class="timeline-slider-container">
-                            <div class="timeline-slider" id="timelineSlider">
-                                <div class="timeline-fill" id="timelineFill"></div>
-                                <div class="slider-handle" id="sliderHandle"></div>
-                            </div>
-                            
-                            <div class="year-marks">
-                                <div class="year-mark active" data-year="2000">2000</div>
-                                <div class="year-mark" data-year="2005">2005</div>
-                                <div class="year-mark" data-year="2010">2010</div>
-                                <div class="year-mark" data-year="2015">2015</div>
-                                <div class="year-mark" data-year="2020">2020</div>
-                                <div class="year-mark" data-year="2024">2024</div>
-                            </div>
-                        </div>
-                        
-                        <div class="timeline-visualization" id="timelineVisualization">
-                            <!-- Dynamic bars will be inserted here -->
-                        </div>
-                        
-                        <div class="timeline-narration" id="timelineNarration">
-                            <p class="narration-text" id="narrationText">
-                                "Around 2000, about 19 million people lived in Australia. Cities were starting to grow!"
-                            </p>
-                            <div class="narration-author">
-                                <div class="frog-avatar">🐸</div>
-                                <div class="author-name">GeoFroggy</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Fun Facts Section -->
-                <div class="capsule-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-lightbulb"></i>
-                        Woah Facts!
-                    </h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-                        <div class="fact-card">
-                            <div style="font-size: 32px; margin-bottom: 10px; text-align: center;">🏜️</div>
-                            <div style="font-weight: 600; text-align: center;">Largest Desert</div>
-                            <div style="font-size: 14px; color: var(--gray); text-align: center;">Great Victoria Desert</div>
-                        </div>
-                        <div class="fact-card">
-                            <div style="font-size: 32px; margin-bottom: 10px; text-align: center;">🏖️</div>
-                            <div style="font-weight: 600; text-align: center;">Beaches</div>
-                            <div style="font-size: 14px; color: var(--gray); text-align: center;">Over 10,000!</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Quick Quiz Section -->
-                <div class="capsule-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-question-circle"></i>
-                        Quick Quiz
-                    </h3>
-                    <div style="background: var(--light-blue); padding: 20px; border-radius: var(--radius-small); margin-top: 15px;">
-                        <p style="font-weight: 600; margin-bottom: 15px;" id="quizQuestion">
-                            Which city is the capital of Australia?
-                        </p>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <div class="quiz-option" data-correct="false">Sydney</div>
-                            <div class="quiz-option" data-correct="false">Melbourne</div>
-                            <div class="quiz-option" data-correct="true">Canberra</div>
-                            <div class="quiz-option" data-correct="false">Brisbane</div>
-                        </div>
-                        <button class="quiz-submit-btn" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green)); color: white; border: none; border-radius: var(--radius-small); font-weight: 600; margin-top: 15px; cursor: pointer;">
-                            Check Answer
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Rewards Section -->
-                <div class="capsule-section">
-                    <h3 class="section-title">
-                        <i class="fas fa-award"></i>
-                        Rewards
-                    </h3>
-                    <div style="display: flex; align-items: center; gap: 15px; background: var(--light-green); padding: 15px; border-radius: var(--radius-small); margin-top: 15px;">
-                        <div style="font-size: 40px;">🇦🇺</div>
-                        <div>
-                            <div style="font-weight: 600; color: var(--primary-blue);">
-                                Australia Explorer Badge
-                            </div>
-                            <div style="color: var(--gray); margin-top: 5px;">
-                                +50 XP • New sticker unlocked!
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="nav-tabs" style="margin-top: 40px;">
+                    <button class="nav-tab" onclick="showPage('map')">
+                        <div class="nav-icon">✈️</div>
+                        <div class="nav-label">Explore</div>
+                    </button>
+                    <button class="nav-tab" onclick="showPage('games')">
+                        <div class="nav-icon">🎮</div>
+                        <div class="nav-label">Play</div>
+                    </button>
+                    <button class="nav-tab active">
+                        <div class="nav-icon">📚</div>
+                        <div class="nav-label">Stories</div>
+                    </button>
+                    <button class="nav-tab">
+                        <div class="nav-icon">🎒</div>
+                        <div class="nav-label">My Passport</div>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- Game Modal -->
-    <div class="game-modal" id="gameModal">
-        <div class="game-content">
-            <div class="capsule-close" id="closeGame">×</div>
-            <h2 class="game-title-modal" id="gameTitle">Find It!</h2>
-            <div class="game-question" id="gameQuestion">Can you find the country with the largest desert?</div>
-            <div class="game-options" id="gameOptions">
-                <!-- Options will be dynamically added here -->
-            </div>
-            <div class="game-feedback" id="gameFeedback"></div>
-            <div class="game-controls">
-                <button class="game-btn" id="nextQuestion">Next Question</button>
-                <button class="game-btn" id="closeGameBtn">Close Game</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Back to Home -->
-    <a href="index.html" class="back-home">
-        <i class="fas fa-arrow-left"></i>
-        Back to Home
-    </a>
 
     <script>
-        // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            // Entry portal animation
-            setTimeout(() => {
-                document.querySelector('.entry-portal').style.display = 'none';
-            }, 2000);
-            
-            // Kid mode toggle
-            const kidModeToggle = document.getElementById('kidModeToggle');
-            const body = document.body;
-            
-            kidModeToggle.addEventListener('click', function() {
-                this.classList.toggle('active');
-                body.classList.toggle('kid-mode');
-                
-                const label = this.querySelector('.toggle-label');
-                if (this.classList.contains('active')) {
-                    label.textContent = 'Kid Mode ON';
-                    showTooltip('Kid Mode activated! All content is now kid-friendly.', 'top');
-                } else {
-                    label.textContent = 'Kid Mode OFF';
-                    showTooltip('Kid Mode deactivated. Content shown in regular format.', 'top');
-                }
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
             });
-            
-            // Navigation
-            const navItems = document.querySelectorAll('.nav-item');
-            const pages = document.querySelectorAll('.page-content');
-            
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const pageId = this.getAttribute('data-page') + 'Page';
-                    
-                    // Update active navigation
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Show selected page
-                    pages.forEach(page => {
-                        page.classList.remove('active');
-                        if (page.id === pageId) {
-                            page.classList.add('active');
-                        }
-                    });
-                    
-                    // Show tooltip
-                    const pageNames = {
-                        'explore': 'Explore Map',
-                        'play': 'Play Games',
-                        'stories': 'Story Mode',
-                        'passport': 'My Passport'
-                    };
-                    showTooltip(`Switched to ${pageNames[this.getAttribute('data-page')]}!`, 'top');
-                });
-            });
-            
-            // Country pins
-            const countryPins = document.querySelectorAll('.country-pin');
-            const countryCapsule = document.getElementById('countryCapsule');
-            const closeCapsule = document.getElementById('closeCapsule');
-            
-            countryPins.forEach(pin => {
-                pin.addEventListener('click', function() {
-                    const country = this.getAttribute('data-country');
-                    
-                    // Country data
-                    const countryData = {
-                        'australia': {
-                            name: 'Australia',
-                            flag: 'https://flagcdn.com/w320/au.png',
-                            capital: 'Canberra',
-                            population: 'About 26 million people live here',
-                            quiz: 'Which city is the capital of Australia?',
-                            facts: ['Largest desert: Great Victoria Desert', 'Home to unique animals like kangaroos']
-                        },
-                        'usa': {
-                            name: 'United States',
-                            flag: 'https://flagcdn.com/w320/us.png',
-                            capital: 'Washington D.C.',
-                            population: 'About 331 million people live here',
-                            quiz: 'How many states are in the United States?',
-                            facts: ['Third largest country', 'Home to the Grand Canyon']
-                        },
-                        'brazil': {
-                            name: 'Brazil',
-                            flag: 'https://flagcdn.com/w320/br.png',
-                            capital: 'Brasília',
-                            population: 'About 213 million people live here',
-                            quiz: 'What language do people speak in Brazil?',
-                            facts: ['Largest country in South America', 'Home to the Amazon Rainforest']
-                        },
-                        'china': {
-                            name: 'China',
-                            flag: 'https://flagcdn.com/w320/cn.png',
-                            capital: 'Beijing',
-                            population: 'About 1.4 billion people live here',
-                            quiz: 'What is the longest wall in the world?',
-                            facts: ['Most populated country', 'Home to the Great Wall']
-                        },
-                        'india': {
-                            name: 'India',
-                            flag: 'https://flagcdn.com/w320/in.png',
-                            capital: 'New Delhi',
-                            population: 'About 1.3 billion people live here',
-                            quiz: 'Which river is sacred in India?',
-                            facts: ['Second most populated country', 'Birthplace of chess']
-                        },
-                        'japan': {
-                            name: 'Japan',
-                            flag: 'https://flagcdn.com/w320/jp.png',
-                            capital: 'Tokyo',
-                            population: 'About 125 million people live here',
-                            quiz: 'What is Japan called the "Land of"?',
-                            facts: ['Made of many islands', 'Known for cherry blossoms']
-                        }
-                    };
-                    
-                    if (countryData[country]) {
-                        const data = countryData[country];
-                        
-                        // Update capsule content
-                        document.getElementById('countryName').textContent = data.name;
-                        document.getElementById('countryFlag').src = data.flag;
-                        document.getElementById('countryCapital').textContent = `Capital: ${data.capital}`;
-                        document.getElementById('countryPopulation').textContent = data.population;
-                        document.getElementById('quizQuestion').textContent = data.quiz;
-                        
-                        // Show capsule
-                        countryCapsule.style.display = 'flex';
-                        document.body.style.overflow = 'hidden';
-                        
-                        // Animate pin
-                        this.style.animation = 'none';
-                        this.style.transform = 'scale(1.5)';
-                        setTimeout(() => {
-                            this.style.animation = 'float 4s infinite ease-in-out';
-                            this.style.transform = '';
-                        }, 300);
-                    }
-                });
-            });
-            
-            // Close capsule
-            closeCapsule.addEventListener('click', closeCountryCapsule);
-            countryCapsule.addEventListener('click', function(e) {
-                if (e.target === this) closeCountryCapsule();
-            });
-            
-            function closeCountryCapsule() {
-                countryCapsule.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            
-            // Game cards
-            const gameCards = document.querySelectorAll('.game-card');
-            const gameModal = document.getElementById('gameModal');
-            const closeGame = document.getElementById('closeGame');
-            const closeGameBtn = document.getElementById('closeGameBtn');
-            const nextQuestionBtn = document.getElementById('nextQuestion');
-            
-            // Game data
-            const gameData = {
-                'scavenger': {
-                    title: 'Find It!',
-                    questions: [
-                        {
-                            question: 'Can you find the country with the largest desert?',
-                            options: ['Australia', 'China', 'USA', 'Brazil'],
-                            correct: 0
-                        },
-                        {
-                            question: 'Which country has the most people?',
-                            options: ['India', 'USA', 'China', 'Brazil'],
-                            correct: 2
-                        },
-                        {
-                            question: 'Find a country that starts with "B"',
-                            options: ['Brazil', 'Australia', 'China', 'Japan'],
-                            correct: 0
-                        }
-                    ]
-                },
-                'compare': {
-                    title: 'Which Is Bigger?',
-                    questions: [
-                        {
-                            question: 'Which country has more people: USA or Australia?',
-                            options: ['USA', 'Australia'],
-                            correct: 0
-                        },
-                        {
-                            question: 'Which is larger: Amazon River or Nile River?',
-                            options: ['Amazon River', 'Nile River'],
-                            correct: 0
-                        },
-                        {
-                            question: 'Which mountain is taller: Mount Everest or Mount Kilimanjaro?',
-                            options: ['Mount Everest', 'Mount Kilimanjaro'],
-                            correct: 0
-                        }
-                    ]
-                },
-                'flags': {
-                    title: 'Match the Flag!',
-                    questions: [
-                        {
-                            question: 'Which flag belongs to Australia?',
-                            options: ['🇦🇺', '🇺🇸', '🇧🇷', '🇨🇳'],
-                            correct: 0
-                        },
-                        {
-                            question: 'Which flag belongs to the United States?',
-                            options: ['🇧🇷', '🇺🇸', '🇨🇳', '🇯🇵'],
-                            correct: 1
-                        },
-                        {
-                            question: 'Which flag belongs to Brazil?',
-                            options: ['🇦🇺', '🇨🇳', '🇧🇷', '🇯🇵'],
-                            correct: 2
-                        }
-                    ]
-                },
-                'landmarks': {
-                    title: 'Landmark Match',
-                    questions: [
-                        {
-                            question: 'Where is the Eiffel Tower located?',
-                            options: ['France', 'USA', 'China', 'Australia'],
-                            correct: 0
-                        },
-                        {
-                            question: 'Where are the Pyramids located?',
-                            options: ['Brazil', 'Egypt', 'India', 'Japan'],
-                            correct: 1
-                        },
-                        {
-                            question: 'Where is the Great Wall located?',
-                            options: ['USA', 'Australia', 'China', 'India'],
-                            correct: 2
-                        }
-                    ]
-                }
-            };
-            
-            let currentGame = null;
-            let currentQuestionIndex = 0;
-            let score = 0;
-            
-            gameCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const game = this.getAttribute('data-game');
-                    currentGame = game;
-                    currentQuestionIndex = 0;
-                    score = 0;
-                    
-                    startGame(game);
-                });
-            });
-            
-            function startGame(game) {
-                if (!gameData[game]) return;
-                
-                const data = gameData[game];
-                document.getElementById('gameTitle').textContent = data.title;
-                gameModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                
-                showQuestion();
-            }
-            
-            function showQuestion() {
-                const data = gameData[currentGame];
-                const question = data.questions[currentQuestionIndex];
-                
-                document.getElementById('gameQuestion').textContent = question.question;
-                document.getElementById('gameFeedback').textContent = '';
-                
-                const optionsContainer = document.getElementById('gameOptions');
-                optionsContainer.innerHTML = '';
-                
-                question.options.forEach((option, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.className = 'game-option';
-                    optionElement.textContent = option;
-                    optionElement.dataset.index = index;
-                    
-                    optionElement.addEventListener('click', function() {
-                        checkAnswer(parseInt(this.dataset.index));
-                    });
-                    
-                    optionsContainer.appendChild(optionElement);
-                });
-                
-                nextQuestionBtn.style.display = 'none';
-            }
-            
-            function checkAnswer(selectedIndex) {
-                const data = gameData[currentGame];
-                const question = data.questions[currentQuestionIndex];
-                const options = document.querySelectorAll('.game-option');
-                
-                options.forEach(option => {
-                    option.style.pointerEvents = 'none';
-                    if (parseInt(option.dataset.index) === question.correct) {
-                        option.style.backgroundColor = '#d4edda';
-                        option.style.borderColor = '#c3e6cb';
-                    } else if (parseInt(option.dataset.index) === selectedIndex) {
-                        option.style.backgroundColor = '#f8d7da';
-                        option.style.borderColor = '#f5c6cb';
-                    }
-                });
-                
-                if (selectedIndex === question.correct) {
-                    score++;
-                    document.getElementById('gameFeedback').textContent = 'Correct! 🎉';
-                    document.getElementById('gameFeedback').style.color = '#28a745';
-                } else {
-                    document.getElementById('gameFeedback').textContent = 'Try again! 💪';
-                    document.getElementById('gameFeedback').style.color = '#dc3545';
-                }
-                
-                nextQuestionBtn.style.display = 'block';
-            }
-            
-            nextQuestionBtn.addEventListener('click', function() {
-                currentQuestionIndex++;
-                
-                if (currentQuestionIndex < gameData[currentGame].questions.length) {
-                    showQuestion();
-                } else {
-                    // Game finished
-                    document.getElementById('gameQuestion').textContent = `Game Over! You scored ${score}/${gameData[currentGame].questions.length}`;
-                    document.getElementById('gameOptions').innerHTML = '';
-                    document.getElementById('gameFeedback').textContent = score === gameData[currentGame].questions.length ? 'Perfect! You earned 50 XP! 🏆' : 'Good job! Keep practicing!';
-                    nextQuestionBtn.style.display = 'none';
-                }
-            });
-            
-            closeGame.addEventListener('click', closeGameModal);
-            closeGameBtn.addEventListener('click', closeGameModal);
-            gameModal.addEventListener('click', function(e) {
-                if (e.target === this) closeGameModal();
-            });
-            
-            function closeGameModal() {
-                gameModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-            
-            // Story cards
-            const storyCards = document.querySelectorAll('.story-card');
-            storyCards.forEach(card => {
-                card.addEventListener('click', function() {
-                    const story = this.getAttribute('data-story');
-                    showTooltip(`Starting "${story}" story! 🎧`, 'top');
-                    
-                    // Animate card
-                    this.style.transform = 'scale(0.95)';
-                    setTimeout(() => {
-                        this.style.transform = '';
-                    }, 200);
-                });
-            });
-            
-            // Map controls
-            document.getElementById('zoomIn').addEventListener('click', function() {
-                showTooltip('Zooming in...', 'top');
-                this.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-            
-            document.getElementById('zoomOut').addEventListener('click', function() {
-                showTooltip('Zooming out...', 'top');
-                this.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-            
-            document.getElementById('resetMap').addEventListener('click', function() {
-                showTooltip('Map reset to default view', 'top');
-                this.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-            
-            // Continents
-            const continents = document.querySelectorAll('.continent');
-            continents.forEach(continent => {
-                continent.addEventListener('click', function() {
-                    const continentName = this.getAttribute('data-continent');
-                    showTooltip(`Exploring ${continentName}! Let's see what countries are here.`, 'top');
-                    
-                    // Highlight continent
-                    this.style.zIndex = '15';
-                    this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3)';
-                    setTimeout(() => {
-                        this.style.zIndex = '';
-                        this.style.boxShadow = '';
-                    }, 800);
-                });
-            });
-            
-            // Quiz functionality in country capsule
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            quizOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selected class
-                    quizOptions.forEach(opt => opt.classList.remove('selected'));
-                    // Add selected class
-                    this.classList.add('selected');
-                });
-            });
-            
-            // Submit quiz answer
-            document.querySelector('.capsule-section .game-btn').addEventListener('click', function() {
-                const selectedOption = document.querySelector('.quiz-option.selected');
-                
-                if (!selectedOption) {
-                    showTooltip('Please select an answer first!', 'top');
-                    return;
-                }
-                
-                const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
-                
-                if (isCorrect) {
-                    selectedOption.style.backgroundColor = '#d4edda';
-                    selectedOption.style.borderColor = '#c3e6cb';
-                    showTooltip('Correct! 🎉 You earned 25 XP!', 'top');
-                } else {
-                    selectedOption.style.backgroundColor = '#f8d7da';
-                    selectedOption.style.borderColor = '#f5c6cb';
-                    showTooltip('Try again! You can do it! 💪', 'top');
-                }
-            });
-            
-            // Profile avatar
-            document.getElementById('profileAvatar').addEventListener('click', function() {
-                showTooltip('Profile settings coming soon!', 'top');
-                this.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
-            });
-            
-            // Tooltip function
-            function showTooltip(message, position) {
-                // Remove existing tooltip
-                const existingTooltip = document.querySelector('.custom-tooltip');
-                if (existingTooltip) {
-                    existingTooltip.remove();
-                }
-                
-                // Create tooltip
-                const tooltip = document.createElement('div');
-                tooltip.className = 'custom-tooltip';
-                tooltip.textContent = message;
-                tooltip.style.position = 'fixed';
-                tooltip.style.zIndex = '5000';
-                tooltip.style.backgroundColor = 'rgba(23, 88, 131, 0.95)';
-                tooltip.style.color = 'white';
-                tooltip.style.padding = '12px 20px';
-                tooltip.style.borderRadius = '10px';
-                tooltip.style.fontFamily = "'Fredoka', sans-serif";
-                tooltip.style.fontSize = '16px';
-                tooltip.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.25)';
-                tooltip.style.maxWidth = '350px';
-                tooltip.style.textAlign = 'center';
-                tooltip.style.opacity = '0';
-                tooltip.style.transform = 'translateY(20px)';
-                tooltip.style.transition = 'opacity 0.3s, transform 0.3s';
-                
-                // Position tooltip
-                if (position === 'top') {
-                    tooltip.style.top = '80px';
-                    tooltip.style.left = '50%';
-                    tooltip.style.transform += ' translateX(-50%)';
-                } else {
-                    tooltip.style.bottom = '80px';
-                    tooltip.style.left = '50%';
-                    tooltip.style.transform += ' translateX(-50%)';
-                }
-                
-                document.body.appendChild(tooltip);
-                
-                // Show tooltip
-                setTimeout(() => {
-                    tooltip.style.opacity = '1';
-                    tooltip.style.transform = position === 'top' 
-                        ? 'translateY(0) translateX(-50%)' 
-                        : 'translateY(0) translateX(-50%)';
-                }, 10);
-                
-                // Hide tooltip after 3 seconds
-                setTimeout(() => {
-                    tooltip.style.opacity = '0';
-                    tooltip.style.transform = position === 'top'
-                        ? 'translateY(-20px) translateX(-50%)'
-                        : 'translateY(20px) translateX(-50%)';
-                    
-                    setTimeout(() => {
-                        if (tooltip.parentNode) {
-                            tooltip.parentNode.removeChild(tooltip);
-                        }
-                    }, 300);
-                }, 3000);
-            }
-            
-            // Interactive map effects
-            const worldMap = document.querySelector('.world-map');
-            worldMap.addEventListener('mousemove', function(e) {
-                const pins = document.querySelectorAll('.country-pin');
-                const rect = worldMap.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                pins.forEach(pin => {
-                    const pinRect = pin.getBoundingClientRect();
-                    const pinX = pinRect.left + pinRect.width/2 - rect.left;
-                    const pinY = pinRect.top + pinRect.height/2 - rect.top;
-                    
-                    const dx = Math.abs(pinX - x);
-                    const dy = Math.abs(pinY - y);
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    
-                    if (distance < 60) {
-                        pin.style.transform = `scale(${1.3 - distance/200})`;
-                        pin.style.zIndex = '10';
-                    } else {
-                        pin.style.transform = '';
-                        pin.style.zIndex = '';
-                    }
-                });
-            });
-        });
+            document.getElementById(pageId).classList.add('active');
+        }
     </script>
 </body>
 </html>
