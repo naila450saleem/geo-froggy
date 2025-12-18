@@ -15,7 +15,8 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #e3f2fd 0%, #f0f4f8 100%);
             min-height: 100vh;
-  
+   overflow-x: hidden; /* horizontal scroll removal */
+   overflow-y: hidden
 }
 
 
@@ -1350,6 +1351,189 @@ body:not(.map-active) > .header {
     }
 }
 
+/* Mobile Responsive Fixes (iPhone, Android) */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto !important; /* Enable scrolling */
+        padding: 10px !important;
+        min-height: 100vh;
+    }
+    
+    /* Fix for big circle on mobile */
+    .big-circle {
+        position: relative !important;
+        top: auto !important;
+        right: auto !important;
+        transform: none !important;
+        width: 300px !important;
+        height: 300px !important;
+        margin: 30px auto !important;
+        display: block !important;
+        background: linear-gradient(135deg, #4DD8E8, #00BCD4) !important;
+        border-radius: 50% !important;
+        overflow: visible !important;
+    }
+    
+    /* Fix globe image */
+    .globe-image {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        width: 250px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    /* Fix frog position */
+    .frog-left {
+        position: absolute !important;
+        top: 50% !important;
+        left: -50px !important;
+        transform: translateY(-50%) !important;
+        width: 100px !important;
+        height: 100px !important;
+        z-index: 20 !important;
+        display: block !important;
+    }
+    
+    /* Show floating icons on mobile */
+    .floating-icon {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 50px !important;
+        height: 50px !important;
+        --radius: 130px !important; /* Smaller radius for mobile */
+    }
+    
+    .icon-img {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    /* Welcome section adjustments */
+    .welcome-section {
+        display: block !important;
+        text-align: center !important;
+        margin-bottom: 20px !important;
+    }
+    
+    /* Container padding fix */
+    .container {
+        padding: 15px !important;
+        overflow: visible !important;
+    }
+    
+    /* Adjust floating animation for mobile */
+    @keyframes float {
+        0%, 100% {
+            transform: translate(-50%, -50%) 
+                       rotate(var(--angle)) 
+                       translateX(var(--radius)) 
+                       rotate(calc(-1 * var(--angle)))
+                       translateY(0px);
+        }
+        50% {
+            transform: translate(-50%, -50%) 
+                       rotate(var(--angle)) 
+                       translateX(var(--radius)) 
+                       rotate(calc(-1 * var(--angle)))
+                       translateY(-5px);
+        }
+    }
+}
+
+/* Small Phones (iPhone SE, small Android) */
+@media (max-width: 480px) {
+    .big-circle {
+        width: 250px !important;
+        height: 250px !important;
+    }
+    
+    .globe-image {
+        width: 400px !important;
+        margin-left: -80px !important;
+       position: relative !important;
+        top: -20px !important; /* Move up */ 
+    }
+    
+    .frog-left {
+        width: 100px !important;
+        height: 100px !important;
+        left: -50px !important;
+    }
+    
+    .floating-icon {
+        width: 40px !important;
+        height: 40px !important;
+        --radius: 60px !important;
+    }
+    
+    .icon-img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Very Small Phones */
+@media (max-width: 360px) {
+    .big-circle {
+        width: 220px !important;
+        height: 220px !important;
+    }
+    
+    .globe-image {
+        width: 180px !important;
+    }
+    
+    .floating-icon {
+        --radius: 100px !important;
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .icon-img {
+        width: 22px !important;
+        height: 22px !important;
+    }
+}
+
+/* Tablet Fixes (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .big-circle {
+        position: relative !important;
+        width: 450px !important;
+        height: 450px !important;
+        margin: 40px auto !important;
+        transform: none !important;
+    }
+    
+    .globe-image {
+        width: 350px !important;
+        position: relative !important;
+        transform: none !important;
+        margin: 0 auto !important;
+    }
+    
+    .frog-left {
+        left: -60px !important;
+        width: 150px !important;
+        height: 150px !important;
+    }
+    
+    .floating-icon {
+        --radius: 170px !important;
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .icon-img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1627,7 +1811,53 @@ body:not(.map-active) > .header {
     document.body.className = pageId + '-active';
 }
 
+// Force show elements on mobile
+function fixMobileDisplay() {
+    if (window.innerWidth <= 768) {
+        // Show all floating icons
+        document.querySelectorAll('.floating-icon').forEach(icon => {
+            icon.style.display = 'flex';
+            icon.style.visibility = 'visible';
+            icon.style.opacity = '1';
+        });
+        
+        // Show big circle
+        const bigCircle = document.querySelector('.big-circle');
+        if (bigCircle) {
+            bigCircle.style.display = 'block';
+            bigCircle.style.visibility = 'visible';
+        }
+        
+        // Show globe
+        const globe = document.querySelector('.globe-image');
+        if (globe) {
+            globe.style.display = 'block';
+        }
+        
+        // Show frog
+        const frog = document.querySelector('.frog-left');
+        if (frog) {
+            frog.style.display = 'block';
+        }
+    }
+}
 
+// Run on load and resize
+window.addEventListener('load', fixMobileDisplay);
+window.addEventListener('resize', fixMobileDisplay);
+
+// Also check after page transitions
+function showPage(pageId) {
+    // Your existing showPage function
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
+    document.getElementById(pageId).classList.add('active');
+    document.body.className = pageId + '-active';
+    
+    // Fix mobile display after page change
+    setTimeout(fixMobileDisplay, 100);
+}
 
 </script>
 
