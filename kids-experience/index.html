@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geofroggy - World Explorer</title>
     <style>
@@ -841,22 +840,25 @@ body:not(.map-active) > .header {
     }
 }
 
-/* Pull header to edges with negative margins */
 @media (max-width: 767px) {
-    .header {
-        margin: -8px -8px 0 -8px !important; /* Negative margins */
+      .header {
+        width: 100vw !important;
+        margin: 0 !important;
         padding: 20px 15px !important;
-        width: calc(100% + 16px) !important;
         position: relative;
-        left: -8px;
-        top: -8px;
-        right: -8px !important; /* Pull right edge */
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+        box-sizing: border-box;
     }
+
     
-         body {
+        html, body {
+        width: 100%;
+        max-width: 100%;
         margin: 0 !important;
         padding: 0 !important;
-        overflow-x: hidden;
+        overflow-x: hidden !important;
     }
     
 }
@@ -1473,6 +1475,7 @@ body:not(.map-active) > .header {
             padding: 20px 40px;
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            top: -8px !important;
         }
 
     .big-circle {
