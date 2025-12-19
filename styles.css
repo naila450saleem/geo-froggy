@@ -1963,4 +1963,44 @@ body {
     100% { transform: translateY(0); }
 }
 
+/* ===============================
+   MOBILE FIX ONLY (NO DESKTOP)
+   =============================== */
+@media (max-width: 768px) {
+
+    /* Hero → Paths gap remove */
+    .hero-section {
+        margin-bottom: 0 !important;
+        min-height: 530px;   /* 👈 hero visible rahe */
+        height: auto;
+    }
+
+    .hero-section .full-image {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Wrapper extra top space remove */
+    .full-section-wrapper .main-container {
+        padding-top: 0 !important;
+    }
+
+    /* Paths container stable */
+   .paths-container {
+        padding-bottom: 180px;   /* 👈 bottom space */
+        margin-bottom: 0 !important;
+       margin-top: -150px;   
+    }
+
+    /* Cards jump / overlap stop */
+    .path-box {
+        transform: none !important;
+    }
+
+    /* Image top gap remove */
+    .path-box img.path-img {
+        margin-top: 0 !important;
+    }
+}
 
