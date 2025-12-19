@@ -1844,19 +1844,18 @@ body {
     100% { transform: scale(1); }
 }
 
+/* ===== SLIDE LEFT ANIMATION ===== */
 .slide-left {
     opacity: 0;
-    transform: translateX(-30px);
-    animation: slideText 0.8s ease forwards;
-    animation-delay: 0.4s;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
 }
 
-@keyframes slideText {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.slide-left.show {
+    opacity: 1;
+    transform: translateX(0);
 }
+
 
 @keyframes floatImg {
     0% { transform: translateY(0); }
