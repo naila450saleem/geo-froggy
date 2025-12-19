@@ -460,6 +460,9 @@ body {
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     overflow: hidden;
     margin-bottom: 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
         }
         
         /* EXACT "Home" text like image */
@@ -1797,8 +1800,100 @@ body {
 }
 
 .path-box:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+   transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    border-color: #8DC63F;
+}
+
+/* Card background color change on hover */
+.path-box:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(141, 198, 63, 0.05) 0%, rgba(23, 88, 131, 0.05) 100%);
+    z-index: -1;
+}
+
+/* Home label color change on hover */
+.path-box:hover .home-label {
+    background: linear-gradient(to right, #8DC63F, #6BA82D);
+    color: white;
+    box-shadow: 0 5px 15px rgba(141, 198, 63, 0.3);
+}
+
+/* Age text color change on hover */
+.path-box:hover .age-range {
+    color: #175883;
+}
+
+/* Age range greater-than symbol color change */
+.path-box:hover .age-range .greater {
+    color: #8DC63F;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Image zoom effect on hover */
+.path-box:hover .path-img {
+    transform: scale(1.5);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Button color change on hover */
+.path-box:hover .start-btn {
+    background: linear-gradient(to bottom, #175883, #0d3b66);
+    color: white;
+    box-shadow: 0 8px 20px rgba(23, 88, 131, 0.3);
+}
+
+/* See inside arrow animation */
+.path-box:hover .see-inside-btn {
+    color: #175883;
+}
+
+.path-box:hover .see-inside-btn .arrow {
+    transform: translateX(8px);
+    color: #8DC63F;
+}
+
+/* Description text emphasis on hover */
+.path-box:hover .description {
+    color: #1f2937;
+    font-weight: 500;
+}
+
+/* Individual card unique hover effects (optional) */
+.path-box:nth-child(1):hover .home-label { /* Kids card */
+    background: #082a52;
+}
+
+.path-box:nth-child(2):hover .home-label { /* Teens card */
+    background: #082a52;
+}
+
+.path-box:nth-child(3):hover .home-label { /* Adults card */
+    background: #082a52;
+}
+
+/* Add subtle glow effect */
+.path-box:hover {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 25px 50px rgba(141, 198, 63, 0.15);
+    }
+    to {
+        box-shadow: 0 25px 50px rgba(23, 88, 131, 0.2);
+    }
 }
 
 .path-img {
