@@ -31,24 +31,17 @@
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 32px;
-            font-weight: bold;
-            color: #4CAF50;
-        }
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .logo-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-        }
+.logo-icon {
+    width: 280px;   /* logo size */
+    height: auto;
+    display: block;
+}
+
 
         /* Map page header style */
         /* Original header hide on Map page */
@@ -205,7 +198,7 @@ body:not(.map-active) > .header {
     position: absolute;
     top: 50%;      /* Vertical center */
     left: 0;       /* At left edge */
-    transform: translateY(-50%) translateX(-100px);
+    transform: translateY(-50%) translateX(-130px);
     z-index: 20;
     transition: all 0.3s ease;
 
@@ -448,6 +441,7 @@ body:not(.map-active) > .header {
         }
 
         .world-map {
+            position: relative; /* frog ko absolute position ke liye parent relative hona chahiye */
             width: 100%;
             height: 400px;
             background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
@@ -466,6 +460,16 @@ body:not(.map-active) > .header {
 }
 
 
+.map-frog {
+    position: absolute;
+    bottom: 10px;   /* distance from bottom */
+    right: -30px;    /* distance from right */
+    width: 120px;    /* adjust size as needed */
+    height: auto;
+    z-index: 10;    /* image ke upar dikhne ke liye */
+}
+
+
         .continent {
             position: absolute;
             background: #C8E6C9;
@@ -481,11 +485,11 @@ body:not(.map-active) > .header {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            width: 100px;
+            width: 150px;
             height: 120px;
-            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
             border-radius: 50% 50% 45% 45%;
             z-index: 10;
+             transform: translateY(-40px);
         }
 
         .speech-bubble {
@@ -508,6 +512,7 @@ body:not(.map-active) > .header {
             display: inline-block;
             margin: 0 auto;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+               transform: translateY(-180px);
         }
 
         .nav-tabs {
@@ -516,10 +521,11 @@ body:not(.map-active) > .header {
             gap: 20px;
             background: white;
             padding: 15px;
-            border-radius: 50px;
+            border-radius: 20px !important;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
                 max-width: 1100px;  /* jitna chahen */
     margin: 0 auto;     /* horizontally center */
+    transform: translateY(-180px);
         }
 
         .explore-nav{
@@ -1573,9 +1579,9 @@ body:not(.map-active) > .header {
 <body>
     <div class="header">
         <div class="logo">
-            <div class="logo-icon">🐸</div>
-            <span>Geofroggy</span>
-        </div>
+    <img src="../assets/images/logo-bg.png" alt="Geofroggy Logo" class="logo-icon">
+</div>
+
         <a href="#" class="back-link">Back to Grown-Up View</a>
     </div>
 
@@ -1627,21 +1633,21 @@ body:not(.map-active) > .header {
 
             <div class="feature-cards">
                 <div class="feature-card" onclick="showPage('map')">
-                    <div class="feature-icon">🐸</div>
+                    <img src="../assets/images/mini-f.png" alt="Frog icon">
                     <div>
                         <h3>Explore Map</h3>
                         <p>Tap countries to see fun facts</p>
                     </div>
                 </div>
                 <div class="feature-card" onclick="showPage('games')">
-                    <div class="feature-icon">🎮</div>
+                     <img src="../assets/images/game-removebg-preview.png" alt="play icon">
                     <div>
                         <h3>Play Games</h3>
                         <p>Try quick quiz challenges</p>
                     </div>
                 </div>
                 <div class="feature-card" onclick="showPage('stories')">
-                    <div class="feature-icon">🌳</div>
+                     <img src="../assets/images/mini-t-removebg-preview.png" alt="tree icon">
                     <div>
                         <h3>Story Journeys</h3>
                         <p>Follow 1-minute world stories</p>
@@ -1663,10 +1669,11 @@ body:not(.map-active) > .header {
     </div>
                <div class="world-map">
     <img 
-      src="images/world-map.png" 
+      src="../assets/images/world map.png" 
       alt="World Explorer Map"
       class="map-image"
     >
+    <img src="../assets/images/bag-removebg-preview.png" alt="Frog" class="map-frog">
 
     <div class="map-mascot">
         <div class="speech-bubble">"Let's explore the world!"</div>
@@ -1892,6 +1899,9 @@ function showPage(pageId) {
     // Fix mobile display after page change
     setTimeout(fixMobileDisplay, 100);
 }
+
+// new js
+
 
 </script>
 

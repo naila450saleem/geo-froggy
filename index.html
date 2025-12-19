@@ -76,15 +76,16 @@
 
     <!-- Hero Section -->
     <section class="hero-section">
-        <img src="assets/images/main.jpg" alt="World Map" class="full-image">
+        <img src="assets/images/main.jpg" alt="World Map" class="full-image fade-zoom">
+
     </section>
 
     <!-- Paths Container -->
     <section class="paths-container">
         <!-- Kids -->
-        <div class="path-box">
+        <div class="path-box fade-up">
             <div class="home-label">Home</div>
-            <div class="age-range">Kids <span class="greater">&gt;</span> 8-12</div>
+            <div class="age-range slide-left">Kids <span class="greater">&gt;</span> 8-12</div>
             <p class="description">Games, maps, and story quests.</p>
             <img src="assets/images/kids.jpg" class="path-img">
             <a href="kids-experience/index.html" class="start-btn">Start Kids Experience</a>
@@ -92,9 +93,10 @@
         </div>
 
         <!-- Teens -->
-        <div class="path-box">
+        <div class="path-box fade-up">
+
             <div class="home-label">Home</div>
-            <div class="age-range">Teens <span class="greater">&gt;</span> 13-17</div>
+            <div class="age-range slide-left">Teens <span class="greater">&gt;</span> 13-17</div>
             <p class="description">Compare countries, trends, <br>and challenges.</p>
             <img src="assets/images/teen.jpg" class="path-img">
             <a href="teens-experience/index.html" class="start-btn">Start Teen Experience</a>
@@ -102,9 +104,10 @@
         </div>
 
         <!-- Adults -->
-        <div class="path-box">
+        <div class="path-box fade-up">
+
             <div class="home-label">Home</div>
-            <div class="age-range">Adults <span class="greater">&gt;</span> 18+</div>
+            <div class="age-range slide-left">Adults <span class="greater">&gt;</span> 18+</div>
             <p class="description">Insightful stories, context, <br>and dashboards.</p>
             <img src="assets/images/adu.png" class="path-img">
             <a href="adults-experience/index.html" class="start-btn">Start Adult Experience</a>
@@ -113,7 +116,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer fade-up">
         <div class="footer-container">
             <div class="footer-left">
                 <p>Explore global stories, join meaningful conversations, and be part of a worldwide community where every place has a voice.</p>
@@ -193,6 +196,20 @@ const nav = document.querySelector('.mobile-nav-links');
 toggle.addEventListener('click', () => {
     nav.classList.toggle('mobile-active');
 });
+
+// new js
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.fade-up, .fade-zoom').forEach(el => {
+    observer.observe(el);
+});
+
 </script>
 
 
