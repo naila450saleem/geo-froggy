@@ -171,6 +171,8 @@ body {
             font-family: 'Poppins', sans-serif;
             border-radius: 0 25px 0 25px; /* Rounds top-right and bottom-left corners */
             transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Entrance Animation */
+    animation: slideFromRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s both;
         }
 
         .signup-btn:hover {
@@ -1384,6 +1386,7 @@ body {
     .paths-container {
         max-width: 1100px;
         margin: 0 auto 60px;
+        padding-bottom: 40px;
     }
     
     .path-box {
@@ -1620,6 +1623,8 @@ body {
         box-sizing: border-box;
         margin-left: 10px;
         padding-right: 20px;
+        margin-bottom: 30%;
+        margin-top: -60px;
     }
 
     .path-box {
@@ -1957,9 +1962,5 @@ body {
     50% { transform: translateY(-8px); }
     100% { transform: translateY(0); }
 }
-
-
-
-
 
 
